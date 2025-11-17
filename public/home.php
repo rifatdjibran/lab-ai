@@ -139,3 +139,92 @@
   </div>
 </section>
 
+<br>
+<br>
+<br>
+<section class="bg-light py-5">
+  <div class="container text-center">
+
+    <h2 class="fw-semibold mb-2">Produk Kami</h2>
+    <div class="divider-custom mx-auto mb-4"></div>
+
+    <div class="row g-4">
+
+      <!-- AMATI -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">AMATI</div>
+          <img src="assets/img/amati.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Amati</div>
+            <div class="product-desc">
+              Automated Cyber Security Maturity Assessment (AMATI)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agrilink -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">AGRI</div>
+          <img src="assets/img/agrilink.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Agrilink Vocpro</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEALS -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">SEALS</div>
+          <img src="assets/img/seals.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">SEALS</div>
+            <div class="product-desc">Smart Adaptive Learning System (SEALS)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CrowdEquiChain -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">CHAIN</div>
+          <img src="assets/img/crowd.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">CrowdEquiChain</div>
+            <div class="product-desc">Crowdfunding</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Owncloud -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">SERVER</div>
+          <img src="assets/img/owncloud.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Owncloud Server</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gitea -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">GIT</div>
+          <img src="assets/img/gitea.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Gitea</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
