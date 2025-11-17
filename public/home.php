@@ -117,7 +117,10 @@
 <section>
   <div class="container text-center">
     <h3>Tim Kami</h3>
-    <p class="text-muted mb-4">Beberapa staf dan anggota aktif di Laboratorium for Applied Informatics:</p>
+    <p class="text-muted mb-4">
+      Beberapa staf dan anggota aktif di Laboratorium for Applied Informatics:
+    </p>
+
     <div class="row justify-content-center g-4">
       <?php
       $anggota = [
@@ -136,9 +139,17 @@
         </div>
       <?php endforeach; ?>
     </div>
+
+    <!-- Tombol Selengkapnya -->
+    <a href="/lab-ai/public/struktur.php" class="btn btn-outline-primary mt-4">
+    Selengkapnya
+    </a>
+
+
   </div>
 </section>
 
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -228,3 +239,5 @@
 
   </div>
 </section>
+
+
