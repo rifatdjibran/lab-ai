@@ -19,5 +19,8 @@ switch($page) {
 
 echo '</div>';
 
+
+include "public/home.php";
+
 include "includes/footer.php";
 ?>
