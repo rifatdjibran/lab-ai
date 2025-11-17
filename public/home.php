@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+<!-- Hero Section (Tetap Satu-Satunya) -->
 <section class="hero">
   <div class="container position-relative text-start text-white">
     <h1 class="display-4 fw-bold">Selamat Datang</h1>
@@ -13,6 +13,8 @@
 <section class="container my-5">
   <h3 class="text-primary mb-4">Berita Terbaru</h3>
   <div class="row g-4">
+
+    <!-- Card 1 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita1.jpg" class="card-img-top grayscale" alt="Berita 1">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Card 2 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita2.jpg" class="card-img-top grayscale" alt="Berita 2">
@@ -35,6 +38,7 @@
       </div>
     </div>
 
+    <!-- Card 3 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita3.jpg" class="card-img-top grayscale" alt="Berita 3">
@@ -45,18 +49,19 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
 
-<!-- Hero Section -->
-<section id="profil" class="hero-section d-flex align-items-center justify-content-center text-center" 
-         style="background-image: url('../assets/img/banner.png'); height: 50vh;">
-  <div class="container">
-    <h1 class="fw-bold display-4">Profil Laboratorium</h1>
+<!-- Profil Laboratorium (BUKAN HERO LAGI) -->
+<section id="profil" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold">Profil Laboratorium</h2>
     <p class="lead">Mengenal lebih dekat Laboratorium for Applied Informatics</p>
   </div>
 </section>
+
 
 <!-- Tentang Kami -->
 <section class="bg-light">
@@ -69,6 +74,7 @@
     </p>
   </div>
 </section>
+
 
 <!-- Sejarah, Visi, Misi -->
 <section class="container my-5 visi-misi-section">
@@ -108,10 +114,11 @@
          class="img-fluid rounded shadow-sm my-4" style="max-width: 80%;">
     <p class="text-muted">
       Struktur organisasi Lab-AI terdiri dari dosen pembina, koordinator laboratorium, laboran,
-      dan asisten mahasiswa yang bekerja sama untuk mendukung kegiatan akademik dan penelitian.
+      dan asisten mahasiswa.
     </p>
   </div>
 </section>
+
 
 <!-- Tim Kami -->
 <section>
@@ -140,19 +147,15 @@
       <?php endforeach; ?>
     </div>
 
-    <!-- Tombol Selengkapnya -->
     <a href="/lab-ai/public/struktur.php" class="btn btn-outline-primary mt-4">
-    Selengkapnya
+      Selengkapnya
     </a>
-
 
   </div>
 </section>
 
-<<<<<<< HEAD
-<br>
-<br>
-<br>
+
+<!-- Produk -->
 <section class="bg-light py-5">
   <div class="container text-center">
 
@@ -239,5 +242,3 @@
 
   </div>
 </section>
-
-

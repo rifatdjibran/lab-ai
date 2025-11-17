@@ -6,7 +6,7 @@ $page = $_GET['page'] ?? 'home';
 
 echo '<div class="content-wrapper">';
 
-switch($page) {
+switch ($page) {
     case 'profil':
         include "public/profil_lab.php";
         break;
@@ -15,12 +15,10 @@ switch($page) {
         break;
     default:
         include "public/home.php";
+        break;
 }
 
 echo '</div>';
-
-
-include "public/home.php";
 
 include "includes/footer.php";
 ?>
