@@ -268,3 +268,36 @@ footer {
         height: 200px;
     }
 }
+
+/* ---- BERITA PAGE STYLE ---- */
+
+/* Hero Section */
+.hero-berita {
+    background: linear-gradient(rgba(0,50,100,0.6), rgba(0,50,100,0.6)),
+                url('../img/home-lab.jpg.jpg') center/cover no-repeat;
+    height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+/* News Card */
+.news-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: .3s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.news-img {
+    height: 190px;
+    object-fit: cover;
+    width: 100%;
+}

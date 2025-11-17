@@ -27,7 +27,7 @@
 
         <li class="nav-item"><a class="nav-link" href="/lab-ai/public/fasilitas.php">Fasilitas</a></li>
         <li class="nav-item"><a class="nav-link" href="/lab-ai/public/agenda.php">Agenda</a></li>
-        <li class="nav-item"><a class="nav-link" href="/lab-ai/public/agenda.php">Berita</a></li>
+        <li class="nav-item"><a class="nav-link" href="/lab-ai/public/berita.php">Berita</a></li>
         <li class="nav-item"><a class="nav-link" href="/lab-ai/public/kontak.php">Kontak</a></li>
 
         <li class="nav-item ms-lg-3">
