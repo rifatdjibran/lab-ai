@@ -1,8 +1,8 @@
 <?php
 // config/database.php
 $host = "localhost";
-$port = "5433";
-$dbname = "lab-ai";
+$port = "5432";
+$dbname = "lab_ai";
 $user = "postgres";
 $password = "12345678";
 

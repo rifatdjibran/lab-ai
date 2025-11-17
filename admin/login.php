@@ -5,23 +5,35 @@ require_once "../config/database.php";
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = pg_escape_string($conn, $_POST['username']);
-  $password = pg_escape_string($conn, $_POST['password']);
+    $username = pg_escape_string($conn, $_POST['username']);
+    $password = pg_escape_string($conn, $_POST['password']); // sekarang ikut di-escape
 
-  $query = "SELECT * FROM admin WHERE username = '$username' LIMIT 1";
-  $result = pg_query($conn, $query);
-  $user = pg_fetch_assoc($result);
+    $query = "SELECT * FROM admin WHERE username = '$username' LIMIT 1";
+    $result = pg_query($conn, $query);
 
-  if ($user && $password === $user['password_hash']) {
-    $_SESSION['admin_id'] = $user['id'];
-    $_SESSION['nama_admin'] = $user['nama_lengkap'];
-    header("Location: index.php");
-    exit();
-  } else {
-    $error = "Username atau password salah!";
-  }
+    if ($result && pg_num_rows($result) > 0) {
+        $user = pg_fetch_assoc($result);
+
+        // bandingkan password langsung
+        if (isset($user['password'])) {
+            if ($password === $user['password']) {
+                $_SESSION['admin_id'] = $user['id'];
+                $_SESSION['nama_admin'] = $user['nama_lengkap'];
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = "Username atau password salah!";
+            }
+        } else {
+            $error = "Password belum di-set untuk user ini!";
+        }
+    } else {
+        $error = "Username tidak ditemukan!";
+    }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="id">
