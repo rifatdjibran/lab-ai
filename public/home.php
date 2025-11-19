@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+<!-- Hero Section (Tetap Satu-Satunya) -->
 <section class="hero">
   <div class="container position-relative text-start text-white">
     <h1 class="display-4 fw-bold">Selamat Datang</h1>
@@ -13,6 +13,8 @@
 <section class="container my-5">
   <h3 class="text-primary mb-4">Berita Terbaru</h3>
   <div class="row g-4">
+
+    <!-- Card 1 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita1.jpg" class="card-img-top grayscale" alt="Berita 1">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Card 2 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita2.jpg" class="card-img-top grayscale" alt="Berita 2">
@@ -35,6 +38,7 @@
       </div>
     </div>
 
+    <!-- Card 3 -->
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita3.jpg" class="card-img-top grayscale" alt="Berita 3">
@@ -45,18 +49,19 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
 
-<!-- Hero Section -->
-<section id="profil" class="hero-section d-flex align-items-center justify-content-center text-center" 
-         style="background-image: url('../assets/img/banner.png'); height: 50vh;">
-  <div class="container">
-    <h1 class="fw-bold display-4">Profil Laboratorium</h1>
+<!-- Profil Laboratorium (BUKAN HERO LAGI) -->
+<section id="profil" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold">Profil Laboratorium</h2>
     <p class="lead">Mengenal lebih dekat Laboratorium for Applied Informatics</p>
   </div>
 </section>
+
 
 <!-- Tentang Kami -->
 <section class="bg-light">
@@ -69,6 +74,7 @@
     </p>
   </div>
 </section>
+
 
 <!-- Sejarah, Visi, Misi -->
 <section class="container my-5 visi-misi-section">
@@ -108,16 +114,20 @@
          class="img-fluid rounded shadow-sm my-4" style="max-width: 80%;">
     <p class="text-muted">
       Struktur organisasi Lab-AI terdiri dari dosen pembina, koordinator laboratorium, laboran,
-      dan asisten mahasiswa yang bekerja sama untuk mendukung kegiatan akademik dan penelitian.
+      dan asisten mahasiswa.
     </p>
   </div>
 </section>
+
 
 <!-- Tim Kami -->
 <section>
   <div class="container text-center">
     <h3>Tim Kami</h3>
-    <p class="text-muted mb-4">Beberapa staf dan anggota aktif di Laboratorium for Applied Informatics:</p>
+    <p class="text-muted mb-4">
+      Beberapa staf dan anggota aktif di Laboratorium for Applied Informatics:
+    </p>
+
     <div class="row justify-content-center g-4">
       <?php
       $anggota = [
@@ -136,6 +146,99 @@
         </div>
       <?php endforeach; ?>
     </div>
+
+    <a href="/lab-ai/public/struktur.php" class="btn btn-outline-primary mt-4">
+      Selengkapnya
+    </a>
+
   </div>
 </section>
 
+
+<!-- Produk -->
+<section class="bg-light py-5">
+  <div class="container text-center">
+
+    <h2 class="fw-semibold mb-2">Produk Kami</h2>
+    <div class="divider-custom mx-auto mb-4"></div>
+
+    <div class="row g-4">
+
+      <!-- AMATI -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">AMATI</div>
+          <img src="assets/img/amati.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Amati</div>
+            <div class="product-desc">
+              Automated Cyber Security Maturity Assessment (AMATI)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agrilink -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">AGRI</div>
+          <img src="assets/img/agrilink.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Agrilink Vocpro</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEALS -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">SEALS</div>
+          <img src="assets/img/seals.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">SEALS</div>
+            <div class="product-desc">Smart Adaptive Learning System (SEALS)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CrowdEquiChain -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">CHAIN</div>
+          <img src="assets/img/crowd.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">CrowdEquiChain</div>
+            <div class="product-desc">Crowdfunding</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Owncloud -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">SERVER</div>
+          <img src="assets/img/owncloud.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Owncloud Server</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gitea -->
+      <div class="col-md-4 col-sm-6">
+        <div class="product-card">
+          <div class="product-badge">GIT</div>
+          <img src="assets/img/gitea.png" class="product-logo">
+          <div class="product-content">
+            <div class="product-title">Gitea</div>
+            <div class="product-desc"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
