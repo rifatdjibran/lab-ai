@@ -1,10 +1,10 @@
 <?php
-// config/database.php
+
 $host = "localhost";
 $port = "5433";
-$dbname = "lab_ai";
+$dbname = "lab-ai";
 $user = "postgres";
-$password = "admin123"; 
+$password = "12345678"; 
 
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
