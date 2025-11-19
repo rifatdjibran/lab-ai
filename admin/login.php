@@ -96,7 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
   <div class="img-container">
-      <img src="../assets/img/logoclear.png" alt="Logo">
+    <a href="../index.php">
+        <img src="../assets/img/logoclear.png" alt="Logo">
+        </a>
     </div>
 
   <div class="card w-25">
