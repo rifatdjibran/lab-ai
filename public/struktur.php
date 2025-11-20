@@ -16,13 +16,13 @@
     <?php
     // daftar lengkap semua anggota
     $all = [
-      ["Dr. Ahmad Setiawan", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
-      ["Siti Nurhaliza", "Laboran", "../assets/img/banners/laboran1.jpg"],
-      ["Budi Raharjo", "Asisten Penelitian", "../assets/img/banners/anggota1.jpg"],
-      ["Dewi Anggraini", "Asisten Laboratorium", "../assets/img/banners/anggota2.jpg"],
-      ["Muhammad Ilyas", "Asisten AI", "../assets/img/banners/anggota3.jpg"],
-      ["Rina Kusuma", "Asisten Data Science", "../assets/img/banners/anggota4.jpg"],
-      ["Rafi Hidayat", "Asisten Machine Learning", "../assets/img/banners/anggota5.jpg"]
+      ["Nama", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/laboran1.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/anggota1.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/anggota2.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/anggota3.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/anggota4.jpg"],
+      ["Nama", "Anggota", "../assets/img/banners/anggota5.jpg"]
     ];
 
     foreach ($all as $x): ?>

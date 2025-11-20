@@ -131,8 +131,8 @@
     <div class="row justify-content-center g-4">
       <?php
       $anggota = [
-        ["Dr. Ahmad Setiawan", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
-        ["Siti Nurhaliza", "Laboran", "../assets/img/banners/laboran1.jpg"]
+        ["Dr. Ahmad", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
+        ["Siti", "Laboran", "../assets/img/banners/laboran1.jpg"]
       ];
       foreach ($anggota as $a): ?>
         <div class="col-md-3 col-6">
