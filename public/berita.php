@@ -31,7 +31,7 @@ $result = pg_query($conn, $query);
             <div class="news-card shadow-sm">
 
                 <!-- Gambar -->
-                <img src="../uploads/<?= $b['gambar']; ?>" class="news-img w-100" alt="gambar">
+                <img src="../assets/uploads/berita/<?= $b['gambar']; ?>" class="news-img w-100" alt="gambar">
 
                 <div class="p-3">
                     <small class="text-muted">
