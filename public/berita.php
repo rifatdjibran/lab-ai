@@ -5,6 +5,7 @@ include '../config/database.php';
 $query = "SELECT * FROM berita ORDER BY tanggal DESC";
 $result = pg_query($conn, $query);
 ?>
+
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/navbar.php'; ?>
 
@@ -20,13 +21,17 @@ $result = pg_query($conn, $query);
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold text-primary">Latest News</h3>
-        <a href="#" class="text-danger">See all</a>
+        <a href="semua_berita.php" class="text-danger">See all</a>
     </div>
 
     <div class="row g-4">
+        <?php while ($b = pg_fetch_assoc($result)) { ?>
+
         <div class="col-md-4">
             <div class="news-card shadow-sm">
-                <img src="<?= $b['gambar']; ?>" class="news-img w-100" alt="gambar">
+
+                <!-- Gambar -->
+                <img src="../uploads/<?= $b['gambar']; ?>" class="news-img w-100" alt="gambar">
 
                 <div class="p-3">
                     <small class="text-muted">
@@ -46,6 +51,8 @@ $result = pg_query($conn, $query);
 
             </div>
         </div>
+
+        <?php } ?>
     </div>
 
 </div>

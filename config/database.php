@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$port = "5432";
+$port = "5433";
 $dbname = "lab_ai";
 $user = "postgres";
 $password = "12345678"; 

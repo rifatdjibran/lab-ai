@@ -62,9 +62,5 @@
 
   <hr>
 
-  <a href="logout.php" class="btn btn-outline-danger w-100">
-    <i class="bi bi-box-arrow-right me-1"></i>
-    <span class="sidebar-text">Logout</span>
-  </a>
 
 </div>

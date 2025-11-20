@@ -1,0 +1,280 @@
+/* GLOBAL */
+body {
+    background-color: #f8f9fa;
+    font-family: "Poppins", sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    transition: 0.3s ease;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar-text {
+    transition: 0.2s ease;
+}
+
+.sidebar.collapsed .sidebar-text {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.sidebar-logo {
+    transition: 0.2s ease;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    margin-right: 0 !important;
+}
+
+#toggleSidebar i {
+    transition: 0.3s;
+}
+
+.sidebar.collapsed #toggleSidebar i {
+    transform: rotate(180deg);
+}
+
+/* MAIN CONTENT SHIFT */
+#main-content {
+    transition: margin-left 0.3s ease;
+    margin-left: 5px;
+}
+
+#main-content.collapsed {
+    margin-left: 60px;
+}
+
+/* Sidebar hover */
+.sidebar-link {
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar-link:hover {
+    background-color: #e7efff;
+    color: #0d6efd !important;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #0d6efd;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .text-white {
+    color: #fff !important;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgb(255, 255, 255);
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+/* ICON */
+.logout-btn .sign {
+  width: 100%;
+  height: 100%;
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn .sign svg {
+  width: 14px;
+}
+
+.logout-btn .sign svg path {
+  fill: rgb(255, 255, 255);
+}
+
+/* TEXT */
+.logout-btn .text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  transition: 0.25s ease;
+}
+
+/* HOVER – Expand button */
+.logout-btn:hover {
+  width: 115px;
+  border-radius: 40px;
+}
+
+/* ICON moves left */
+.logout-btn:hover .sign {
+  width: 28%;
+  padding-left: 10px;
+}
+
+/* TEXT fades in */
+.logout-btn:hover .text {
+  opacity: 1;
+  width: 72%;
+  padding-right: 10px;
+}
+
+/* CLICK effect */
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+/* WRAPPER */
+.add-btn-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #000;
+  border: 1px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.add-btn-wrapper:hover {
+  background: white;
+}
+
+.add-btn-wrapper:hover .add-btn-text {
+  color: black;
+}
+
+/* TEXT STYLE */
+.add-btn-text {
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  transition: 0.25s;
+  user-select: none;
+}
+
+/* PLUS BUTTON ORIGINAL */
+.plusButton {
+  --plus_sideLength: 2.2rem;
+  --plus_topRightTriangleSideLength: 0.8rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--plus_sideLength);
+  height: var(--plus_sideLength);
+  border: 1px solid white;
+  background-color: #000;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.plusButton::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-width: 0 var(--plus_topRightTriangleSideLength)
+    var(--plus_topRightTriangleSideLength) 0;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+  transition: 0.25s ease;
+}
+
+.plusButton:hover::before {
+  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton .plusIcon {
+  fill: white;
+  width: calc(var(--plus_sideLength) * 0.7);
+  height: calc(var(--plus_sideLength) * 0.7);
+  z-index: 1;
+  transition: 0.25s ease;
+}
+
+.plusButton:hover .plusIcon {
+  fill: black;
+  transform: rotate(180deg);
+}
+
+/* CRUD Table */
+.table-modern {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table-modern tbody tr {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: 0.2s ease;
+}
+
+.table-modern tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.table-modern td, .table-modern th {
+    vertical-align: middle;
+    border: none !important;
+    padding: 16px 12px !important;
+}
+
+/* IMAGE THUMB */
+.table-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* DOT MENU BUTTON */
+.more-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.more-btn:hover {
+    color: #0d6efd;
+}
+
+/* Dropdown fix */
+.dropdown-menu {
+    border-radius: 10px;
+    padding: 8px 0;
+}
+.dropdown-item {
+    padding: 8px 16px;
+}
