@@ -24,11 +24,34 @@ if (!$result) {
 $dataPenelitian = pg_fetch_all($result);
 ?>
 
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .hero-section {
+        background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
+                    url('../assets/img/home-lab.jpg.jpg') center/cover no-repeat;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+    .research-card {
+        transition: transform 0.3s;
+    }
+    .research-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="hero-berita">
-    <div class="text-center text-white">
-        <h1 class="fw-bold">Hasil Penelitian Laboratorium</h1>
-        <p class="lead mt-2">Kumpulan hasil penelitian dari Laboratorium Applied Informatics</p>
+<section class="hero-section text-center">
+    <div>
+        <h1 class="display-4 fw-bold">Hasil Penelitian Laboratorium</h1>
+        <p class="lead">Kumpulan hasil penelitian dari Laboratorium Applied Informatics</p>
     </div>
 </section>
 
@@ -83,8 +106,12 @@ $dataPenelitian = pg_fetch_all($result);
     </div>
 </section>
 
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-3 mt-5">
+    <small>&copy; <?= date('Y') ?> Laboratorium for Applied Informatics</small>
+</footer>
 
-<?php include '../includes/footer.php'; ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
