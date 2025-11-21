@@ -2,10 +2,11 @@
 <?php include '../includes/navbar.php'; ?>
 <main class="page-wrapper">
 
-<section class="fasilitas-hero">
-    <div class="container">
-        <h1>Fasilitas Laboratorium</h1>
-        <p>Fasilitas modern untuk mendukung kegiatan riset dan pembelajaran</p>
+<!-- Hero Section -->
+<section class="hero-berita">
+    <div class="text-center text-white">
+        <h1 class="fw-bold">Fasilitas Laboratorium</h1>
+        <p class="lead mt-2">Fasilitas modern untuk mendukung kegiatan riset dan pembelajaran</p>
     </div>
 </section>
 

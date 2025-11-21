@@ -1,3 +1,15 @@
+<?php
+require "config/database.php";
+
+// Koneksi PostgreSQL
+$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+
+if (!$conn) {
+    die("Koneksi database gagal: " . pg_last_error());
+}
+?>
+
+
 <!-- Hero Section (Tetap Satu-Satunya) -->
 <section class="hero">
   <div class="container position-relative text-start text-white">
@@ -69,6 +81,78 @@ $beritaHome = pg_query($conn, $query);
 </section>
 
 
+<<<<<<< HEAD
+<!-- Agenda Terbaru -->
+<section class="container my-5">
+    <h3 class="text-primary mb-4">Agenda Terbaru</h3>
+
+    <div class="row g-4">
+
+        <?php
+        // Query Agenda
+        $agendaResult = pg_query($conn, "SELECT * FROM kegiatan ORDER BY tanggal_mulai DESC LIMIT 3");
+
+        if ($agendaResult && pg_num_rows($agendaResult) > 0):
+            while ($ag = pg_fetch_assoc($agendaResult)):
+        ?>
+
+        <div class="col-md-4">
+            <div class="card agenda-card shadow-sm h-100">
+
+                <img src="/lab-ai/assets/img/banners/<?= htmlspecialchars($ag['gambar']) ?>"
+                     alt="<?= htmlspecialchars($ag['nama_kegiatan']) ?>"
+                     class="card-img-top"
+                     style="height: 180px; object-fit: cover;">
+
+                <div class="card-body">
+                    <h5 class="fw-bold"><?= htmlspecialchars($ag['nama_kegiatan']) ?></h5>
+
+                    <p class="text-muted" style="font-size: 14px;">
+                        <?= htmlspecialchars(substr($ag['deskripsi'], 0, 100)) ?>...
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Tanggal:</strong><br>
+                        <?= date('d M Y', strtotime($ag['tanggal_mulai'])) ?> —
+                        <?= date('d M Y', strtotime($ag['tanggal_selesai'])) ?>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Lokasi:</strong><br>
+                        <?= htmlspecialchars($ag['lokasi']) ?>
+                    </p>
+
+                    <?php
+                        $today = date('Y-m-d');
+                        if ($today < $ag['tanggal_mulai']) {
+                            echo '<span class="badge bg-warning text-dark">Segera</span>';
+                        } elseif ($today <= $ag['tanggal_selesai']) {
+                            echo '<span class="badge bg-success">Berlangsung</span>';
+                        } else {
+                            echo '<span class="badge bg-secondary">Selesai</span>';
+                        }
+                    ?>
+                </div>
+
+            </div>
+        </div>
+
+        <?php endwhile; else: ?>
+
+        <div class="col-12 text-center">
+            <p class="text-muted">Belum ada agenda terbaru.</p>
+        </div>
+
+        <?php endif; ?>
+
+    </div>
+</section>
+
+
+
+
+=======
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
 
 <!-- Profil Laboratorium (BUKAN HERO LAGI) -->
 <section id="profil" class="py-5 bg-light">

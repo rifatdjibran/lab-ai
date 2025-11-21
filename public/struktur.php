@@ -3,11 +3,12 @@
 
 <div class="page-content">
 
-<section class="py-5 text-center bg-light">
-  <div class="container">
-    <h2 class="fw-bold">Struktur Organisasi Lengkap</h2>
-    <p class="text-muted">Daftar lengkap anggota Lab-AI</p>
-  </div>
+<!-- Hero Section -->
+<section class="hero-berita">
+    <div class="text-center text-white">
+        <h1 class="fw-bold">Struktur Organisasi Lengkap</h1>
+        <p class="lead mt-2">Daftar lengkap anggota Lab-AI</p>
+    </div>
 </section>
 
 <section class="container my-5">

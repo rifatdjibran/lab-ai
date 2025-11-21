@@ -1,5 +1,7 @@
 <?php
 include '../config/database.php';
+include '../includes/header.php'; 
+include '../includes/navbar.php'; 
 
 // Koneksi database PostgreSQL
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
@@ -10,8 +12,13 @@ if (!$conn) {
 date_default_timezone_set('Asia/Jakarta'); 
 $tanggalHariIni = date('l, d F Y');
 
+<<<<<<< HEAD
+// Ambil data kegiatan dari database
+$query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai,
+=======
 // Ambil data kegiatan
 $query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai, 
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
                  lokasi, gambar, created_at
           FROM public.kegiatan
           ORDER BY tanggal_mulai ASC";
@@ -23,6 +30,14 @@ if (!$result) {
 
 $agendaLab = pg_fetch_all($result);
 ?>
+<<<<<<< HEAD
+
+<!-- Hero Section -->
+<section class="hero-berita">
+    <div class="text-center text-white">
+        <h1 class="fw-bold">Agenda Laboratorium</h1>
+        <p class="lead mt-2">Ikuti jadwal kegiatan dan workshop terbaru dari Laboratorium</p>
+=======
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -76,10 +91,18 @@ $agendaLab = pg_fetch_all($result);
           </a>
         </li>
       </ul>
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
     </div>
-  </div>
-</nav>
+</section>
 
+<<<<<<< HEAD
+<!-- Agenda Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Agenda Laboratorium</h2>
+        <div class="row g-4">
+
+=======
 <!-- Hero Section -->
 <section class="hero-section text-center">
     <div>
@@ -94,10 +117,47 @@ $agendaLab = pg_fetch_all($result);
         <h2 class="mb-4 text-center">Agenda Laboratorium</h2>
         <div class="row g-4">
 
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
             <?php if ($agendaLab): ?>
                 <?php foreach ($agendaLab as $kegiatan): ?>
                     <div class="col-md-4">
                         <div class="card agenda-card shadow-sm">
+<<<<<<< HEAD
+                            <img src="../assets/img/banners/<?= $kegiatan['gambar'] ?>"
+                                 class="card-img-top"
+                                 alt="<?= htmlspecialchars($kegiatan['nama_kegiatan']) ?>">
+
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <?= htmlspecialchars($kegiatan['nama_kegiatan']) ?>
+                                </h5>
+
+                                <p class="card-text">
+                                    <?= htmlspecialchars($kegiatan['deskripsi']) ?>
+                                </p>
+
+                                <p class="mb-1">
+                                    <strong>Tanggal:</strong>
+                                    <?= date('d F Y', strtotime($kegiatan['tanggal_mulai'])) ?> –
+                                    <?= date('d F Y', strtotime($kegiatan['tanggal_selesai'])) ?>
+                                </p>
+
+                                <p class="mb-1">
+                                    <strong>Lokasi:</strong>
+                                    <?= htmlspecialchars($kegiatan['lokasi']) ?>
+                                </p>
+
+                                <?php
+                                    $today = date('Y-m-d');
+
+                                    if ($today < $kegiatan['tanggal_mulai']) {
+                                        echo '<span class="badge bg-warning text-dark badge-status">Segera</span>';
+                                    } elseif ($today >= $kegiatan['tanggal_mulai'] && $today <= $kegiatan['tanggal_selesai']) {
+                                        echo '<span class="badge bg-success badge-status">Sedang Berlangsung</span>';
+                                    } else {
+                                        echo '<span class="badge bg-secondary badge-status">Selesai</span>';
+                                    }
+=======
                             <img src="../assets/img/banners/<?= $kegiatan['gambar'] ?>" 
                                  class="card-img-top" 
                                  alt="<?= htmlspecialchars($kegiatan['nama_kegiatan']) ?>">
@@ -123,11 +183,27 @@ $agendaLab = pg_fetch_all($result);
                                 } else {
                                     echo '<span class="badge bg-secondary badge-status">Selesai</span>';
                                 }
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
                                 ?>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
+<<<<<<< HEAD
+            
+            <?php else: ?>
+                <div class="col-12 text-center">
+                    <p class="text-muted">Belum ada agenda saat ini.</p>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </div>
+</section>
+
+<?php include '../includes/footer.php'; ?>
+
+=======
 
             <?php else: ?>
                 <div class="col-12 text-center">
@@ -147,5 +223,6 @@ $agendaLab = pg_fetch_all($result);
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
 </body>
 </html>

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "SELECT * FROM admin WHERE username = '$username' LIMIT 1";
     $result = pg_query($conn, $query);
 
-    if ($rensult && pg_num_rows($result) > 0) {
+    if ($result && pg_num_rows($result) > 0) {
         $user = pg_fetch_assoc($result);
 
         if ($password === $user['password']) {
