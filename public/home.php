@@ -80,8 +80,6 @@ $beritaHome = pg_query($conn, $query);
   </div>
 </section>
 
-
-<<<<<<< HEAD
 <!-- Agenda Terbaru -->
 <section class="container my-5">
     <h3 class="text-primary mb-4">Agenda Terbaru</h3>
@@ -147,12 +145,6 @@ $beritaHome = pg_query($conn, $query);
 
     </div>
 </section>
-
-
-
-
-=======
->>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
 
 <!-- Profil Laboratorium (BUKAN HERO LAGI) -->
 <section id="profil" class="py-5 bg-light">
