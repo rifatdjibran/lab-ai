@@ -1,9 +1,12 @@
 <?php
 include '../config/database.php';
 
-// Query berita
-$query = "SELECT * FROM berita ORDER BY tanggal DESC";
+$query = "SELECT * FROM berita ORDER BY tanggal_post DESC";
 $result = pg_query($conn, $query);
+
+if (!$result) {
+    die("Query gagal: " . pg_last_error($conn));
+}
 ?>
 
 <?php include '../includes/header.php'; ?>
@@ -21,7 +24,6 @@ $result = pg_query($conn, $query);
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold text-primary">Latest News</h3>
-        <a href="semua_berita.php" class="text-danger">See all</a>
     </div>
 
     <div class="row g-4">
@@ -31,11 +33,16 @@ $result = pg_query($conn, $query);
             <div class="news-card shadow-sm">
 
                 <!-- Gambar -->
-                <img src="../assets/uploads/berita/<?= $b['gambar']; ?>" class="news-img w-100" alt="gambar">
+                <img 
+                    src="../assets/uploads/berita/<?= $b['gambar'] ?: 'default.jpg'; ?>" 
+                    class="news-img w-100" 
+                    alt="gambar berita"
+                >
 
                 <div class="p-3">
                     <small class="text-muted">
-                        <?= date("F d, Y", strtotime($b['tanggal'])); ?> • <?= $b['penulis']; ?>
+                        <?= date("F d, Y", strtotime($b['tanggal_post'])); ?> 
+                        • Penulis ID: <?= $b['penulis_id']; ?>
                     </small>
 
                     <h5 class="mt-2 fw-bold"><?= $b['judul']; ?></h5>

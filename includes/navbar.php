@@ -21,7 +21,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="penelitianPublikasiDropdown">
             <li><a class="dropdown-item" href="/lab-ai/public/penelitian.php#penelitian">Hasil Penelitian</a></li>
-            <li><a class="dropdown-item" href="/lab-ai/public/kegiatan.php#publikasi">Publikasi Ilmiah</a></li>
+            <li><a class="dropdown-item" href="/lab-ai/public/publikasi.php#publikasi">Publikasi Ilmiah</a></li>
           </ul>
         </li>
 

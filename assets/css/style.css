@@ -1,19 +1,34 @@
+/* =========================================
+   GLOBAL STYLE — Dipakai di semua halaman
+   (font, layout, wrapper, footer behavior)
+   ========================================= */
+
+/* =========================================
+   STYLE HALAMAN HOME (index.php)
+   ========================================= */
+
 body {
     font-family: 'Poppins', sans-serif;
-  }
-  
-  .hero {
+}
+
+/* =========================================
+   STYLE HALAMAN HOME (home.php)
+   — Hero section
+   — Navbar active underline
+   ========================================= */
+
+.hero {
     background: linear-gradient(135deg, #0d6efd 0%, #004aad 100%);
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-  }
-  
-  .navbar-brand strong {
+}
+
+.navbar-brand strong {
     font-weight: 600;
     letter-spacing: 0.5px;
-  }
+}
 
-  .hero {
+.hero {
     background: linear-gradient(rgba(129, 167, 224, 0.7), rgba(0,74,173,0.7)),
                 url('../img/home-lab.jpg.jpg') center/cover no-repeat;
     color: white;
@@ -22,28 +37,16 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
+}
 
-  /* Garis bawah untuk link aktif */
+/* Garis bawah untuk link aktif */
 .navbar-nav .nav-link {
     position: relative;
-    color: black; /* teks hitam */
+    color: black;
     transition: all 0.3s;
-  }
-  
-  .navbar-nav .nav-link.active::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; /* jarak garis dari teks */
-    left: 0;
-    width: 100%;
-    height: 3px; /* tebal garis */
-    background-color: #090909; 
-    border-radius: 2px;
-  }
-  
-  /* Opsional: garis saat hover */
-  .navbar-nav .nav-link:hover::after {
+}
+
+.navbar-nav .nav-link.active::after {
     content: "";
     position: absolute;
     bottom: -5px;
@@ -52,11 +55,27 @@ body {
     height: 3px;
     background-color: #090909;
     border-radius: 2px;
-  }
+}
 
-  /* ==== Card Hover Expand Effect ==== */
+/* Hover garis */
+.navbar-nav .nav-link:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #090909;
+    border-radius: 2px;
+}
+
+/* =========================================
+   COMPONENT: CARD HOVER EFFECT
+   — Dipakai untuk card interaktif (visi-misi)
+   ========================================= */
+
 .visi-misi-section {
-  margin-bottom: 100px; 
+  margin-bottom: 100px;
 }
 
 .card-hover {
@@ -68,7 +87,6 @@ body {
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
   transform: scale(0.95);
 }
 
@@ -84,12 +102,11 @@ body {
   transition: all 0.4s ease;
 }
 
-/* Hover effect */
 .card-hover:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-  height: auto;
 }
+
 .card-hover:hover .card-text {
   opacity: 1;
   max-height: 200px;
@@ -100,7 +117,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* Efek icon */
 .icon-static {
   transition: all 0.3s ease;
 }
@@ -111,12 +127,16 @@ body {
 }
 
 .card-img-top {
-  height: 220px; /* atur tinggi gambar tetap */
-  object-fit: cover; /* biar gak gepeng tapi tetap full lebar */
+  height: 220px;
+  object-fit: cover;
   width: 100%;
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
 }
+
+/* =========================================
+   COMPONENT: PRODUCT CARD
+   ========================================= */
 
 .product-card {
   background: #fff;
@@ -166,19 +186,19 @@ body {
   font-weight: 600;
 }
 
+/* =========================================
+   GLOBAL LAYOUT FIX (footer di bawah)
+   ========================================= */
 
-/* Biar halaman minimal setinggi layar */
 html, body {
     height: 100%;
 }
 
 .page-wrapper {
-    min-height: calc(100vh - 120px); 
-    /* 120px = tinggi header + footer, sesuaikan kalau beda */
+    min-height: calc(100vh - 120px);
     display: block;
 }
 
-/* Kalau footer masih naik, pakai ini */
 body {
     display: flex;
     flex-direction: column;
@@ -188,11 +208,13 @@ footer {
     margin-top: auto;
 }
 
+/* =========================================
+   STYLE HALAMAN FASILITAS (fasilitas.php)
+   ========================================= */
 
-/* ---- FASILITAS PAGE STYLE ---- */
 .fasilitas-hero {
     padding: 80px 0;
-    background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)), 
+    background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)),
                 url('../img/bg-blue.jpg');
     background-size: cover;
     background-position: center;
@@ -255,7 +277,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-
     .fasilitas-hero h1 {
         font-size: 32px;
     }
@@ -268,10 +289,42 @@ footer {
         height: 200px;
     }
 }
+/* =========================================
+STYLE HALAMAN AGENDA (agenda.php)
+========================================= */
 
-/* ---- BERITA PAGE STYLE ---- */
 
-/* Hero Section */
+.hero-section {
+background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
+url('../assets/img/home-lab.jpg.jpg') center/cover no-repeat;
+height: 40vh;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+border-bottom-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
+
+.agenda-card {
+transition: transform 0.3s;
+}
+
+
+.agenda-card:hover {
+transform: translateY(-5px);
+}
+
+
+.badge-status {
+font-size: 0.8rem;
+}
+
+/* =========================================
+   STYLE HALAMAN BERITA (berita.php)
+   ========================================= */
+
 .hero-berita {
     background: linear-gradient(rgba(0,50,100,0.6), rgba(0,50,100,0.6)),
                 url('../img/home-lab.jpg.jpg') center/cover no-repeat;
@@ -283,7 +336,6 @@ footer {
     border-bottom-right-radius: 50px;
 }
 
-/* News Card */
 .news-card {
     border-radius: 12px;
     overflow: hidden;
@@ -302,7 +354,9 @@ footer {
     width: 100%;
 }
 
-/* ---- KONTAK PAGE STYLE ---- */
+/* =========================================
+   STYLE HALAMAN KONTAK (kontak.php)
+   ========================================= */
 /* WRAPPER UTAMA */
 .contact-container {
     max-width: 1100px;
