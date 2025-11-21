@@ -43,9 +43,15 @@
              role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Penelitian & Publikasi
           </a>
+<<<<<<< HEAD
           <ul class="dropdown-menu" aria-labelledby="penelitianPublikasi">
             <li><a class="dropdown-item" href="/lab-ai/public/penelitian.php">Hasil Penelitian</a></li>
             <li><a class="dropdown-item" href="/lab-ai/public/publikasi.php">Publikasi Ilmiah</a></li>
+=======
+          <ul class="dropdown-menu" aria-labelledby="penelitianPublikasiDropdown">
+            <li><a class="dropdown-item" href="/lab-ai/public/penelitian.php#penelitian">Hasil Penelitian</a></li>
+            <li><a class="dropdown-item" href="/lab-ai/public/publikasi.php#publikasi">Publikasi Ilmiah</a></li>
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
           </ul>
         </li>
 

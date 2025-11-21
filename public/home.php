@@ -22,8 +22,20 @@ if (!$conn) {
 
 
 <!-- Berita Terbaru Section -->
+<?php
+include 'config/database.php';
+
+// Ambil 3 berita terbaru
+$query = "SELECT * FROM berita ORDER BY tanggal_post DESC LIMIT 3";
+$beritaHome = pg_query($conn, $query);
+?>
+
 <section class="container my-5">
-  <h3 class="text-primary mb-4">Berita Terbaru</h3>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="text-primary">Berita Terbaru</h3>
+      <a href="public/berita.php" class="text-primary fw-bold">Selengkapnya →</a>
+  </div>
+
   <div class="row g-4">
 
     <!-- Card 1 -->
@@ -31,9 +43,10 @@ if (!$conn) {
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita1.jpg" class="card-img-top grayscale" alt="Berita 1">
         <div class="card-body">
-          <h5 class="card-title">Kegiatan Riset AI 2025</h5>
+          <small class="text-muted">12 November 2025</small>
+          <h5 class="card-title mt-2">Kegiatan Riset AI 2025</h5>
           <p class="card-text">Laboratorium AI mengadakan pelatihan pemodelan machine learning untuk mahasiswa.</p>
-          <a href="#" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
+          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
         </div>
       </div>
     </div>
@@ -43,9 +56,10 @@ if (!$conn) {
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita2.jpg" class="card-img-top grayscale" alt="Berita 2">
         <div class="card-body">
+          <small class="text-muted">13 November 2025</small>
           <h5 class="card-title">Workshop Data Science</h5>
           <p class="card-text">Pelatihan intensif analisis data dan visualisasi menggunakan Python dan Tableau.</p>
-          <a href="#" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
+          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
         </div>
       </div>
     </div>
@@ -55,9 +69,10 @@ if (!$conn) {
       <div class="card shadow-sm h-100">
         <img src="assets/img/berita3.jpg" class="card-img-top grayscale" alt="Berita 3">
         <div class="card-body">
+          <small class="text-muted">14 November 2025</small>
           <h5 class="card-title">Kolaborasi Industri</h5>
           <p class="card-text">Lab-AI menjalin kerja sama dengan startup lokal untuk proyek AI vision.</p>
-          <a href="#" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
+          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
         </div>
       </div>
     </div>
@@ -66,6 +81,7 @@ if (!$conn) {
 </section>
 
 
+<<<<<<< HEAD
 <!-- Agenda Terbaru -->
 <section class="container my-5">
     <h3 class="text-primary mb-4">Agenda Terbaru</h3>
@@ -135,6 +151,8 @@ if (!$conn) {
 
 
 
+=======
+>>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
 
 <!-- Profil Laboratorium (BUKAN HERO LAGI) -->
 <section id="profil" class="py-5 bg-light">
@@ -319,8 +337,6 @@ if (!$conn) {
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
