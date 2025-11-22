@@ -16,18 +16,19 @@
 
     <?php
     $all = [
-      ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
-      ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "../assets/img/banners/laboran1.jpg"],
-      ["Yuri Ariyanto, S.Kom., M.Kom.", "Anggota", "../assets/img/banners/anggota1.jpg"],
-      ["Triana Fatmawati, S.T., M.T.", "Anggota", "../assets/img/banners/anggota2.jpg"],
-      ["M. Hasyim Ratsanjani, S.Kom., M.Kom.", "Anggota", "../assets/img/banners/anggota3.jpg"],
-      ["Noprianto, S.Kom., M.Eng.", "Anggota", "../assets/img/banners/anggota4.jpg"],
-      ["Mustika Mentari, S.Kom., M.Kom.", "Anggota", "../assets/img/banners/anggota5.jpg"],
-      ["Kadek Suarjuna Batubulan, S.Kom.,MT", "Anggota", "../assets/img/banners/anggota6.jpg"],
-      ["Muhammad Afif Hendrawan, S.Kom., M.T.", "Anggota", "../assets/img/banners/anggota7.jpg"],
-      ["Chandrasena Setiadi, S.T., M.Tr.T", "Anggota", "../assets/img/banners/anggota8.jpg"],
-      ["Retno Damayanti, S.Pd. M.T.", "Anggota", "../assets/img/banners/anggota9.jpg"],
-    ];
+    ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "../assets/img/tim/ketua.png"],
+    ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "../assets/img/tim/yoga.png"],
+    ["Yuri Ariyanto, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/yuri.png"],
+    ["Triana Fatmawati, S.T., M.T.", "Anggota", "../assets/img/tim/triana.jpg"],
+    ["M. Hasyim Ratsanjani, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/hasyim.png"],
+    ["Noprianto, S.Kom., M.Eng.", "Anggota", "../assets/img/tim/noprianto.png"],
+    ["Mustika Mentari, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/mustika.png"],
+    ["Kadek Suarjuna Batubulan, S.Kom.,MT", "Anggota", "../assets/img/tim/kadek.png"],
+    ["Muhammad Afif Hendrawan, S.Kom., M.T.", "Anggota", "../assets/img/tim/afif.jpg"],
+    ["Chandrasena Setiadi, S.T., M.Tr.T", "Anggota", "../assets/img/tim/chandrasena.jpg"],
+    ["Retno Damayanti, S.Pd. M.T.", "Anggota", "../assets/img/tim/retno.jpg"]
+      ];
+
 
     foreach ($all as $x):
     ?>
