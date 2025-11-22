@@ -223,9 +223,10 @@ $beritaHome = pg_query($conn, $query);
     <div class="row justify-content-center g-4">
       <?php
       $anggota_home = [
-        ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "assets/img/banners/dosen1.jpg"],
-        ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "assets/img/banners/laboran1.jpg"]
-      ];
+      ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "assets/img/tim/ketua.png"],
+      ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "assets/img/tim/yoga.png"]
+    ];
+
 
       foreach ($anggota_home as $a):
       ?>

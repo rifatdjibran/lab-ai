@@ -27,7 +27,7 @@
     ["Muhammad Afif Hendrawan, S.Kom., M.T.", "Anggota", "../assets/img/tim/afif.jpg"],
     ["Chandrasena Setiadi, S.T., M.Tr.T", "Anggota", "../assets/img/tim/chandrasena.jpg"],
     ["Retno Damayanti, S.Pd. M.T.", "Anggota", "../assets/img/tim/retno.jpg"]
-      ];
+    ];
 
 
     foreach ($all as $x):
