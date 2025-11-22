@@ -11,15 +11,8 @@ if (!$conn) {
 
 date_default_timezone_set('Asia/Jakarta');
 
-<<<<<<< HEAD
-// Ambil data kegiatan dari database
+// Query data kegiatan
 $query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai,
-// Ambil data kegiatan
-$query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai, 
-=======
-// Ambil data kegiatan
-$query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai,
->>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
                  lokasi, gambar, created_at
           FROM public.kegiatan
           ORDER BY tanggal_mulai ASC";
@@ -28,10 +21,6 @@ $result = pg_query($conn, $query);
 
 if (!$result) {
     die("Query gagal: " . pg_last_error($conn));
-<<<<<<< HEAD
- Section -->
-<section class="hero-berita">
-=======
 }
 
 $agendaLab = pg_fetch_all($result);
@@ -39,7 +28,6 @@ $agendaLab = pg_fetch_all($result);
 
 <!-- Hero Section -->
 <section class="hero-section">
->>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
     <div class="text-center text-white">
         <h1 class="fw-bold">Agenda Laboratorium</h1>
         <p class="lead mt-2">Ikuti jadwal kegiatan dan workshop terbaru dari Laboratorium</p>
@@ -58,7 +46,7 @@ $agendaLab = pg_fetch_all($result);
                     <div class="col-md-4">
                         <div class="card agenda-card shadow-sm">
 
-                            <img src="../assets/img/banners/<?= $kegiatan['gambar'] ?>"
+                            <img src="../assets/img/banners/<?= htmlspecialchars($kegiatan['gambar']) ?>"
                                  class="card-img-top"
                                  alt="<?= htmlspecialchars($kegiatan['nama_kegiatan']) ?>">
 
@@ -84,10 +72,12 @@ $agendaLab = pg_fetch_all($result);
 
                                 <?php
                                     $today = date('Y-m-d');
+                                    $mulai = $kegiatan['tanggal_mulai'];
+                                    $selesai = $kegiatan['tanggal_selesai'];
 
-                                    if ($today < $kegiatan['tanggal_mulai']) {
+                                    if ($today < $mulai) {
                                         echo '<span class="badge bg-warning text-dark badge-status">Segera</span>';
-                                    } elseif ($today >= $kegiatan['tanggal_mulai'] && $today <= $kegiatan['tanggal_selesai']) {
+                                    } elseif ($today >= $mulai && $today <= $selesai) {
                                         echo '<span class="badge bg-success badge-status">Sedang Berlangsung</span>';
                                     } else {
                                         echo '<span class="badge bg-secondary badge-status">Selesai</span>';
