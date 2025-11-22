@@ -7,90 +7,80 @@ $success = "";
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama  = $_POST['nama'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $pesan = $_POST['pesan'] ?? '';
 
-    if ($nama !== "" && $email !== "" && $pesan !== "") {
-        $jenis = "pesan_kontak";
-        $isi = "Nama: $nama | Email: $email | Pesan: $pesan";
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $pesan = $_POST['pesan'];
 
-        $query = "INSERT INTO kontak (jenis, isi) VALUES ($1, $2)";
-        $result = pg_query_params($conn, $query, array($jenis, $isi));
+    // Simpan 3 baris karena tabelnya jenis & isi
+    $q1 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('nama', '$nama')");
+    $q2 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('email', '$email')");
+    $q3 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('pesan', '$pesan')");
 
-        if ($result) {
-            $success = "Pesan berhasil dikirim!";
-        } else {
-            $error = "Gagal menyimpan pesan.";
-        }
+    if ($q1 && $q2 && $q3) {
+        $success = "Pesan berhasil dikirim!";
     } else {
-        $error = "Semua field wajib diisi.";
+        $error = "Gagal mengirim pesan!";
     }
 }
 ?>
 
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="style-kontak.css">
 
-<div class="contact-container">
+<section class="hero-section">
+    <div class="text-center text-white">
+        <h1 class="fw-bold">Hubungi Kami</h1>
+        <p class="lead mt-2">Kami siap menerima pertanyaan, saran, dan masukan Anda</p>
+    </div>
+</section>
 
-    <h1 class="title">Kontak Kami</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-    <?php if ($success): ?>
-        <div class="alert-success"><?= $success ?></div>
-    <?php endif; ?>
+            <div class="card shadow contact-card">
+                <div class="card-body p-4">
 
-    <?php if ($error): ?>
-        <div class="alert-error"><?= $error ?></div>
-    <?php endif; ?>
+                    <h3 class="text-center mb-3 fw-bold">Hubungi Kami</h3>
+                    <p class="text-center text-muted mb-4">
+                        Silakan kirim pesan melalui form berikut
+                    </p>
 
-    <div class="contact-wrapper">
+                    <?php if ($success): ?>
+                        <div class="alert alert-success"><?= $success ?></div>
+                    <?php endif; ?>
 
-        <!-- ================= FORM (KIRI) ================= -->
-        <div class="form-section">
-            <form method="POST">
-                <div class="form-row-inline">
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger"><?= $error ?></div>
+                    <?php endif; ?>
 
-                    <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" name="nama" required>
-                    </div>
+                    <form method="POST">
 
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Pesan</label>
-                        <input type="text" name="pesan" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
 
-                    <button class="kirim-btn" type="submit">Kirim</button>
+                        <div class="mb-3">
+                            <label class="form-label">Pesan</label>
+                            <textarea name="pesan" rows="5" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            Kirim Pesan
+                        </button>
+
+                    </form>
+
                 </div>
-            </form>
-        </div>
-
-        <!-- ================= INFO (KANAN) ================= -->
-        <div class="info-section">
-
-            <h3 class="info-title">Alamat</h3>
-            <p>Jl. Soekarno Hatta No. 9, Malang</p>
-
-            <h3 class="info-title">Email</h3>
-            <p>labteknologi@example.com</p>
-
-            <h3 class="info-title">Telepon</h3>
-            <p>0812-3456-7890</p>
-
-            <h3 class="info-title">Lokasi</h3>
-            <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps?q=politeknik+negeri+malang&output=embed">
-                </iframe>
             </div>
 
         </div>
-
     </div>
 </div>
 
