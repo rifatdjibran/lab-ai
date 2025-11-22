@@ -12,13 +12,10 @@ if (!$conn) {
 date_default_timezone_set('Asia/Jakarta'); 
 $tanggalHariIni = date('l, d F Y');
 
-<<<<<<< HEAD
 // Ambil data kegiatan dari database
 $query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai,
-=======
 // Ambil data kegiatan
 $query = "SELECT id, nama_kegiatan, deskripsi, tanggal_mulai, tanggal_selesai, 
->>>>>>> 8ce586158ee3a5ecc7168eba051fa43add73fd56
                  lokasi, gambar, created_at
           FROM public.kegiatan
           ORDER BY tanggal_mulai ASC";
@@ -26,13 +23,7 @@ $result = pg_query($conn, $query);
 
 if (!$result) {
     die("Query gagal: " . pg_last_error($conn));
-}
-
-$agendaLab = pg_fetch_all($result);
-?>
-<<<<<<< HEAD
-
-<!-- Hero Section -->
+ Section -->
 <section class="hero-berita">
     <div class="text-center text-white">
         <h1 class="fw-bold">Agenda Laboratorium</h1>
