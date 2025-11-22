@@ -1,26 +1,35 @@
 <?php
 include '../includes/header.php';
 include '../includes/navbar.php';
-include '../config/database.php';
+include '../config/database.php'; // Pastikan $conn terdefinisi
 
 $success = "";
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
-    $pesan = $_POST['pesan'];
+$nama   = isset($_POST['nama']) ? trim($_POST['nama']) : '';
+$email  = isset($_POST['email']) ? trim($_POST['email']) : '';
+$subjek = isset($_POST['subjek']) ? trim($_POST['subjek']) : '';
+$pesan  = isset($_POST['pesan']) ? trim($_POST['pesan']) : '';
 
-    // Simpan 3 baris karena tabelnya jenis & isi
-    $q1 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('nama', '$nama')");
-    $q2 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('email', '$email')");
-    $q3 = pg_query($koneksi, "INSERT INTO kontak (jenis, isi) VALUES ('pesan', '$pesan')");
 
-    if ($q1 && $q2 && $q3) {
-        $success = "Pesan berhasil dikirim!";
+    if ($nama && $email && $subjek && $pesan) {
+        // INSERT ke database
+        $q = pg_query_params(
+            $conn,
+            "INSERT INTO kontak (nama, email, subjek, pesan, tanggal, status) 
+             VALUES ($1, $2, $3, $4, now(), $5)",
+            [$nama, $email, $subjek, $pesan, 'baru']
+        );
+
+        if ($q) {
+            $success = "Pesan berhasil dikirim!";
+        } else {
+            $error = "Gagal mengirim pesan!";
+        }
     } else {
-        $error = "Gagal mengirim pesan!";
+        $error = "Semua kolom harus diisi.";
     }
 }
 ?>
@@ -64,6 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Subjek</label>
+                            <input type="text" name="subjek" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
