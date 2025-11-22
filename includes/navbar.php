@@ -23,7 +23,11 @@
                     <a class="nav-link" href="/lab-ai/public/struktur.php">Struktur Organisasi</a>
                 </li>
 
+<<<<<<< HEAD
                 <!-- HANYA INI YANG DROPDOWN -->
+=======
+                <!-- Dropdown Penelitian & Publikasi -->
+>>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="penelitianPublikasi" 
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,6 +54,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/lab-ai/public/kontak.php">Kontak</a>
                 </li>
+<<<<<<< HEAD
 
                 <li class="nav-item ms-lg-3">
                     <a href="/lab-ai/admin/login.php" class="btn btn-outline-primary btn-sm px-3">
@@ -63,3 +68,24 @@
     </div>
 </nav>
 <!-- END NAVBAR -->
+=======
+
+                <!-- Login Button -->
+                <li class="nav-item ms-lg-3">
+                    <a href="/lab-ai/admin/login.php" class="btn btn-outline-primary btn-sm px-3">
+                        <i class="bi bi-person-lock me-1"></i> Login Admin
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END NAVBAR -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+>>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9

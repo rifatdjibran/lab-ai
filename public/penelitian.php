@@ -25,7 +25,7 @@ $dataPenelitian = pg_fetch_all($result);
 ?>
 
 <!-- Hero Section -->
-<section class="hero-berita">
+<section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Hasil Penelitian Laboratorium</h1>
         <p class="lead mt-2">Kumpulan hasil penelitian dari Laboratorium Applied Informatics</p>

@@ -26,7 +26,7 @@ if (!$conn) {
 include 'config/database.php';
 
 // Ambil 3 berita terbaru
-$query = "SELECT * FROM berita ORDER BY tanggal_post DESC LIMIT 3";
+$query = "SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3";
 $beritaHome = pg_query($conn, $query);
 ?>
 
@@ -146,7 +146,10 @@ $beritaHome = pg_query($conn, $query);
     </div>
 </section>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
 <!-- Profil Laboratorium (BUKAN HERO LAGI) -->
 <section id="profil" class="py-5 bg-light">
   <div class="container text-center">
@@ -218,18 +221,21 @@ $beritaHome = pg_query($conn, $query);
   <div class="container text-center">
     <h3>Tim Kami</h3>
     <p class="text-muted mb-4">
-      Beberapa staf dan anggota aktif di Laboratorium for Applied Informatics:
+      Beberapa staf aktif di Laboratorium for Applied Informatics:
     </p>
 
     <div class="row justify-content-center g-4">
       <?php
-      $anggota = [
-        ["Dr. Ahmad", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
-        ["Siti", "Laboran", "../assets/img/banners/laboran1.jpg"]
-      ];
-      foreach ($anggota as $a): ?>
+      $anggota_home = [
+      ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "assets/img/tim/ketua.png"],
+      ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "assets/img/tim/yoga.png"]
+    ];
+
+
+      foreach ($anggota_home as $a):
+      ?>
         <div class="col-md-3 col-6">
-          <div class="card shadow-sm">
+          <div class="card shadow-sm h-100">
             <img src="<?= $a[2] ?>" class="card-img-top rounded-top" alt="<?= $a[0] ?>">
             <div class="card-body">
               <h6 class="fw-semibold mb-0"><?= $a[0] ?></h6>
@@ -241,11 +247,11 @@ $beritaHome = pg_query($conn, $query);
     </div>
 
     <a href="/lab-ai/public/struktur.php" class="btn btn-outline-primary mt-4">
-      Selengkapnya
+      Selengkapnya →
     </a>
-
   </div>
 </section>
+
 
 
 <!-- Produk -->

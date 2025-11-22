@@ -4,7 +4,7 @@
 <div class="page-content">
 
 <!-- Hero Section -->
-<section class="hero-berita">
+<section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Struktur Organisasi Lengkap</h1>
         <p class="lead mt-2">Daftar lengkap anggota Lab-AI</p>
@@ -15,18 +15,23 @@
   <div class="row g-4">
 
     <?php
-    // daftar lengkap semua anggota
     $all = [
-      ["Nama", "Ketua Laboratorium", "../assets/img/banners/dosen1.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/laboran1.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/anggota1.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/anggota2.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/anggota3.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/anggota4.jpg"],
-      ["Nama", "Anggota", "../assets/img/banners/anggota5.jpg"]
+    ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "../assets/img/tim/ketua.png"],
+    ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "../assets/img/tim/yoga.png"],
+    ["Yuri Ariyanto, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/yuri.png"],
+    ["Triana Fatmawati, S.T., M.T.", "Anggota", "../assets/img/tim/triana.jpg"],
+    ["M. Hasyim Ratsanjani, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/hasyim.png"],
+    ["Noprianto, S.Kom., M.Eng.", "Anggota", "../assets/img/tim/noprianto.png"],
+    ["Mustika Mentari, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/mustika.png"],
+    ["Kadek Suarjuna Batubulan, S.Kom.,MT", "Anggota", "../assets/img/tim/kadek.png"],
+    ["Muhammad Afif Hendrawan, S.Kom., M.T.", "Anggota", "../assets/img/tim/afif.jpg"],
+    ["Chandrasena Setiadi, S.T., M.Tr.T", "Anggota", "../assets/img/tim/chandrasena.jpg"],
+    ["Retno Damayanti, S.Pd. M.T.", "Anggota", "../assets/img/tim/retno.jpg"]
     ];
 
-    foreach ($all as $x): ?>
+
+    foreach ($all as $x):
+    ?>
       <div class="col-md-3 col-6">
         <div class="card shadow-sm h-100">
           <img src="<?= $x[2] ?>" class="card-img-top rounded-top" alt="<?= $x[0] ?>">
@@ -37,7 +42,7 @@
         </div>
       </div>
     <?php endforeach; ?>
-    
+
   </div>
 </section>
 
