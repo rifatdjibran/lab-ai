@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* =========================================
    GLOBAL STYLE — FONT & RESET
 ========================================= */
@@ -258,7 +257,6 @@ footer {
 .alert {
     border-radius: 10px;
 }
-=======
 /* =========================================
    GLOBAL STYLE — FONT & RESET
 ========================================= */
@@ -421,7 +419,6 @@ footer {
 ========================================= */
 
 .fasilitas-hero {
-<<<<<<< HEAD
   background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
               url('../assets/img/home-lab.jpg.jpg') center/cover no-repeat;
   height: 40vh;
@@ -453,7 +450,6 @@ footer {
 
 .fasilitas-container {
     padding: 60px 0;
-=======
     background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
                 url('../img/home-lab.jpg') center/cover no-repeat;
     height: 40vh;
@@ -464,7 +460,6 @@ footer {
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     padding: 80px 0;
->>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
 }
 
 .fasilitas-grid {
@@ -550,4 +545,3 @@ footer {
 .alert {
     border-radius: 10px;
 }
->>>>>>> e4f6e21dece2d7d3cd426ba67dfdf0badf1dbd1b
