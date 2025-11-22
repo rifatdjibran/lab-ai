@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* =========================================
    GLOBAL STYLE — FONT & RESET
 ========================================= */
@@ -257,3 +258,296 @@ footer {
 .alert {
     border-radius: 10px;
 }
+=======
+/* =========================================
+   GLOBAL STYLE — FONT & RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+/* =========================================
+   GLOBAL LAYOUT FIX (footer di bawah)
+========================================= */
+
+html, body {
+    height: 100%;
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* =========================================
+   NAVBAR & HOME
+========================================= */
+
+.hero {
+    background: linear-gradient(rgba(129, 167, 224, 0.7), rgba(0,74,173,0.7)),
+                url('../img/home-lab.jpg') center/cover no-repeat;
+    color: white;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.navbar-brand strong {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    color: black;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link.active::after,
+.navbar-nav .nav-link:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #090909;
+    border-radius: 2px;
+}
+
+/* =========================================
+   VISI MISI – CARD EFFECT
+========================================= */
+
+.visi-misi-section {
+    margin-bottom: 100px;
+}
+
+.card-hover {
+    border: none;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    transform: scale(0.95);
+    cursor: pointer;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.card-hover .card-text {
+    opacity: 0;
+    max-height: 0;
+    transition: 0.4s;
+}
+
+.card-hover:hover .card-text {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+.icon-static {
+    transition: 0.3s;
+}
+
+.card-hover:hover .icon-static {
+    color: #0d6efd;
+    transform: scale(1.3) rotate(5deg);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.2);
+}
+
+.product-logo {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background: #f8f9fa;
+}
+
+.product-content {
+    padding: 15px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   FASILITAS PAGE
+========================================= */
+
+.fasilitas-hero {
+<<<<<<< HEAD
+  background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
+              url('../assets/img/home-lab.jpg.jpg') center/cover no-repeat;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+    padding: 80px 0;
+    background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)),
+                url('../img/bg-blue.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+}
+
+.fasilitas-hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.fasilitas-hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.fasilitas-container {
+    padding: 60px 0;
+=======
+    background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
+                url('../img/home-lab.jpg') center/cover no-repeat;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 80px 0;
+>>>>>>> cb0878e5d9c417390261528e955adc4b38d9fde9
+}
+
+.fasilitas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 35px;
+}
+
+.fasilitas-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.fasilitas-card:hover {
+    transform: translateY(-8px);
+}
+
+.fasilitas-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* =========================================
+   HERO SECTION 
+========================================= */
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('../assets/img/home-lab.jpg') center/cover no-repeat;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  overflow: hidden;
+  color: #ffffff; 
+  text-align: center;
+}
+
+.hero-section h1,
+.hero-section p {
+  color: #ffffff;              
+  opacity: 1;                 
+  text-shadow: 0 2px 5px rgba(0,0,0,0.7); 
+}
+
+
+/* =========================================
+   KONTAK PAGE (FIXED)
+========================================= */
+.contact-card {
+    border-radius: 15px;
+    border: none;
+    background: #ffffff;
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.btn-primary {
+    background-color: #0042A6;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #022e73;
+}
+
+.alert {
+    border-radius: 10px;
+}
+>>>>>>> e4f6e21dece2d7d3cd426ba67dfdf0badf1dbd1b
