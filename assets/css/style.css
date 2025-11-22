@@ -200,24 +200,26 @@ footer {
    HERO SECTION 
 ========================================= */
 .hero-section {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('../assets/img/home-lab.jpg') center/cover no-repeat;
-  height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  overflow: hidden;
-  color: #ffffff; 
-  text-align: center;
-}
-
-.hero-section h1,
-.hero-section p {
-  color: #ffffff;              
-  opacity: 1;                 
-  text-shadow: 0 2px 5px rgba(0,0,0,0.7); 
+    background: url('../img/home-lab.jpg') center/cover no-repeat !important;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .hero-section h1,
+  .hero-section p {
+    color: rgba(255, 255, 255, 0.9) !important; 
+    font-weight: 700 !important;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));  
+  }
+  
+  .hero-section p {
+    font-weight: 300 !important;
 }
 
 

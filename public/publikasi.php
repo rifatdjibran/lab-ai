@@ -28,7 +28,7 @@ $dataPublikasi = pg_fetch_all($result);
 <section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Publikasi Ilmiah Laboratorium</h1>
-        <p class="lead mt-2">Kumpulan publikasi ilmiah dari Laboratorium Applied Informatics</p>
+        <p class="lead mt-1">Kumpulan publikasi ilmiah dari Laboratorium Applied Informatics</p>
     </div>
 </section>
 
