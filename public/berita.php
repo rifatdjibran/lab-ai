@@ -4,7 +4,7 @@ include '../includes/header.php';
 include '../includes/navbar.php';
 
 // Ambil semua berita (terbaru → lama)
-$query = "SELECT * FROM berita ORDER BY tanggal_post DESC";
+$query = "SELECT * FROM berita ORDER BY tanggal DESC";
 $result = pg_query($conn, $query);
 
 if (!$result) {

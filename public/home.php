@@ -26,7 +26,7 @@ if (!$conn) {
 include 'config/database.php';
 
 // Ambil 3 berita terbaru
-$query = "SELECT * FROM berita ORDER BY tanggal_post DESC LIMIT 3";
+$query = "SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3";
 $beritaHome = pg_query($conn, $query);
 ?>
 
