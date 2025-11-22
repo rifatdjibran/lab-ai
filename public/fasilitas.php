@@ -3,12 +3,13 @@
 <main class="page-wrapper">
 
 <!-- Hero Section -->
-<section class="hero-berita">
+<section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Fasilitas Laboratorium</h1>
         <p class="lead mt-2">Fasilitas modern untuk mendukung kegiatan riset dan pembelajaran</p>
     </div>
 </section>
+
 
 <section class="fasilitas-container">
     <div class="container">

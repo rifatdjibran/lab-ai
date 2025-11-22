@@ -15,7 +15,7 @@ $beritaList = pg_fetch_all($result);
 ?>
 
 <!-- Hero Section -->
-<section class="hero-berita">
+<section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Berita Laboratorium</h1>
         <p class="lead mt-2">Ikuti kegiatan terbaru dan informasi penting dari Lab AI</p>

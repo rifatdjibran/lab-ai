@@ -4,7 +4,7 @@
 <div class="page-content">
 
 <!-- Hero Section -->
-<section class="hero-berita">
+<section class="hero-section">
     <div class="text-center text-white">
         <h1 class="fw-bold">Struktur Organisasi Lengkap</h1>
         <p class="lead mt-2">Daftar lengkap anggota Lab-AI</p>
