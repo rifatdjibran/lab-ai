@@ -38,47 +38,59 @@ $beritaHome = pg_query($conn, $query);
 
   <div class="row g-4">
 
-    <!-- Card 1 -->
+    <?php
+    if ($beritaHome && pg_num_rows($beritaHome) > 0):
+        while ($b = pg_fetch_assoc($beritaHome)):
+
+            // Path gambar (fallback kalau kosong)
+            $imgPath = !empty($b['gambar']) 
+                ? "assets/uploads/berita/" . htmlspecialchars($b['gambar'])
+                : "assets/img/default-news.png"; // bebaskan aja default-nya
+    ?>
+
     <div class="col-md-4">
       <div class="card shadow-sm h-100">
-        <img src="assets/img/berita1.jpg" class="card-img-top grayscale" alt="Berita 1">
+
+        <img src="<?= $imgPath ?>" 
+             class="card-img-top" 
+             style="height: 200px; object-fit: cover;"
+             alt="<?= htmlspecialchars($b['judul']) ?>">
+
         <div class="card-body">
-          <small class="text-muted">12 November 2025</small>
-          <h5 class="card-title mt-2">Kegiatan Riset AI 2025</h5>
-          <p class="card-text">Laboratorium AI mengadakan pelatihan pemodelan machine learning untuk mahasiswa.</p>
-          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
+          <small class="text-muted">
+            <?= date('d M Y', strtotime($b['tanggal'])) ?>
+          </small>
+
+          <h5 class="card-title mt-2">
+            <?= htmlspecialchars($b['judul']) ?>
+          </h5>
+
+          <p class="card-text">
+            <?= htmlspecialchars(substr($b['isi'], 0, 120)) ?>...
+          </p>
+
+          <a href="public/detail_berita.php?id=<?= $b['id'] ?>" 
+             class="btn btn-outline-primary btn-sm">
+             Selengkapnya
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="col-md-4">
-      <div class="card shadow-sm h-100">
-        <img src="assets/img/berita2.jpg" class="card-img-top grayscale" alt="Berita 2">
-        <div class="card-body">
-          <small class="text-muted">13 November 2025</small>
-          <h5 class="card-title">Workshop Data Science</h5>
-          <p class="card-text">Pelatihan intensif analisis data dan visualisasi menggunakan Python dan Tableau.</p>
-          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
-        </div>
-      </div>
-    </div>
+    <?php 
+        endwhile;
+    else:
+    ?>
 
-    <!-- Card 3 -->
-    <div class="col-md-4">
-      <div class="card shadow-sm h-100">
-        <img src="assets/img/berita3.jpg" class="card-img-top grayscale" alt="Berita 3">
-        <div class="card-body">
-          <small class="text-muted">14 November 2025</small>
-          <h5 class="card-title">Kolaborasi Industri</h5>
-          <p class="card-text">Lab-AI menjalin kerja sama dengan startup lokal untuk proyek AI vision.</p>
-          <a href="public/berita.php" class="btn btn-outline-primary btn-sm">Selengkapnya</a>
-        </div>
+      <div class="col-12 text-center">
+          <p class="text-muted">Belum ada berita terbaru.</p>
       </div>
-    </div>
+
+    <?php endif; ?>
 
   </div>
 </section>
+
 
 <!-- Agenda Terbaru -->
 <section class="container my-5">
@@ -100,7 +112,7 @@ $beritaHome = pg_query($conn, $query);
         <div class="col-md-4">
             <div class="card agenda-card shadow-sm h-100">
 
-                <img src="/lab-ai/assets/img/banners/<?= htmlspecialchars($ag['gambar']) ?>"
+                <img src="/lab-ai/assets/uploads/kegiatan/<?= htmlspecialchars($ag['gambar']) ?>"
                      alt="<?= htmlspecialchars($ag['nama_kegiatan']) ?>"
                      class="card-img-top"
                      style="height: 180px; object-fit: cover;">
