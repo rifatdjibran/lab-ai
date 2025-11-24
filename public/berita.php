@@ -44,7 +44,7 @@ $beritaList = pg_fetch_all($result);
 
                 <!-- Info -->
                 <small class="text-muted">
-                    <?= date("F d, Y", strtotime($b['tanggal_post'])); ?> • Penulis ID: <?= $b['penulis_id']; ?>
+                    <?= date("F d, Y", strtotime($b['tanggal'])); ?> • Penulis ID: <?= $b['penulis']; ?>
                 </small>
 
                 <!-- Judul -->
@@ -86,7 +86,7 @@ $beritaList = pg_fetch_all($result);
                         <div class="p-3">
                             <small class="text-muted">
                                 <?= date("F d, Y", strtotime($b['tanggal_post'])); ?>
-                                • Penulis ID: <?= $b['penulis_id']; ?>
+                                • Penulis ID: <?= $b['penulis']; ?>
                             </small>
 
                             <h5 class="mt-2 fw-bold"><?= $b['judul']; ?></h5>

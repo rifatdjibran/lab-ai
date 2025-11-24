@@ -24,7 +24,7 @@
     </li>
 
     <li>
-      <a href="berita.php" class="nav-link link-dark sidebar-link">
+      <a href="beritaAdmin.php" class="nav-link link-dark sidebar-link">
         <i class="bi bi-newspaper me-2"></i>
         <span class="sidebar-text">Berita</span>
       </a>

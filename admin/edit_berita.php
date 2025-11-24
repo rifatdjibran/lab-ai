@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         WHERE id=$id
     ");
 
-    header("Location: berita.php?edit=1");
+    header("Location: beritaAdmin.php?edit=1");
     exit;
 }
 ?>
@@ -218,7 +218,7 @@ if (isset($_POST['submit'])) {
                     <span>Update</span>
                 </button>
 
-                <a href="berita.php" class="BtnBase BtnBack text-decoration-none">
+                <a href="beritaAdmin.php" class="BtnBase BtnBack text-decoration-none">
                     <span>Kembali</span>
                 </a>
             </div>

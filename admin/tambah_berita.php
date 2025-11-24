@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
         VALUES ('$judul', '$isi', '$gambar', '$penulis', '$admin_id', NOW())
     ");
 
-    header("Location: berita.php?add=1");
+    header("Location: beritaAdmin.php?add=1");
     exit;
 }
 ?>
@@ -182,7 +182,7 @@ if (isset($_POST['submit'])) {
                     <span>Simpan</span>
                 </button>
 
-                <a href="berita.php" class="BtnBase BtnBack text-decoration-none">
+                <a href="beritaAdmin.php" class="BtnBase BtnBack text-decoration-none">
                     <span>Kembali</span>
                 </a>
 
