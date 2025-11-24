@@ -16,23 +16,18 @@
 <section class="container my-5">
 
 <?php  
-$leader = [
-    "Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D",
-    "Ketua Laboratorium",
-    "../assets/img/tim/ketua.png"
-];
-
 $members = [
-    ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "../assets/img/tim/yoga.png"],
-    ["Yuri Ariyanto, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/yuri.png"],
-    ["Triana Fatmawati, S.T., M.T.", "Anggota", "../assets/img/tim/triana.jpg"],
-    ["M. Hasyim Ratsanjani, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/hasyim.png"],
-    ["Noprianto, S.Kom., M.Eng.", "Anggota", "../assets/img/tim/noprianto.png"],
-    ["Mustika Mentari, S.Kom., M.Kom.", "Anggota", "../assets/img/tim/mustika.png"],
-    ["Kadek Suarjuna Batubulan, S.Kom., MT", "Anggota", "../assets/img/tim/kadek.png"],
-    ["Muhammad Afif Hendrawan, S.Kom., M.T.", "Anggota", "../assets/img/tim/afif.jpg"],
-    ["Chandrasena Setiadi, S.T., M.Tr.T", "Anggota", "../assets/img/tim/chandrasena.jpg"],
-    ["Retno Damayanti, S.Pd., M.T.", "Anggota", "../assets/img/tim/retno.jpg"]
+    1 => ["nama"=>"Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "role"=>"Ketua Laboratorium", "img"=>"../assets/img/tim/ketua.png"],
+    2 => ["nama"=>"Pramana Yoga Saputra, S.Kom., M.MT.", "role"=>"Anggota", "img"=>"../assets/img/tim/yoga.png"],
+    3 => ["nama"=>"Yuri Ariyanto, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/yuri.png"],
+    4 => ["nama"=>"Triana Fatmawati, S.T., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/triana.jpg"],
+    5 => ["nama"=>"M. Hasyim Ratsanjani, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/hasyim.png"],
+    6 => ["nama"=>"Noprianto, S.Kom., M.Eng.", "role"=>"Anggota", "img"=>"../assets/img/tim/noprianto.png"],
+    7 => ["nama"=>"Mustika Mentari, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/mustika.png"],
+    8 => ["nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT", "role"=>"Anggota", "img"=>"../assets/img/tim/kadek.png"],
+    9 => ["nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/afif.jpg"],
+    10 => ["nama"=>"Chandrasena Setiadi, S.T., M.Tr.T", "role"=>"Anggota", "img"=>"../assets/img/tim/chandrasena.jpg"],
+    11 => ["nama"=>"Retno Damayanti, S.Pd., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/retno.jpg"]
 ];
 ?>
 
@@ -40,31 +35,31 @@ $members = [
 <div class="row justify-content-center mb-5">
     <div class="col-md-4 col-8">
         <div class="org-card shadow-sm">
-            <img src="<?= $leader[2] ?>" alt="<?= $leader[0] ?>">
-            <h6 class="org-title"><?= $leader[0] ?></h6>
-            <small class="org-role"><?= $leader[1] ?></small>
-            <a href="detail_struktur.php" class="org-more">Selengkapnya →</a>
+            <img src="<?= $members[1]['img'] ?>" alt="<?= $members[1]['nama'] ?>">
+            <h6 class="org-title"><?= $members[1]['nama'] ?></h6>
+            <small class="org-role"><?= $members[1]['role'] ?></small>
+            <a href="detail_struktur.php?id=1" class="org-more">Selengkapnya →</a>
         </div>
     </div>
 </div>
 
-<!-- Anggota di bawah -->
+<!-- Anggota lainnya -->
 <div class="row g-4">
-    <?php foreach ($members as $m): ?>
+    <?php foreach ($members as $id=>$m): 
+        if($id==1) continue; // Ketua sudah ditampilkan
+    ?>
     <div class="col-md-3 col-6">
         <div class="org-card shadow-sm h-100">
-            <img src="<?= $m[2] ?>" alt="<?= $m[0] ?>">
-            <h6 class="org-title"><?= $m[0] ?></h6>
-            <small class="org-role"><?= $m[1] ?></small>
-
-            <a href="detail_struktur.php" class="org-more">Selengkapnya →</a>
+            <img src="<?= $m['img'] ?>" alt="<?= $m['nama'] ?>">
+            <h6 class="org-title"><?= $m['nama'] ?></h6>
+            <small class="org-role"><?= $m['role'] ?></small>
+            <a href="detail_struktur.php?id=<?= $id ?>" class="org-more">Selengkapnya →</a>
         </div>
     </div>
     <?php endforeach; ?>
 </div>
 
 </section>
-
 </div>
 
 <?php include '../includes/footer.php'; ?>
