@@ -1,7 +1,7 @@
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/navbar.php'; ?>
 
-<link rel="stylesheet" href="struktural.css">
+<!-- <link rel="stylesheet" href="struktural.css"> -->
 
 <div class="page-content">
 
