@@ -19,7 +19,7 @@ if (isset($_GET['delete'])) {
 
     pg_query($conn, "DELETE FROM berita WHERE id=$id");
 
-    header("Location: berita.php?hapus=1");
+    header("Location: beritaAdmin.php?hapus=1");
     exit;
 }
 
@@ -117,7 +117,7 @@ $result = pg_query($conn, "SELECT * FROM berita ORDER BY tanggal DESC");
                         </li>
                         <li>
                             <a onclick="return confirm('Hapus berita ini?')" 
-                                href="berita.php?delete=<?= $b['id']; ?>" 
+                                href="beritaAdmin.php?delete=<?= $b['id']; ?>" 
                                 class="dropdown-item text-danger">
                                     <i class="bi bi-trash me-2"></i>Hapus
                             </a>
