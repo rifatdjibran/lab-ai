@@ -70,124 +70,175 @@ if (isset($_POST['submit'])) {
 <?php include "../includes/header_admin.php"; ?>
 
 <style>
-    .edit-card {
-        max-width: 700px;
-        margin: 40px auto;
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.12);
-    }
+/* CARD WRAPPER */
+.edit-card {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.12);
+}
 
-    .edit-image-preview {
-        width: 70%;
-        border-radius: 14px;
-        margin: 10px auto;
-        display: block;
-    }
+/* PREVIEW GAMBAR */
+.edit-image-preview {
+    width: 70%;
+    border-radius: 14px;
+    margin: 10px auto;
+    display: block;
+}
 
-    .filename-box {
-        font-size: 14px;
-        color: #333;
-        background: #efefef;
-        padding: 8px 12px;
-        border-radius: 8px;
-        margin-top: 6px;
-        display: inline-block;
-    }
+.filename-box {
+    font-size: 14px;
+    color: #333;
+    background: #efefef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: inline-block;
+}
 
-    /* BUTTON BASE */
-    .BtnBase {
-        width: 150px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: .3s;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        z-index: 2;
-    }
+/* ============================
+   INPUT STYLE (UIVERSE)
+============================= */
+.input,
+textarea.input {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    background: white;
+}
 
-    /* UPDATE BUTTON */
-    .BtnUpdate {
-        background: black;
-        color: white;
-    }
+.input:focus,
+textarea.input:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
 
-    .BtnUpdate::before {
-        content: "";
-        position: absolute;
-        width: 160%;
-        height: 160%;
-        background: white;
-        top: 50%;
-        left: -160%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        transition: .35s ease;
-        z-index: 0;
-    }
+/* FILE INPUT CUSTOMIZED */
+.input-file {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid #000;
+    background: #fafafa;
+    box-shadow: 2.5px 3px 0 #000;
+    transition: .25s ease;
+}
 
-    .BtnUpdate:hover::before {
-        left: 0%;
-        border-radius: 0;
-    }
+.input-file:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
 
-    .BtnUpdate:hover {
-        color: black;
-    }
+/* TEXTAREA FIX */
+textarea.input {
+    resize: vertical;
+}
 
-    /* BACK BUTTON */
-    .BtnBack {
-        background: white;
-        color: black;
-        border: 2px solid black;
-    }
+/* LABEL */
+label.fw-bold {
+    margin-bottom: 5px;
+    margin-top: 18px;
+    font-weight: 600;
+}
 
-    .BtnBack::before {
-        content: "";
-        position: absolute;
-        width: 160%;
-        height: 160%;
-        background: black;
-        top: 50%;
-        left: 160%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        transition: .35s ease;
-        z-index: 0;
-    }
+/* ============================
+   BUTTON STYLES
+============================= */
+.BtnBase {
+    width: 150px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
+}
 
-    .BtnBack:hover::before {
-        left: 0%;
-        border-radius: 0;
-    }
+.BtnUpdate {
+    background: black;
+    color: white;
+}
 
-    .BtnBack:hover {
-        color: white;
-    }
+.BtnUpdate::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: white;
+    top: 50%;
+    left: -160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
 
-    .BtnBase span {
-        z-index: 2;
-        position: relative;
-    }
+.BtnUpdate:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
 
-    .button-row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 25px;
-    }
+.BtnUpdate:hover {
+    color: black;
+}
 
-    .BtnBase:active {
-        transform: scale(0.94) translateY(2px);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-    }
+.BtnBack {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.BtnBack::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: black;
+    top: 50%;
+    left: 160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
+
+.BtnBack:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
+
+.BtnBack:hover {
+    color: white;
+}
+
+.BtnBase span {
+    z-index: 2;
+    position: relative;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.BtnBase:active {
+    transform: scale(0.94) translateY(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
 </style>
 
 <div class="container py-5">
@@ -203,26 +254,26 @@ if (isset($_POST['submit'])) {
         <form method="POST" enctype="multipart/form-data" class="mt-4">
 
             <label class="fw-bold">Nama Kegiatan</label>
-            <input type="text" name="nama_kegiatan" class="form-control" 
+            <input type="text" name="nama_kegiatan" class="input" 
                    value="<?= $data['nama_kegiatan']; ?>" required>
 
             <label class="fw-bold mt-3">Deskripsi</label>
-            <textarea name="deskripsi" rows="7" class="form-control" required><?= $data['deskripsi']; ?></textarea>
+            <textarea name="deskripsi" rows="7" class="input" required><?= $data['deskripsi']; ?></textarea>
 
             <label class="fw-bold mt-3">Tanggal Mulai</label>
-            <input type="date" name="tanggal_mulai" class="form-control"
+            <input type="date" name="tanggal_mulai" class="input"
                    value="<?= $data['tanggal_mulai']; ?>" required>
 
             <label class="fw-bold mt-3">Tanggal Selesai</label>
-            <input type="date" name="tanggal_selesai" class="form-control"
+            <input type="date" name="tanggal_selesai" class="input"
                    value="<?= $data['tanggal_selesai']; ?>" required>
 
             <label class="fw-bold mt-3">Lokasi</label>
-            <input type="text" name="lokasi" class="form-control"
+            <input type="text" name="lokasi" class="input"
                    value="<?= $data['lokasi']; ?>" required>
 
             <label class="fw-bold mt-3">Ubah Gambar</label>
-            <input type="file" name="gambar" class="form-control mb-3">
+            <input type="file" name="gambar" class="input-file">
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">

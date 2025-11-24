@@ -57,107 +57,175 @@ if (isset($_POST['submit'])) {
 <?php include "../includes/header_admin.php"; ?>
 
 <style>
-    .edit-card {
-        max-width: 700px;
-        margin: 40px auto;
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.12);
-    }
+/* CARD WRAPPER */
+.edit-card {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.12);
+}
 
-    /* BUTTON BASE */
-    .BtnBase {
-        width: 150px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: .3s;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        z-index: 2;
-    }
+/* PREVIEW GAMBAR */
+.edit-image-preview {
+    width: 70%;
+    border-radius: 14px;
+    margin: 10px auto;
+    display: block;
+}
 
-    /* SIMPAN BUTTON (HITAM → PUTIH) */
-    .BtnUpdate {
-        background: black;
-        color: white;
-    }
+.filename-box {
+    font-size: 14px;
+    color: #333;
+    background: #efefef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: inline-block;
+}
 
-    .BtnUpdate::before {
-        content: "";
-        position: absolute;
-        width: 160%;
-        height: 160%;
-        background: white;
-        top: 50%;
-        left: -160%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        transition: .35s ease;
-        z-index: 0;
-    }
+/* ============================
+   INPUT STYLE (UIVERSE)
+============================= */
+.input,
+textarea.input {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    background: white;
+}
 
-    .BtnUpdate:hover::before {
-        left: 0%;
-        border-radius: 0;
-    }
+.input:focus,
+textarea.input:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
 
-    .BtnUpdate:hover {
-        color: black;
-    }
+/* FILE INPUT CUSTOMIZED */
+.input-file {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid #000;
+    background: #fafafa;
+    box-shadow: 2.5px 3px 0 #000;
+    transition: .25s ease;
+}
 
-    /* BACK BUTTON */
-    .BtnBack {
-        background: white;
-        color: black;
-        border: 2px solid black;
-    }
+.input-file:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
 
-    .BtnBack::before {
-        content: "";
-        position: absolute;
-        width: 160%;
-        height: 160%;
-        background: black;
-        top: 50%;
-        left: 160%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        transition: .35s ease;
-        z-index: 0;
-    }
+/* TEXTAREA FIX */
+textarea.input {
+    resize: vertical;
+}
 
-    .BtnBack:hover::before {
-        left: 0%;
-        border-radius: 0;
-    }
+/* LABEL */
+label.fw-bold {
+    margin-bottom: 5px;
+    margin-top: 18px;
+    font-weight: 600;
+}
 
-    .BtnBack:hover {
-        color: white;
-    }
+/* ============================
+   BUTTON STYLES
+============================= */
+.BtnBase {
+    width: 150px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
+}
 
-    .BtnBase span {
-        z-index: 2;
-        position: relative;
-    }
+.BtnUpdate {
+    background: black;
+    color: white;
+}
 
-    .button-row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 25px;
-    }
+.BtnUpdate::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: white;
+    top: 50%;
+    left: -160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
 
-    .BtnBase:active {
-        transform: scale(0.94) translateY(2px);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-    }
+.BtnUpdate:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
+
+.BtnUpdate:hover {
+    color: black;
+}
+
+.BtnBack {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.BtnBack::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: black;
+    top: 50%;
+    left: 160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
+
+.BtnBack:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
+
+.BtnBack:hover {
+    color: white;
+}
+
+.BtnBase span {
+    z-index: 2;
+    position: relative;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.BtnBase:active {
+    transform: scale(0.94) translateY(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
 </style>
 
 <div class="container py-5">
@@ -168,16 +236,16 @@ if (isset($_POST['submit'])) {
         <form method="POST" enctype="multipart/form-data">
 
             <label class="fw-bold">Judul Berita</label>
-            <input type="text" name="judul" class="form-control" required>
+            <input type="text" name="judul" class="input" required>
 
             <label class="fw-bold mt-3">Penulis</label>
-            <input type="text" name="penulis" class="form-control" required>
+            <input type="text" name="penulis" class="input" required>
 
             <label class="fw-bold mt-3">Isi Berita</label>
-            <textarea name="isi" rows="7" class="form-control" required></textarea>
+            <textarea name="isi" rows="7" class="input" required></textarea>
 
             <label class="fw-bold mt-3">Gambar</label>
-            <input type="file" name="gambar" class="form-control">
+            <input type="file" name="gambar" class="input-file">
 
             <div class="button-row">
 
