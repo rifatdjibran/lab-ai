@@ -14,6 +14,7 @@ $data = pg_fetch_assoc($q);
 
 if (isset($_POST['submit'])) {
     $judul = pg_escape_string($conn, $_POST['judul']);
+    $penulis = pg_escape_string($conn, $_POST['penulis']);
     $isi = pg_escape_string($conn, $_POST['isi']);
     $gambar_lama = $data['gambar'];
 
@@ -44,9 +45,11 @@ if (isset($_POST['submit'])) {
         UPDATE berita SET 
             judul='$judul',
             isi='$isi',
-            gambar='$gambar'
+            gambar='$gambar',
+            penulis='$penulis'
         WHERE id=$id
-    ");
+"   );
+
 
     header("Location: beritaAdmin.php?edit=1");
     exit;
@@ -206,6 +209,10 @@ if (isset($_POST['submit'])) {
 
             <label class="fw-bold">Judul</label>
             <input type="text" name="judul" class="form-control" value="<?= $data['judul']; ?>" required>
+
+            <label class="fw-bold mt-3">Penulis</label>
+            <input type="text" name="penulis" class="form-control" 
+                value="<?= $data['penulis']; ?>" required>
 
             <label class="fw-bold mt-3">Isi Berita</label>
             <textarea name="isi" rows="7" class="form-control" required><?= $data['isi']; ?></textarea>

@@ -49,10 +49,7 @@ $result = pg_query($conn, "SELECT * FROM berita ORDER BY tanggal DESC");
 <body>
 
 <?php include "../includes/header_admin.php"; ?>
-
 <div class="d-flex">
-
-  
 
   <!-- SIDEBAR -->
   <?php include "../includes/sidebar.php"; ?>

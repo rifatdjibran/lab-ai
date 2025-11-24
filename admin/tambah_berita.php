@@ -9,8 +9,8 @@ require_once "../config/database.php";
 
 if (isset($_POST['submit'])) {
     $judul = pg_escape_string($conn, $_POST['judul']);
+    $penulis = pg_escape_string($conn, $_POST['penulis']);
     $isi = pg_escape_string($conn, $_POST['isi']);
-    $penulis = $_SESSION['username'];
     $admin_id = $_SESSION['admin_id'];
 
     $upload_dir = "../assets/uploads/berita/";
@@ -169,6 +169,9 @@ if (isset($_POST['submit'])) {
 
             <label class="fw-bold">Judul Berita</label>
             <input type="text" name="judul" class="form-control" required>
+
+            <label class="fw-bold mt-3">Penulis</label>
+            <input type="text" name="penulis" class="form-control" required>
 
             <label class="fw-bold mt-3">Isi Berita</label>
             <textarea name="isi" rows="7" class="form-control" required></textarea>

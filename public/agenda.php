@@ -46,7 +46,7 @@ $agendaLab = pg_fetch_all($result);
                     <div class="col-md-4">
                         <div class="card agenda-card shadow-sm">
 
-                            <img src="../assets/img/banners/<?= htmlspecialchars($kegiatan['gambar']) ?>"
+                            <img src="../assets/uploads/kegiatan/<?= htmlspecialchars($kegiatan['gambar']) ?>"
                                  class="card-img-top"
                                  alt="<?= htmlspecialchars($kegiatan['nama_kegiatan']) ?>">
 

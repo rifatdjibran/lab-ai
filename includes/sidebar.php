@@ -31,7 +31,7 @@
     </li>
 
     <li>
-      <a href="kegiatan.php" class="nav-link link-dark sidebar-link">
+      <a href="agendaAdmin.php" class="nav-link link-dark sidebar-link">
         <i class="bi bi-calendar-event me-2"></i>
         <span class="sidebar-text">Kegiatan</span>
       </a>
