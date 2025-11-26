@@ -45,7 +45,7 @@
     </li>
 
     <li>
-      <a href="penelitian.php" class="nav-link link-dark sidebar-link">
+      <a href="penelitianAdmin.php" class="nav-link link-dark sidebar-link">
         <i class="bi bi-journal-text me-2"></i>
         <span class="sidebar-text">Penelitian</span>
       </a>

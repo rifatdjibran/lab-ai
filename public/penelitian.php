@@ -61,7 +61,7 @@ $dataPenelitian = pg_fetch_all($result);
                             </p>
 
                             <?php if (!empty($r['file_laporan'])): ?>
-                                <a href="../uploads/penelitian/<?= $r['file_laporan'] ?>" 
+                                <a href="../assets/uploads/penelitian/<?= $r['file_laporan'] ?>" 
                                    class="btn btn-success btn-sm" target="_blank">
                                    <i class="bi bi-file-earmark-pdf"></i> Lihat Laporan
                                 </a>
