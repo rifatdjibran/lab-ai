@@ -52,7 +52,7 @@
     </li>
 
     <li>
-      <a href="publikasi.php" class="nav-link link-dark sidebar-link">
+      <a href="publikasiAdmin.php" class="nav-link link-dark sidebar-link">
         <i class="bi bi-journal-medical me-2"></i>
         <span class="sidebar-text">Publikasi</span>
       </a>

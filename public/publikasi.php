@@ -72,7 +72,7 @@ $dataPublikasi = pg_fetch_all($result);
 
                             <!-- File Publikasi -->
                             <?php if (!empty($p['file_publikasi'])): ?>
-                                <a href="../uploads/publikasi/<?= $p['file_publikasi'] ?>" 
+                                <a href="../assets/uploads/publikasi/<?= $p['file_publikasi'] ?>" 
                                    class="btn btn-success btn-sm" target="_blank">
                                    <i class="bi bi-file-earmark-pdf"></i> File PDF
                                 </a>
