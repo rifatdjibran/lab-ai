@@ -58,6 +58,14 @@
       </a>
     </li>
 
+    <li>
+    <a href="fasilitasAdmin.php" class="nav-link link-dark sidebar-link">
+      <i class="bi bi-building me-2"></i>
+      <span class="sidebar-text">Fasilitas</span>
+   </a>
+  </li>
+
+
   </ul>
 
   <hr>

@@ -6,7 +6,7 @@
       <!-- Kolom 1: Logo & Identitas -->
       <div class="col-md-5 mb-4">
         <div class="d-flex align-items-center mb-3">
-          <img src="/lab-ai/assets/img/banners/logo-jti.png" 
+          <img src="/lab-ai/assets/img/LogoJTI.png" 
                alt="Logo JTI" 
                style="height: 80px;">
         </div>

@@ -45,7 +45,7 @@ $beritaHome = pg_query($conn, $query);
             // Path gambar (fallback kalau kosong)
             $imgPath = !empty($b['gambar']) 
                 ? "assets/uploads/berita/" . htmlspecialchars($b['gambar'])
-                : "assets/img/default-news.png"; // bebaskan aja default-nya
+                : "assets/img/default-news.png"; 
     ?>
 
     <div class="col-md-4">
@@ -217,8 +217,6 @@ $beritaHome = pg_query($conn, $query);
 <section class="bg-light text-center">
   <div class="container">
     <h2>Struktur Organisasi</h2>
-    <img src="../assets/img/banners/struktur.png" alt="Struktur Organisasi" 
-         class="img-fluid rounded shadow-sm my-4" style="max-width: 80%;">
     <p class="text-muted">
       Struktur organisasi Lab-AI terdiri dari dosen pembina, koordinator laboratorium, laboran,
       dan asisten mahasiswa.
