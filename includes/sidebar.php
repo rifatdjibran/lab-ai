@@ -21,7 +21,7 @@
 
 /* Collapse */
 .sidebar.collapsed {
-    width: 0x;
+    width: 70px;
 }
 
 /* Glow background */
@@ -119,7 +119,7 @@
 }
 
 #main-content.collapsed {
-    margin-left: 70px;
+    margin-left: 50px;
 }
 
 </style>
@@ -127,7 +127,7 @@
 <!-- ================================ -->
 <!-- SIDEBAR HTML -->
 <!-- ================================ -->
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar ">
 
     <div class="circle top"></div>
     <div class="circle bottom"></div>
@@ -165,6 +165,7 @@ document.querySelectorAll(".sidebar-link").forEach(a => {
         a.classList.add("active");
     }
 });
+
 
 
 
