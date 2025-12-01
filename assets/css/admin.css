@@ -1,69 +1,10 @@
 /* GLOBAL */
 body {
+    padding-top: 60px; /* sama dengan tinggi navbar */
     background-color: #f8f9fa;
     font-family: "Poppins", sans-serif;
 }
 
-/* SIDEBAR */
-
-.sidebar {
-    width: 250px;
-    transition: 0.3s ease;
-    overflow: hidden;
-    background: #ffffff;
-}
-
-.sidebar.collapsed {
-    width: 80px;
-}
-
-.sidebar-text {
-    transition: 0.2s ease;
-}
-
-.sidebar.collapsed .sidebar-text {
-    opacity: 0;
-    width: 0;
-    pointer-events: none;
-}
-
-.sidebar-logo {
-    transition: 0.2s ease;
-}
-
-.sidebar.collapsed .sidebar-logo {
-    margin-right: 0 !important;
-}
-
-#toggleSidebar i {
-    transition: 0.3s;
-}
-
-.sidebar.collapsed #toggleSidebar i {
-    transform: rotate(180deg);
-}
-
-/* MAIN CONTENT SHIFT */
-#main-content {
-    transition: margin-left 0.3s ease;
-    margin-left: 5px;
-}
-
-#main-content.collapsed {
-    margin-left: 60px;
-}
-
-/* Sidebar hover */
-.sidebar-link {
-    padding: 10px 12px;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-.sidebar-link:hover {
-    background-color: #e7efff;
-    color: #0d6efd !important;
-}
 
 /* NAVBAR */
 .navbar {
@@ -277,4 +218,12 @@ body {
 }
 .dropdown-item {
     padding: 8px 16px;
+}
+
+#main-content {
+    transition: 0.3s ease;
+}
+
+#main-content.collapsed {
+    margin-left: 70px; /* saat sidebar collapse */
 }
