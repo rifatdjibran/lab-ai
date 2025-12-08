@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $penulis = pg_escape_string($conn, $_POST['penulis']);
     $jurnal = pg_escape_string($conn, $_POST['jurnal']);
     $tahun = pg_escape_string($conn, $_POST['tahun']);
+    $kategori = pg_escape_string($conn, $_POST['kategori']);
     $link_publikasi = pg_escape_string($conn, $_POST['link_publikasi']);
     $admin_id = $_SESSION['admin_id'];
 
@@ -33,10 +34,10 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // Query Insert ke database
+    // Query Insert ke database       
     pg_query($conn, "
-        INSERT INTO publikasi (judul, penulis, jurnal, tahun, link_publikasi, file_publikasi, admin_id, created_at)
-        VALUES ('$judul', '$penulis', '$jurnal', '$tahun', '$link_publikasi', '$file_publikasi', '$admin_id', NOW())
+        INSERT INTO publikasi (judul, penulis, jurnal, tahun, kategori, link_publikasi, file_publikasi, admin_id, created_at)
+        VALUES ('$judul', '$penulis', '$jurnal', '$tahun', '$kategori', '$link_publikasi', '$file_publikasi', '$admin_id', NOW())
     ");
 
     header("Location: publikasiAdmin.php?add=1");
@@ -71,7 +72,27 @@ if (isset($_POST['submit'])) {
     box-shadow: 0 0 15px rgba(0,0,0,0.12);
 }
 
-/* INPUT STYLE */
+/* PREVIEW GAMBAR */
+.edit-image-preview {
+    width: 70%;
+    border-radius: 14px;
+    margin: 10px auto;
+    display: block;
+}
+
+.filename-box {
+    font-size: 14px;
+    color: #333;
+    background: #efefef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: inline-block;
+}
+
+/* ============================
+   INPUT STYLE (UIVERSE)
+============================= */
 .input,
 textarea.input {
     width: 100%;
@@ -81,7 +102,7 @@ textarea.input {
     border-radius: 0.5rem;
     box-shadow: 2.5px 3px 0 #000;
     outline: none;
-    transition: .25s ease;
+    transition: ease 0.25s;
     background: white;
 }
 
@@ -90,7 +111,7 @@ textarea.input:focus {
     box-shadow: 5.5px 7px 0 black;
 }
 
-/* FILE INPUT */
+/* FILE INPUT CUSTOMIZED */
 .input-file {
     width: 100%;
     padding: 0.7rem;
@@ -101,7 +122,11 @@ textarea.input:focus {
     transition: .25s ease;
 }
 
-/* TEXTAREA */
+.input-file:focus {
+    box-shadow: 5.5px 7px 0 black;
+}
+
+/* TEXTAREA FIX */
 textarea.input {
     resize: vertical;
 }
@@ -113,7 +138,9 @@ label.fw-bold {
     font-weight: 600;
 }
 
-/* BUTTON */
+/* ============================
+   BUTTON STYLES
+============================= */
 .BtnBase {
     width: 150px;
     height: 45px;
@@ -128,12 +155,14 @@ label.fw-bold {
     transition: .3s;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
 }
 
 .BtnUpdate {
     background: black;
     color: white;
 }
+
 .BtnUpdate::before {
     content: "";
     position: absolute;
@@ -145,11 +174,14 @@ label.fw-bold {
     transform: translateY(-50%);
     border-radius: 50%;
     transition: .35s ease;
+    z-index: 0;
 }
+
 .BtnUpdate:hover::before {
     left: 0%;
     border-radius: 0;
 }
+
 .BtnUpdate:hover {
     color: black;
 }
@@ -159,6 +191,7 @@ label.fw-bold {
     color: black;
     border: 2px solid black;
 }
+
 .BtnBack::before {
     content: "";
     position: absolute;
@@ -170,13 +203,21 @@ label.fw-bold {
     transform: translateY(-50%);
     border-radius: 50%;
     transition: .35s ease;
+    z-index: 0;
 }
+
 .BtnBack:hover::before {
     left: 0%;
     border-radius: 0;
 }
+
 .BtnBack:hover {
     color: white;
+}
+
+.BtnBase span {
+    z-index: 2;
+    position: relative;
 }
 
 .button-row {
@@ -184,7 +225,13 @@ label.fw-bold {
     justify-content: space-between;
     margin-top: 25px;
 }
+
+.BtnBase:active {
+    transform: scale(0.94) translateY(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
 </style>
+
 
 <div class="container py-5">
     <div class="edit-card">
@@ -204,6 +251,17 @@ label.fw-bold {
 
             <label class="fw-bold mt-3">Tahun Terbit</label>
             <input type="number" name="tahun" class="input" required>
+
+            <label class="fw-bold mt-3">Kategori</label>
+            <select name="kategori" class="input" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Jurnal Ilmiah">Jurnal Ilmiah</option>
+                <option value="Prosiding Konferensi">Prosiding Konferensi</option>
+                <option value="HKI">HKI</option>
+                <option value="Buku">Buku</option>
+                <option value="Modul Ajar">Modul Ajar</option>
+                <option value="DLL">DLL</option>
+            </select>
 
             <label class="fw-bold mt-3">Link Publikasi</label>
             <input type="text" name="link_publikasi" class="input">

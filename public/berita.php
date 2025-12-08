@@ -68,7 +68,6 @@ $beritaList = pg_fetch_all($result);
                                     <?= htmlspecialchars($b['penulis']) ?>
                                 </p>
 
-                                <span class="badge bg-primary badge-status">Berita</span>
 
                                 <div class="mt-3">
                                     <a href="detail_berita.php?id=<?= $b['id'] ?>" 

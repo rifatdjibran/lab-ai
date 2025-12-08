@@ -40,12 +40,12 @@ footer {
     background: linear-gradient(rgba(129, 167, 224, 0.7), rgba(0,74,173,0.7)),
                 url('../img/home-lab.jpg') center/cover no-repeat;
     color: white;
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .navbar-brand strong {

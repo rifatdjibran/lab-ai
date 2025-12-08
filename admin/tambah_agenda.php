@@ -251,7 +251,7 @@ label.fw-bold {
             <input type="text" name="lokasi" class="input" required>
 
             <label class="fw-bold mt-3">Gambar</label>
-            <input type="file" name="gambar" class="input">
+            <input type="file" name="gambar" class="input" accept="image/*">
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">

@@ -20,14 +20,12 @@ $members = [
     1 => ["nama"=>"Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "role"=>"Ketua Laboratorium", "img"=>"../assets/img/tim/ketua.png"],
     2 => ["nama"=>"Pramana Yoga Saputra, S.Kom., M.MT.", "role"=>"Anggota", "img"=>"../assets/img/tim/yoga.png"],
     3 => ["nama"=>"Yuri Ariyanto, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/yuri.png"],
-    4 => ["nama"=>"Triana Fatmawati, S.T., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/triana.jpg"],
-    5 => ["nama"=>"M. Hasyim Ratsanjani, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/hasyim.png"],
-    6 => ["nama"=>"Noprianto, S.Kom., M.Eng.", "role"=>"Anggota", "img"=>"../assets/img/tim/noprianto.png"],
-    7 => ["nama"=>"Mustika Mentari, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/mustika.png"],
-    8 => ["nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT", "role"=>"Anggota", "img"=>"../assets/img/tim/kadek.png"],
-    9 => ["nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/afif.jpg"],
-    10 => ["nama"=>"Chandrasena Setiadi, S.T., M.Tr.T", "role"=>"Anggota", "img"=>"../assets/img/tim/chandrasena.jpg"],
-    11 => ["nama"=>"Retno Damayanti, S.Pd., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/retno.jpg"]
+    4 => ["nama"=>"Triana Fatmawati, S.T., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/triana.jpg"],  
+    5 => ["nama"=>"Noprianto, S.Kom., M.Eng.", "role"=>"Anggota", "img"=>"../assets/img/tim/noprianto.png"],
+    6 => ["nama"=>"Mustika Mentari, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/mustika.png"],
+    7 => ["nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT", "role"=>"Anggota", "img"=>"../assets/img/tim/kadek.png"],
+    8 => ["nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/afif.jpg"],
+    9 => ["nama"=>"Chandrasena Setiadi, S.T., M.Tr.T", "role"=>"Anggota", "img"=>"../assets/img/tim/chandrasena.jpg"],
 ];
 ?>
 

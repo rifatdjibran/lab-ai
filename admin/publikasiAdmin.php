@@ -79,6 +79,7 @@ $result = pg_query($conn, "SELECT * FROM publikasi ORDER BY tahun DESC");
                             <th>Penulis</th>
                             <th>Jurnal</th>
                             <th>Tahun</th>
+                            <th>Kategori</th>
                             <th>Link</th>
                             <th>Aksi</th>
                         </tr>
@@ -113,6 +114,8 @@ $result = pg_query($conn, "SELECT * FROM publikasi ORDER BY tahun DESC");
 
                             <!-- TAHUN -->
                             <td><?= $p['tahun']; ?></td>
+
+                            <td><?= $p['kategori']; ?></td>
 
                             <!-- LINK -->
                             <td>

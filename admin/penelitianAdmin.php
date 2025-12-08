@@ -11,15 +11,6 @@ require_once "../config/database.php";
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
 
-    // ambil file laporan
-    $q = pg_query($conn, "SELECT file_laporan FROM penelitian WHERE id = $id");
-    $file = pg_fetch_assoc($q)['file_laporan'];
-
-    // hapus file jika ada
-    if (!empty($file) && file_exists("../assets/uploads/penelitian/" . $file)) {
-        unlink("../assets/uploads/penelitian/" . $file);
-    }
-
     // hapus data dari database
     pg_query($conn, "DELETE FROM penelitian WHERE id = $id");
 
@@ -73,7 +64,6 @@ $result = pg_query($conn, "SELECT * FROM penelitian ORDER BY tahun DESC");
                     <thead class="table-dark">
                         <tr>
                             <th>No</th>
-                            <th>File Laporan</th>
                             <th>Judul Penelitian</th>
                             <th>Peneliti</th>
                             <th>Tahun</th>
@@ -86,19 +76,6 @@ $result = pg_query($conn, "SELECT * FROM penelitian ORDER BY tahun DESC");
                         <?php $no=1; while ($p = pg_fetch_assoc($result)) { ?>
                         <tr>
                             <td><?= $no++; ?></td>
-
-                            <!-- FILE LAPORAN -->
-                            <td>
-                                <?php if (!empty($p['file_laporan'])) { ?>
-                                    <a href="../assets/uploads/penelitian/<?= $p['file_laporan']; ?>" 
-                                       class="btn btn-sm btn-outline-primary"
-                                       target="_blank">
-                                        Lihat File
-                                    </a>
-                                <?php } else { ?>
-                                    <span class="text-muted">Tidak ada file</span>
-                                <?php } ?>
-                            </td>
 
                             <!-- JUDUL -->
                             <td class="fw-semibold"><?= $p['judul']; ?></td>

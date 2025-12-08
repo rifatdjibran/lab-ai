@@ -273,7 +273,7 @@ label.fw-bold {
                    value="<?= $data['lokasi']; ?>" required>
 
             <label class="fw-bold mt-3">Ubah Gambar</label>
-            <input type="file" name="gambar" class="input-file">
+            <input type="file" name="gambar" class="input-file" accept="image/*">
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">
