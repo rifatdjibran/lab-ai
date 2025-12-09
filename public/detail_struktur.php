@@ -194,12 +194,6 @@ $member = $members[$id] ?? $members[1];
         </div>
     </div>
 
-    <!-- Tombol Aksi -->
-    <div class="text-center mb-4">
-        <a href="<?= $member['linkedin'] ?>" class="action-btn me-2">Linkedin</a>
-        <a href="<?= $member['scholar'] ?>" class="action-btn">Google Scholar</a>
-    </div>
-
     <!-- TAB MENU -->
     <ul class="nav nav-tabs custom-tabs mb-3">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#publikasi">Publikasi</a></li>
