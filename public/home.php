@@ -226,6 +226,15 @@ $beritaHome = pg_query($conn, $query);
 
 
 <!-- Tim Kami -->
+
+<style>
+.card-img-top {
+    object-fit: cover;        /* agar gambar tidak terpotong bagian atas */
+    object-position: top;     /* fokus ke bagian atas */
+    height: 280px;
+}
+</style>
+
 <section>
   <div class="container text-center">
     <h3>Tim Kami</h3>
@@ -245,7 +254,7 @@ $beritaHome = pg_query($conn, $query);
       ?>
         <div class="col-md-3 col-6">
           <div class="card shadow-sm h-100">
-            <img src="<?= $a[2] ?>" class="card-img-top rounded-top" alt="<?= $a[0] ?>">
+          <img src="<?= $a[2] ?>" class="card-img-top rounded-top" alt="<?= $a[0] ?>">
             <div class="card-body">
               <h6 class="fw-semibold mb-0"><?= $a[0] ?></h6>
               <small class="text-muted"><?= $a[1] ?></small>
