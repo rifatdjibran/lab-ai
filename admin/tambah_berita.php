@@ -245,7 +245,7 @@ label.fw-bold {
             <textarea name="isi" rows="7" class="input" required></textarea>
 
             <label class="fw-bold mt-3">Gambar</label>
-            <input type="file" name="gambar" class="input-file">
+            <input type="file" name="gambar" class="input-file" accept="image/*">
 
             <div class="button-row">
 

@@ -161,7 +161,7 @@ $beritaHome = pg_query($conn, $query);
     </div>
 </section>
 
-<!-- Profil Laboratorium (BUKAN HERO LAGI) -->
+<!-- Profil Laboratorium  -->
 <section id="profil" class="py-5 bg-light">
   <div class="container text-center">
     <h2 class="fw-bold">Profil Laboratorium</h2>

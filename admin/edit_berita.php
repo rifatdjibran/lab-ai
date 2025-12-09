@@ -266,7 +266,7 @@ label.fw-bold {
             <textarea name="isi" rows="7" class="input" required><?= $data['isi']; ?></textarea>
 
             <label class="fw-bold mt-3">Ubah Gambar</label>
-            <input type="file" name="gambar" class="input-file">
+            <input type="file" name="gambar" class="input-file" accept="image/*">
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">
