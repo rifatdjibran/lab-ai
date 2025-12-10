@@ -147,6 +147,7 @@
         <li><a href="timAdmin.php" class="nav-link sidebar-link"><i class="bi bi-people"></i> <span class="sidebar-text">Tim Lab</span></a></li>
         
         <li><a href="fasilitasAdmin.php" class="nav-link sidebar-link"><i class="bi bi-building"></i> <span class="sidebar-text">Fasilitas</span></a></li>
+        <li><a href="karyaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-building"></i> <span class="sidebar-text">Karya Dosen</span></a></li>
     </ul>
 
     <hr>

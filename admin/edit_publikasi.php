@@ -28,6 +28,8 @@ if (isset($_POST['submit'])) {
     $kategori = pg_escape_string($conn, $_POST['kategori']);
     $link_publikasi = pg_escape_string($conn, $_POST['link_publikasi']);
 
+    $id_anggota_utama = !empty($_POST['id_anggota_utama']) ? intval($_POST['id_anggota_utama']) : 'NULL';
+
     $file_lama = $data['file_publikasi'];
     $file_baru = $file_lama;
 
@@ -49,7 +51,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // Query Update
+    
     $update = pg_query($conn, "
     UPDATE publikasi SET 
         judul = '$judul',
@@ -58,7 +60,8 @@ if (isset($_POST['submit'])) {
         tahun = $tahun,
         kategori = '$kategori',
         link_publikasi = '$link_publikasi',
-        file_publikasi = '$file_baru'
+        file_publikasi = '$file_baru',
+        id_anggota_utama = $id_anggota_utama -- <<< KOLOM BARU DI SINI
     WHERE id = $id
     ");
 
@@ -66,10 +69,12 @@ if (isset($_POST['submit'])) {
         header("Location: publikasiAdmin.php?update=1");
         exit;
     } else {
-        echo "Gagal mengupdate data!";
+        echo "Gagal mengupdate data! Error: " . pg_last_error($conn);
     }
 }
 
+// Query untuk mengambil daftar anggota lab (untuk dropdown)
+$anggota_list = pg_query($conn, "SELECT id, nama FROM struktur_organisasi ORDER BY nama ASC");
 ?>
 
 <!DOCTYPE html>
@@ -266,6 +271,18 @@ label.fw-bold {
         <h2 class="fw-bold text-center mb-4">Edit Publikasi</h2>
 
         <form method="POST" enctype="multipart/form-data">
+
+            <label class="fw-bold">Anggota Utama Lab (Opsional)</label>
+            <select name="id_anggota_utama" class="input">
+                <option value="">-- Pilih Anggota Lab (Jika ada) --</option>
+                <?php while ($row = pg_fetch_assoc($anggota_list)): 
+                    // Tentukan opsi mana yang dipilih
+                    $selected = ($row['id'] == $data['id_anggota_utama']) ? 'selected' : '';
+                ?>
+                    <option value="<?= $row['id'] ?>" <?= $selected ?>><?= htmlspecialchars($row['nama']) ?></option>
+                <?php endwhile; ?>
+            </select>
+            <small class="text-muted d-block mt-1">*Digunakan untuk menampilkan di Profil Dosen.</small>
 
             <label class="fw-bold">Judul Publikasi</label>
             <input type="text" name="judul" class="input" value="<?= $data['judul'] ?>" required>

@@ -23,6 +23,8 @@ if (isset($_POST['update'])) {
 
     $nama     = pg_escape_string($conn, $_POST['nama']);
     $jabatan  = pg_escape_string($conn, $_POST['jabatan']);
+    $email      = pg_escape_string($conn, $_POST['email']); 
+    $pendidikan = pg_escape_string($conn, $_POST['pendidikan']); 
     $urutan   = intval($_POST['urutan']);
     
     $foto = $data['foto']; // Default foto lama
@@ -47,7 +49,12 @@ if (isset($_POST['update'])) {
     }
 
     $query = "UPDATE struktur_organisasi SET 
-              nama='$nama', jabatan='$jabatan', urutan=$urutan, foto='$foto' 
+              nama='$nama', 
+              jabatan='$jabatan', 
+              email='$email', 
+              pendidikan='$pendidikan', 
+              urutan=$urutan, 
+              foto='$foto' 
               WHERE id=$id";
 
     if (pg_query($conn, $query)) {
@@ -266,6 +273,12 @@ label.fw-bold {
 
             <label class="fw-bold">Jabatan</label>
             <input type="text" name="jabatan" class="input" value="<?= htmlspecialchars($data['jabatan']) ?>" required>
+
+            <label class="fw-bold">Email Kontak</label>
+            <input type="email" name="email" class="input" value="<?= htmlspecialchars($data['email'] ?? '') ?>" required>
+
+            <label class="fw-bold">Pendidikan Terakhir</label>
+            <input type="text" name="pendidikan" class="input" value="<?= htmlspecialchars($data['pendidikan'] ?? '') ?>" required>
 
             <label class="fw-bold">Urutan Tampil</label>
             <input type="number" name="urutan" class="input" value="<?= $data['urutan'] ?>">

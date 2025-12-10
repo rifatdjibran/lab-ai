@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
 
     $nama = pg_escape_string($conn, $_POST['nama']);
     $jabatan = pg_escape_string($conn, $_POST['jabatan']);
+    $email = pg_escape_string($conn, $_POST['email']); 
+    $pendidikan = pg_escape_string($conn, $_POST['pendidikan']); 
     $urutan = intval($_POST['urutan']);
     $admin_id = $_SESSION['admin_id'];
 
@@ -42,8 +44,8 @@ if (isset($_POST['submit'])) {
     }
 
     // QUERY INSERT KE struktur_organisasi
-    $query = "INSERT INTO struktur_organisasi(nama, jabatan, foto, urutan, created_at, admin_id)
-              VALUES ('$nama', '$jabatan', '$foto', $urutan, NOW(), $admin_id)";
+    $query = "INSERT INTO struktur_organisasi(nama, jabatan, email, pendidikan, foto, urutan, created_at, admin_id)
+              VALUES ('$nama', '$jabatan', '$email', '$pendidikan', '$foto', $urutan, NOW(), $admin_id)";
 
     if(pg_query($conn, $query)){
         header("Location: timAdmin.php?add=1");
@@ -254,6 +256,12 @@ label.fw-bold {
 
             <label class="fw-bold">Jabatan</label>
             <input type="text" name="jabatan" class="input" required placeholder="Contoh: Ketua Laboratorium / Anggota">
+
+            <label class="fw-bold">Email Kontak</label>
+            <input type="email" name="email" class="input" required placeholder="contoh@domain.com">
+
+            <label class="fw-bold">Pendidikan Terakhir</label>
+            <input type="text" name="pendidikan" class="input" required placeholder="Contoh: S3 Teknik Informatika / S2 Ilmu Komputer">
 
             <label class="fw-bold">Urutan Tampil (Opsional)</label>
             <input type="number" name="urutan" class="input" value="1">

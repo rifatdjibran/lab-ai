@@ -1,9 +1,26 @@
 <?php 
 include '../includes/header.php';
 include '../includes/navbar.php';
+require_once '../config/database.php'; // Pastikan koneksi DB tersedia
+
+// --- 1. AMBIL DATA KETUA LAB ---
+// Mencari anggota dengan jabatan 'Ketua Laboratorium' atau 'Ketua Lab'
+$query_ketua = "SELECT id, nama, jabatan, foto FROM struktur_organisasi 
+                WHERE jabatan ILIKE 'Ketua Lab%' OR jabatan ILIKE 'Ketua Laboratorium%' 
+                ORDER BY urutan ASC LIMIT 1";
+$result_ketua = pg_query($conn, $query_ketua);
+$ketua = pg_fetch_assoc($result_ketua);
+
+// --- 2. AMBIL DATA ANGGOTA LAIN ---
+// Ambil semua anggota kecuali yang jabatannya Ketua
+$query_anggota = "SELECT id, nama, jabatan, foto FROM struktur_organisasi 
+                  WHERE jabatan NOT ILIKE 'Ketua Lab%' AND jabatan NOT ILIKE 'Ketua Laboratorium%'
+                  ORDER BY urutan ASC, nama ASC";
+$result_anggota = pg_query($conn, $query_anggota);
 ?>
 
 <style>
+/* ... (STYLE CSS SAMA, TIDAK ADA PERUBAHAN) ... */
     /* 1. Hero Section (Konsisten) */
     .hero-section {
         background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
@@ -85,60 +102,52 @@ include '../includes/navbar.php';
 
 <section class="container my-5">
 
-    <?php  
-    $members = [
-        1 => ["nama"=>"Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "role"=>"Ketua Laboratorium", "img"=>"../assets/img/tim/ketua.png"],
-        2 => ["nama"=>"Pramana Yoga Saputra, S.Kom., M.MT.", "role"=>"Anggota", "img"=>"../assets/img/tim/yoga.png"],
-        3 => ["nama"=>"Yuri Ariyanto, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/yuri.png"],
-        4 => ["nama"=>"Triana Fatmawati, S.T., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/triana.jpg"],  
-        5 => ["nama"=>"Noprianto, S.Kom., M.Eng.", "role"=>"Anggota", "img"=>"../assets/img/tim/noprianto.png"],
-        6 => ["nama"=>"Mustika Mentari, S.Kom., M.Kom.", "role"=>"Anggota", "img"=>"../assets/img/tim/mustika.png"],
-        7 => ["nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT", "role"=>"Anggota", "img"=>"../assets/img/tim/kadek.png"],
-        8 => ["nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/afif.jpg"],
-        9 => ["nama"=>"Chandrasena Setiadi, S.T., M.Tr.T", "role"=>"Anggota", "img"=>"../assets/img/tim/chandrasena.jpg"],
-        10 => ["nama"=>"Retno Damayanti, S.Pd., M.T.", "role"=>"Anggota", "img"=>"../assets/img/tim/retno.jpg"],
-    ];
-    ?>
-
     <div class="text-center mb-5">
         <h2 class="fw-bold" style="color: #333;">Tim <span class="text-primary">Laboratorium</span></h2>
         <div style="width: 60px; height: 3px; background: #0d6efd; margin: 10px auto;"></div>
     </div>
 
+    <?php if ($ketua): ?>
     <div class="row justify-content-center mb-5">
         <div class="col-md-4 col-10">
             <div class="org-card shadow text-center">
-                <img src="<?= $members[1]['img'] ?>" alt="<?= $members[1]['nama'] ?>">
+                <img src="<?= '../assets/img/tim/' . htmlspecialchars($ketua['foto']) ?>" 
+                     alt="<?= htmlspecialchars($ketua['nama']) ?>">
                 <div class="card-body">
                     <span class="badge bg-primary mb-2">KETUA LAB</span>
-                    <h5 class="org-title"><?= $members[1]['nama'] ?></h5>
-                    <small class="org-role"><?= $members[1]['role'] ?></small>
-                    <a href="detail_struktur.php?id=1" class="btn btn-outline-primary btn-sm mt-3 rounded-pill px-4">
+                    <h5 class="org-title"><?= htmlspecialchars($ketua['nama']) ?></h5>
+                    <small class="org-role"><?= htmlspecialchars($ketua['jabatan']) ?></small>
+                    <a href="detail_struktur.php?id=<?= $ketua['id'] ?>" class="btn btn-outline-primary btn-sm mt-3 rounded-pill px-4">
                         Lihat Profil
                     </a>
                 </div>
             </div>
         </div>
     </div>
+    <?php else: ?>
+        <p class="text-center text-danger">Data Ketua Laboratorium belum diisi di database.</p>
+    <?php endif; ?>
 
     <h4 class="mb-4 fw-bold text-center text-muted">Anggota Laboratorium</h4>
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
-        <?php foreach ($members as $id=>$m): 
-            if($id==1) continue; 
-        ?>
+        <?php while ($m = pg_fetch_assoc($result_anggota)): ?>
         <div class="col">
             <div class="org-card shadow-sm h-100">
-                <img src="<?= $m['img'] ?>" alt="<?= $m['nama'] ?>">
+                <img src="<?= '../assets/img/tim/' . htmlspecialchars($m['foto']) ?>" 
+                     alt="<?= htmlspecialchars($m['nama']) ?>">
                 <div class="card-body">
-                    <h6 class="org-title"><?= $m['nama'] ?></h6>
-                    <small class="org-role"><?= $m['role'] ?></small>
+                    <h6 class="org-title"><?= htmlspecialchars($m['nama']) ?></h6>
+                    <small class="org-role"><?= htmlspecialchars($m['jabatan']) ?></small>
                     <div class="mt-3">
-                        <a href="detail_struktur.php?id=<?= $id ?>" class="org-more">Selengkapnya →</a>
+                        <a href="detail_struktur.php?id=<?= $m['id'] ?>" class="org-more">Selengkapnya →</a>
                     </div>
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php endwhile; ?>
+        <?php if (pg_num_rows($result_anggota) == 0 && !$ketua): ?>
+            <p class="text-center text-muted">Belum ada data anggota tim yang ditambahkan.</p>
+        <?php endif; ?>
     </div>
 
 </section>

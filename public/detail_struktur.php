@@ -1,166 +1,63 @@
 <?php 
 include '../includes/header.php'; 
 include '../includes/navbar.php'; 
-
-// DATA DUMMY LENGKAP
-$members = [
-    1 => [
-        "nama"=>"Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D",
-        "role"=>"Ketua Laboratorium",
-        "img"=>"../assets/img/tim/ketua.png",
-        "email"=>"yan@example.com",
-        "pendidikan"=>"S3 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Ketua $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Ketua $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Ketua $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Ketua $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Ketua $i",2020+$i%4],range(1,10)),
-    ],
-    2 => [
-        "nama"=>"Pramana Yoga Saputra, S.Kom., M.MT.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/yoga.png",
-        "email"=>"yoga@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Yoga $i",2019+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Yoga $i",2019+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Yoga $i",2019+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Yoga $i",2019+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Yoga $i",2019+$i%4],range(1,10)),
-    ],
-    3 => [
-        "nama"=>"Yuri Ariyanto, S.Kom., M.Kom.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/yuri.png",
-        "email"=>"yuri@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Yuri $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Yuri $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Yuri $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Yuri $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Yuri $i",2020+$i%4],range(1,10)),
-    ],
-    4 => [
-        "nama"=>"Triana Fatmawati, S.T., M.T.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/triana.jpg",
-        "email"=>"triana@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Triana $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Triana $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Triana $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Triana $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Triana $i",2020+$i%4],range(1,10)),
-    ],
-    5 => [
-        "nama"=>"Noprianto, S.Kom., M.Eng.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/noprianto.png",
-        "email"=>"noprianto@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Noprianto $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Noprianto $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Noprianto $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Noprianto $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Noprianto $i",2020+$i%4],range(1,10)),
-    ],
-    6 => [
-        "nama"=>"Mustika Mentari, S.Kom., M.Kom.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/mustika.png",
-        "email"=>"mustika@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Mustika $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Mustika $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Mustika $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Mustika $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Mustika $i",2020+$i%4],range(1,10)),
-    ],
-    7 => [
-        "nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/kadek.png",
-        "email"=>"kadek@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Kadek $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Kadek $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Kadek $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Kadek $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Kadek $i",2020+$i%4],range(1,10)),
-    ],
-    8 => [
-        "nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/afif.jpg",
-        "email"=>"afif@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Afif $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Afif $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Afif $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Afif $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Afif $i",2020+$i%4],range(1,10)),
-    ],
-    9 => [
-        "nama"=>"Chandrasena Setiadi, S.T., M.Tr.T",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/chandrasena.jpg",
-        "email"=>"chandrasena@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Chandrasena $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Chandrasena $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Chandrasena $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Chandrasena $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Chandrasena $i",2020+$i%4],range(1,10)),
-    ],
-    // Data dummy untuk ID 10 & 11 jika diakses
-    10 => [
-        "nama"=>"Retno Damayanti, S.Pd., M.T.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/retno.jpg",
-        "email"=>"retno@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Retno $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Retno $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Retno $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Retno $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Retno $i",2020+$i%4],range(1,10)),
-    ],
-];
-
-// Fallback jika ID tidak ditemukan (agar tidak error)
-for($i=11; $i<=15; $i++){
-    if(!isset($members[$i])) {
-        $members[$i] = $members[1]; 
-        $members[$i]['nama'] = "Anggota Dummy $i";
-    }
-}
+require_once '../config/database.php'; // Pastikan koneksi DB tersedia
 
 // Ambil ID dari query string
-$id = $_GET['id'] ?? 1;
-$member = $members[$id] ?? $members[1];
+$id = (int)($_GET['id'] ?? 1);
+
+// --- FUNGSI PENGAMBIL DATA REKAM JEJAK ---
+// Note: Kita akan menggunakan prepared statements untuk keamanan dan efisiensi
+
+function getKaryaDosen($conn, $id_anggota, $jenis) {
+    // Ambil Judul, Tahun, dan Nomor Dokumen (Nomor Dokumen hanya relevan untuk HAKI)
+    $sql = "SELECT judul, tahun, nomor_dokumen FROM karya_dosen 
+            WHERE id_anggota = $1 AND jenis_karya = $2 
+            ORDER BY tahun DESC, judul ASC";
+            
+    $stmt = pg_prepare($conn, "get_karya_$jenis", $sql);
+    $result = pg_execute($conn, "get_karya_$jenis", array($id_anggota, $jenis));
+    
+    return pg_fetch_all($result) ?: [];
+}
+
+function getPublikasi($conn, $id_anggota) {
+    // Ambil Judul dan Tahun dari tabel publikasi
+    $sql = "SELECT judul, tahun FROM publikasi 
+            WHERE id_anggota_utama = $1 
+            ORDER BY tahun DESC, judul ASC";
+            
+    $stmt = pg_prepare($conn, "get_publikasi", $sql);
+    $result = pg_execute($conn, "get_publikasi", array($id_anggota));
+    
+    return pg_fetch_all($result) ?: [];
+}
+
+
+// --- 1. AMBIL DETAIL ANGGOTA (DATA UTAMA) ---
+$query_member = "SELECT id, nama, jabatan, foto, email, pendidikan FROM struktur_organisasi WHERE id = $1";
+$stmt_member = pg_prepare($conn, "get_member_detail", $query_member);
+$member = pg_fetch_assoc(pg_execute($conn, "get_member_detail", array($id)));
+
+if (!$member) {
+    // Jika anggota tidak ditemukan, alihkan ke daftar atau tampilkan error
+    header("Location: struktur.php");
+    exit();
+}
+
+// --- 2. AMBIL SEMUA DATA REKAM JEJAK (Untuk tab) ---
+$rekam_jejak = [
+    'publikasi' => getPublikasi($conn, $member['id']),
+    'riset'     => getKaryaDosen($conn, $member['id'], 'Riset'),
+    'ki'        => getKaryaDosen($conn, $member['id'], 'HAKI'), // KI = HAKI
+    'ppm'       => getKaryaDosen($conn, $member['id'], 'PPM'),
+    'aktivitas' => getKaryaDosen($conn, $member['id'], 'Aktivitas'),
+];
+
 ?>
 
 <style>
+/* ... (STYLE CSS SAMA, TIDAK ADA PERUBAHAN) ... */
     /* CSS Tambahan Khusus Halaman Ini */
     
 /* --- PERUBAHAN DESAIN TOMBOL KEMBALI (GLASSY GRAY) --- */
@@ -256,33 +153,25 @@ $member = $members[$id] ?? $members[1];
     <div class="profile-card-main mb-5">
         <div class="row align-items-center">
             <div class="col-md-4 text-center mb-3 mb-md-0">
-                <img src="<?= $member['img'] ?>" class="detail-photo" alt="Foto">
+                <img src="<?= '../assets/img/tim/' . htmlspecialchars($member['foto']) ?>" class="detail-photo" alt="Foto">
                 <div class="mt-3">
-                    <span class="badge bg-primary px-3 py-2 rounded-pill"><?= $member['role'] ?></span>
+                    <span class="badge bg-primary px-3 py-2 rounded-pill"><?= htmlspecialchars($member['jabatan']) ?></span>
                 </div>
             </div>
             <div class="col-md-8">
-                <h3 class="fw-bold mb-3 text-dark"><?= $member['nama'] ?></h3>
+                <h3 class="fw-bold mb-3 text-dark"><?= htmlspecialchars($member['nama']) ?></h3>
                 <table class="table table-borderless detail-table">
                     <tr>
                         <td width="30px"><i class="bi bi-envelope text-primary"></i></td>
                         <td class="fw-bold" width="150px">Email</td>
-                        <td>: <?= $member['email'] ?></td>
+                        <td>: <?= htmlspecialchars($member['email']) ?></td>
                     </tr>
                     <tr>
                         <td><i class="bi bi-mortarboard text-primary"></i></td>
                         <td class="fw-bold">Pendidikan</td>
-                        <td>: <?= $member['pendidikan'] ?></td>
+                        <td>: <?= htmlspecialchars($member['pendidikan']) ?></td>
                     </tr>
-                    <tr>
-                        <td><i class="bi bi-link-45deg text-primary"></i></td>
-                        <td class="fw-bold">Profil Lain</td>
-                        <td>
-                            <a href="<?= $member['linkedin'] ?>" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-linkedin"></i> LinkedIn</a>
-                            <a href="<?= $member['scholar'] ?>" class="btn btn-sm btn-outline-info"><i class="bi bi-google"></i> Scholar</a>
-                        </td>
-                    </tr>
-                </table>
+                    </table>
             </div>
         </div>
     </div>
@@ -299,6 +188,8 @@ $member = $members[$id] ?? $members[1];
         <?php
         $tabs = ['publikasi','riset','ki','ppm','aktivitas'];
         foreach($tabs as $t):
+            // Ambil data untuk tab saat ini dari array yang sudah diisi dari DB
+            $data_tab = $rekam_jejak[$t] ?? [];
         ?>
         <div class="tab-pane fade <?= $t=='publikasi' ? 'show active':'' ?>" id="<?= $t ?>">
             <div class="card border-0 shadow-sm p-3">
@@ -308,24 +199,34 @@ $member = $members[$id] ?? $members[1];
                             <tr>
                                 <th class="text-center" width="60">No</th>
                                 <th>Judul / Deskripsi Kegiatan</th>
+                                <?php if ($t == 'ki'): // Tambah kolom khusus untuk HAKI ?>
+                                    <th class="text-center" width="200">No. Permohonan</th>
+                                <?php endif; ?>
                                 <th class="text-center" width="100">Tahun</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
-                            if(isset($member[$t]) && is_array($member[$t])):
-                                foreach(array_slice($member[$t],0,10) as $i=>$item): 
+                            if(!empty($data_tab)):
+                                foreach($data_tab as $i=>$item): 
                             ?>
                             <tr>
                                 <td class="text-center fw-bold text-muted"><?= $i+1 ?></td>
-                                <td><?= $item[0] ?></td>
-                                <td class="text-center"><span class="badge bg-light text-dark border"><?= $item[1] ?></span></td>
+                                <td><?= htmlspecialchars($item['judul']) ?></td>
+                                
+                                <?php if ($t == 'ki'): // Tampilkan nomor permohonan untuk HAKI ?>
+                                    <td class="text-center">
+                                        <?= htmlspecialchars($item['nomor_dokumen'] ?? '-') ?>
+                                    </td>
+                                <?php endif; ?>
+                                
+                                <td class="text-center"><span class="badge bg-light text-dark border"><?= htmlspecialchars($item['tahun']) ?></span></td>
                             </tr>
                             <?php 
                                 endforeach; 
                             else:
                             ?>
-                            <tr><td colspan="3" class="text-center text-muted py-4">Tidak ada data.</td></tr>
+                            <tr><td colspan="<?= ($t == 'ki' ? 3 : 2) + 1 ?>" class="text-center text-muted py-4">Tidak ada data.</td></tr>
                             <?php endif; ?>
                         </tbody>
                     </table>

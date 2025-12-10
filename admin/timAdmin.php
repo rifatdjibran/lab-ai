@@ -89,6 +89,8 @@ if (!$result) {
                             <th>Foto</th>
                             <th>Nama Lengkap</th>
                             <th>Jabatan</th>
+                            <th>Email</th>
+                            <th>Pendidikan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -109,6 +111,8 @@ if (!$result) {
                             <td class="fw-semibold"><?= htmlspecialchars($row['nama']); ?></td>
 
                             <td><?= htmlspecialchars($row['jabatan']); ?></td>
+                            <td><?= htmlspecialchars($row['email']); ?></td>
+                            <td><?= htmlspecialchars($row['pendidikan']); ?></td>
 
                             <td class="text-center">
                                 <div class="dropdown">

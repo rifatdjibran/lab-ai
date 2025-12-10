@@ -7,52 +7,44 @@ if (!isset($_SESSION['admin_id'])) {
 
 require_once "../config/database.php";
 
+$pesan = '';
+
 if (isset($_POST['submit'])) {
+    // Pastikan menggunakan prepared statement untuk keamanan yang lebih baik,
+    // tapi karena Anda menggunakan pg_escape_string, kita pertahankan gayanya.
 
-    $judul = pg_escape_string($conn, $_POST['judul']);
-    $penulis = pg_escape_string($conn, $_POST['penulis']);
-    $jurnal = pg_escape_string($conn, $_POST['jurnal']);
-    $tahun = pg_escape_string($conn, $_POST['tahun']);
-    $kategori = pg_escape_string($conn, $_POST['kategori']);
-    $link_publikasi = pg_escape_string($conn, $_POST['link_publikasi']);
-    $admin_id = $_SESSION['admin_id'];
+    $id_anggota   = intval($_POST['id_anggota']);
+    $jenis_karya  = pg_escape_string($conn, $_POST['jenis_karya']);
+    $judul        = pg_escape_string($conn, $_POST['judul']);
+    $tahun        = intval($_POST['tahun']);
+    $deskripsi    = pg_escape_string($conn, $_POST['deskripsi'] ?? ''); // Deskripsi bisa kosong
+    $admin_id     = $_SESSION['admin_id'];
 
-    $id_anggota_utama = !empty($_POST['id_anggota_utama']) ? intval($_POST['id_anggota_utama']) : 'NULL';
+    // Nomor dokumen hanya relevan untuk HAKI
+    $nomor_dokumen = ($jenis_karya === 'HAKI') ? pg_escape_string($conn, $_POST['nomor_dokumen']) : NULL;
 
-    // Folder upload
-    $upload_dir = "../assets/uploads/publikasi/";
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
-    }
+    // Query Insert ke database       
+    $insert = pg_query($conn, "
+        INSERT INTO karya_dosen (id_anggota, jenis_karya, judul, tahun, nomor_dokumen, deskripsi, created_at)
+        VALUES ($id_anggota, '$jenis_karya', '$judul', $tahun, 
+                " . ($nomor_dokumen ? "'$nomor_dokumen'" : "NULL") . ", 
+                '$deskripsi', NOW())
+    ");
 
-    // Upload file publikasi
-    $file_publikasi = null;
-    if (!empty($_FILES['file_publikasi']['name'])) {
-        $clean = preg_replace("/[^A-Za-z0-9.\-_]/", "_", $_FILES['file_publikasi']['name']);
-        $nama_file = time() . "_" . $clean;
-
-        if (move_uploaded_file($_FILES['file_publikasi']['tmp_name'], $upload_dir . $nama_file)) {
-            $file_publikasi = $nama_file;
-        }
-    }
-    
-    // Query Insert ke database (Ditambahkan id_anggota_utama)
-    $insert_query = "
-        INSERT INTO publikasi (judul, penulis, jurnal, tahun, kategori, link_publikasi, file_publikasi, admin_id, id_anggota_utama, created_at)
-        VALUES ('$judul', '$penulis', '$jurnal', '$tahun', '$kategori', '$link_publikasi', 
-                " . ($file_publikasi ? "'$file_publikasi'" : "NULL") . ", 
-                '$admin_id', $id_anggota_utama, NOW())
-    ";
-    
-    if (pg_query($conn, $insert_query)) {
-        header("Location: publikasiAdmin.php?add=1");
+    if ($insert) {
+        header("Location: karyaAdmin.php?add=1");
         exit;
     } else {
-        die("Gagal menyimpan data: " . pg_last_error($conn));
+        $error = pg_last_error($conn);
+        $pesan = "<div class='alert alert-danger'>Gagal menambahkan data: " . htmlspecialchars($error) . "</div>";
     }
 }
 
+// Ambil daftar anggota lab untuk dropdown
 $anggota_list = pg_query($conn, "SELECT id, nama FROM struktur_organisasi ORDER BY nama ASC");
+$jenis_karya_options = ['Riset', 'HAKI', 'PPM', 'Aktivitas'];
+
+// Gaya CSS yang Anda kirimkan di edit_publikasi.php harus di-include/copy-paste di sini juga
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +52,12 @@ $anggota_list = pg_query($conn, "SELECT id, nama FROM struktur_organisasi ORDER 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Publikasi | Lab AI Admin</title>
+    <title>Tambah Karya Dosen | Lab AI Admin</title>
 
     <link rel="icon" type="image/png" href="../assets/img/logoclear.png">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    </head>
 
 <body>
 
@@ -241,59 +233,50 @@ label.fw-bold {
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
 }
 </style>
-
-
 <div class="container py-5">
     <div class="edit-card">
 
-        <h2 class="fw-bold text-center mb-4">Tambah Publikasi</h2>
+        <h2 class="fw-bold text-center mb-4">Tambah Karya Dosen</h2>
+        <?= $pesan ?>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST">
 
-        <label class="fw-bold">Anggota Utama Lab (Opsional)</label>
-            <select name="id_anggota_utama" class="input">
-                <option value="">-- Pilih Anggota Lab (Jika ada) --</option>
+            <label class="fw-bold">Anggota Lab</label>
+            <select name="id_anggota" class="input" required>
+                <option value="">-- Pilih Anggota --</option>
                 <?php while ($row = pg_fetch_assoc($anggota_list)): ?>
                     <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nama']) ?></option>
                 <?php endwhile; ?>
             </select>
-            <small class="text-muted d-block mt-1">*Digunakan untuk menampilkan di Profil Dosen.</small>
 
-            <label class="fw-bold">Judul Publikasi</label>
-            <input type="text" name="judul" class="input" required>
-
-            <label class="fw-bold mt-3">Penulis</label>
-            <input type="text" name="penulis" class="input" required>
-
-            <label class="fw-bold mt-3">Nama Jurnal</label>
-            <input type="text" name="jurnal" class="input" required>
-
-            <label class="fw-bold mt-3">Tahun Terbit</label>
-            <input type="number" name="tahun" class="input" required>
-
-            <label class="fw-bold mt-3">Kategori</label>
-            <select name="kategori" class="input" required>
-                <option value="">-- Pilih Kategori --</option>
-                <option value="Jurnal Ilmiah">Jurnal Ilmiah</option>
-                <option value="Prosiding Konferensi">Prosiding Konferensi</option>
-                <option value="HKI">HKI</option>
-                <option value="Buku">Buku</option>
-                <option value="Modul Ajar">Modul Ajar</option>
-                <option value="DLL">DLL</option>
+            <label class="fw-bold mt-3">Jenis Karya</label>
+            <select name="jenis_karya" class="input" required onchange="toggleNomorDokumen(this.value)">
+                <option value="">-- Pilih Jenis --</option>
+                <?php foreach ($jenis_karya_options as $jenis): ?>
+                    <option value="<?= $jenis ?>"><?= $jenis ?></option>
+                <?php endforeach; ?>
             </select>
 
-            <label class="fw-bold mt-3">Link Publikasi</label>
-            <input type="text" name="link_publikasi" class="input">
+            <label class="fw-bold mt-3">Judul</label>
+            <input type="text" name="judul" class="input" required>
 
-            <label class="fw-bold mt-3">Upload File Publikasi</label>
-            <input type="file" name="file_publikasi" class="input-file">
+            <label class="fw-bold mt-3">Tahun</label>
+            <input type="number" name="tahun" class="input" required>
+
+            <div id="nomor_dokumen_group" style="display: none;">
+                <label class="fw-bold mt-3">Nomor Permohonan (Khusus HAKI)</label>
+                <input type="text" name="nomor_dokumen" class="input">
+            </div>
+
+            <label class="fw-bold mt-3">Deskripsi (Opsional)</label>
+            <textarea name="deskripsi" class="input"></textarea>
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">
                     <span>Simpan</span>
                 </button>
 
-                <a href="publikasiAdmin.php" class="BtnBase BtnBack text-decoration-none">
+                <a href="karyaAdmin.php" class="BtnBase BtnBack text-decoration-none">
                     <span>Kembali</span>
                 </a>
             </div>
@@ -303,6 +286,24 @@ label.fw-bold {
     </div>
 </div>
 
+<script>
+    // Fungsi JavaScript untuk menampilkan kolom Nomor Dokumen hanya untuk HAKI
+    function toggleNomorDokumen(jenis) {
+        const docGroup = document.getElementById('nomor_dokumen_group');
+        const docInput = document.getElementsByName('nomor_dokumen')[0]; // Ambil inputnya
+        
+        if (jenis === 'HAKI') {
+            docGroup.style.display = 'block';
+            docInput.setAttribute('required', 'required'); 
+        } else {
+            docGroup.style.display = 'none';
+            docInput.removeAttribute('required');
+            docInput.value = ''; // Kosongkan nilai
+        }
+    }
+</script>
+
 <?php include "../includes/footer.php"; ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
