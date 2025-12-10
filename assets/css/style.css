@@ -362,3 +362,9 @@ footer {
     background: #375bc7 !important;
     color: white;
 }
+
+.card-img-top {
+    object-fit: cover;
+    object-position: top;
+    height: 280px;
+}

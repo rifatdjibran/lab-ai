@@ -3,6 +3,17 @@
 
 <!-- <link rel="stylesheet" href="struktural.css"> -->
 
+<style>
+.org-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: 0 10%;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+</style>
+
 <div class="page-content">
 
 <!-- Hero -->
