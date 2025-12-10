@@ -17,73 +17,153 @@ if (!$result) {
 $fasilitasList = pg_fetch_all($result);
 ?>
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="text-center text-white">
-        <h1 class="fw-bold">Fasilitas Laboratorium</h1>
-        <p class="lead mt-2">Lihat sarana dan fasilitas pendukung kegiatan di Lab AI</p>
+<style>
+    /* 1. Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+        padding: 80px 0;
+        margin-bottom: 2rem;
+        color: white;
+    }
+
+    /* 2. Styling Card Fasilitas */
+    .fasilitas-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: none;
+        border-radius: 15px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .fasilitas-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Gambar Card */
+    .fasilitas-card .card-img-top {
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Body Card */
+    .fasilitas-card .card-body {
+        display: flex;
+        flex-direction: column;
+        flex: 1; 
+        padding: 1.5rem;
+    }
+
+    /* Judul */
+    .card-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 3rem;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    /* Deskripsi */
+    .card-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+        color: #666;
+    }
+
+    /* Info Row (Icon Hitam) */
+    .info-row {
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: start;
+    }
+    .info-row i {
+        margin-right: 8px;
+        color: #000; /* Hitam sesuai request */
+        margin-top: 3px;
+    }
+
+    /* Wrapper Bagian Bawah */
+    .card-bottom-section {
+        margin-top: auto; /* Mendorong ke bawah */
+        padding-top: 15px;
+        border-top: 1px dashed #eee;
+    }
+</style>
+
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="fw-bold display-5">Fasilitas Laboratorium</h1>
+        <p class="lead opacity-75 mt-2">Sarana dan prasarana pendukung riset di Lab AI.</p>
     </div>
 </section>
 
-<!-- Fasilitas Section -->
-<section class="py-5">
+<section class="py-2">
     <div class="container">
-        <h2 class="mb-4 text-center">Daftar Fasilitas</h2>
+        
+        <h2 class="mb-4 text-center fw-bold" style="color: #333;">
+            Daftar <span class="text-primary">Fasilitas</span>
+        </h2>
 
-        <div class="row g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
 
             <?php if ($fasilitasList): ?>
                 <?php foreach ($fasilitasList as $f): ?>
-                    <div class="col-md-4">
-                        <div class="card agenda-card shadow-sm">
+                    <div class="col">
+                        <div class="card fasilitas-card shadow-sm">
 
-                            <!-- Gambar -->
-                            <img 
-                                src="../assets/uploads/fasilitas/<?= htmlspecialchars($f['gambar']) ?>" 
-                                class="card-img-top"
-                                style="height: 250px; object-fit: cover;"
-                                alt="<?= htmlspecialchars($f['nama_fasilitas']) ?>">
+                            <img src="../assets/uploads/fasilitas/<?= htmlspecialchars($f['gambar']) ?>" 
+                                 class="card-img-top"
+                                 alt="<?= htmlspecialchars($f['nama_fasilitas']) ?>">
 
                             <div class="card-body">
 
-                                <!-- Nama Fasilitas -->
-                                <h5 class="card-title fw-bold">
+                                <h5 class="card-title">
                                     <?= htmlspecialchars($f['nama_fasilitas']) ?>
                                 </h5>
 
-                                <!-- Deskripsi Pendek -->
-                                <p class="card-text text-muted">
-                                    <?= mb_strimwidth(strip_tags($f['deskripsi']), 0, 120, "..."); ?>
+                                <p class="card-text">
+                                    <?= mb_strimwidth(strip_tags($f['deskripsi']), 0, 110, "..."); ?>
                                 </p>
 
-                                <!-- Kategori -->
-                                <p class="mb-1">
-                                    <strong>Kategori:</strong>
-                                    <?= htmlspecialchars($f['kategori']) ?>
-                                </p>
+                                <div class="info-row">
+                                    <i class="bi bi-tag-fill"></i>
+                                    <div>Kategori: <?= htmlspecialchars($f['kategori']) ?></div>
+                                </div>
+                                <div class="info-row mb-3">
+                                    <i class="bi bi-calendar-check"></i>
+                                    <div>Ditambahkan: <?= date('d M Y', strtotime($f['created_at'])) ?></div>
+                                </div>
 
-                                <!-- Tanggal -->
-                                <p class="mb-1">
-                                    <strong>Ditambahkan:</strong>
-                                    <?= date('d F Y', strtotime($f['created_at'])) ?>
-                                </p>
-
-                                <div class="mt-3">
+                                <div class="card-bottom-section">
                                     <a href="detail_fasilitas.php?id=<?= $f['id'] ?>" 
-                                       class="btn btn-primary btn-sm">
-                                        Lihat Selengkapnya →
+                                       class="btn btn-outline-primary btn-sm w-100 fw-bold"
+                                       style="border-radius: 20px;">
+                                        Lihat Detail →
                                     </a>
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 <?php endforeach; ?>
 
             <?php else: ?>
-                <div class="col-12 text-center">
-                    <p class="text-muted">Belum ada fasilitas yang tersedia.</p>
+                <div class="col-12 text-center py-5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486754.png" width="100" class="mb-3 opacity-50">
+                    <h4 class="text-muted">Belum ada fasilitas yang tersedia.</h4>
                 </div>
             <?php endif; ?>
 

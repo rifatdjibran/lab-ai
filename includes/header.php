@@ -19,7 +19,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/lab-ai/assets/css/style.css">
-    <link rel="stylesheet" href="/lab-ai/assets/css/theme.css">
 </head>
 
 <body>

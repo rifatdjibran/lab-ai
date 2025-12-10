@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Cek sesi admin
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit();
@@ -8,52 +7,52 @@ if (!isset($_SESSION['admin_id'])) {
 
 require_once "../config/database.php";
 
-// --- LOGIKA DATABASE (Tetap milik Fasilitas) ---
+// ===============================
+//  SUBMIT FORM
+// ===============================
 if (isset($_POST['submit'])) {
+
     $nama = pg_escape_string($conn, $_POST['nama']);
-    $deskripsi = pg_escape_string($conn, $_POST['deskripsi']);
-    $kategori = pg_escape_string($conn, $_POST['kategori']);
+    $jabatan = pg_escape_string($conn, $_POST['jabatan']);
+    $urutan = intval($_POST['urutan']);
     $admin_id = $_SESSION['admin_id'];
 
-    // Folder upload
-    $upload_dir = "../assets/uploads/fasilitas/";
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
-    }
-
-    $gambar = null;
-
-    // Upload file jika ada
-    if (!empty($_FILES['gambar']['name'])) {
-        // Bersihkan nama file
-        $clean_name = preg_replace("/[^A-Za-z0-9.\-_]/", "_", $_FILES['gambar']['name']);
-        $nama_file = time() . "_" . $clean_name;
-        $path = $upload_dir . $nama_file;
-
-        // Pindahkan file
-        if (move_uploaded_file($_FILES['gambar']['tmp_name'], $path)) {
-            $gambar = $nama_file;
+    // LOGIKA UPLOAD FOTO
+    $foto = "";
+    if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
+        $target_dir = "../assets/img/tim/";
+        
+        // Buat folder jika belum ada
+        if (!is_dir($target_dir)) { mkdir($target_dir, 0777, true); }
+        
+        $ext = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        
+        if (in_array($ext, $allowed)) {
+            $new_name = time() . "_" . rand(1000, 9999) . "." . $ext;
+            
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $new_name)) {
+                $foto = $new_name;
+            } else {
+                echo "<script>alert('Gagal upload gambar!');</script>";
+            }
+        } else {
+            echo "<script>alert('Format gambar tidak valid!');</script>";
         }
     }
 
-    // Query Insert Fasilitas
-    $sql = "
-        INSERT INTO fasilitas (nama_fasilitas, deskripsi, gambar, kategori, admin_id, created_at)
-        VALUES ('$nama', '$deskripsi', '$gambar', '$kategori', '$admin_id', NOW())
-    ";
+    // QUERY INSERT KE struktur_organisasi
+    $query = "INSERT INTO struktur_organisasi(nama, jabatan, foto, urutan, created_at, admin_id)
+              VALUES ('$nama', '$jabatan', '$foto', $urutan, NOW(), $admin_id)";
 
-    $insert = pg_query($conn, $sql);
-
-    // Cek error
-    if (!$insert) {
-        die('Gagal menambahkan fasilitas: ' . pg_last_error($conn));
+    if(pg_query($conn, $query)){
+        header("Location: timAdmin.php?add=1");
+        exit;
+    } else {
+        echo "<script>alert('Gagal menyimpan data ke database!');</script>";
+        die("Error: " . pg_last_error($conn));
     }
-
-    // Redirect setelah sukses
-    header("Location: fasilitasAdmin.php?add=1");
-    exit;
 }
-// --- BATAS LOGIKA DATABASE ---
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +60,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Fasilitas | Lab AI Admin</title>
+    <title>Tambah Anggota Tim | Lab AI Admin</title>
 
     <link rel="icon" type="image/png" href="../assets/img/logoclear.png">
     <link rel="stylesheet" href="../assets/css/admin.css">
@@ -241,39 +240,34 @@ label.fw-bold {
     transform: scale(0.94) translateY(2px);
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
 }
-
 </style>
 
 <div class="container py-5">
     <div class="edit-card">
 
-        <h2 class="fw-bold text-center mb-4">Tambah Fasilitas</h2>
+        <h2 class="fw-bold text-center mb-4">Tambah Anggota Tim</h2>
 
         <form method="POST" enctype="multipart/form-data">
 
-            <label class="fw-bold">Nama Fasilitas</label>
-            <input type="text" name="nama" class="input" required>
+            <label class="fw-bold">Nama Lengkap & Gelar</label>
+            <input type="text" name="nama" class="input" required placeholder="Contoh: Ir. Budi Santoso, M.Kom">
 
-            <label class="fw-bold mt-3">Kategori</label>
-            <select name="kategori" class="input" required>
-                <option value="">-- Pilih Kategori --</option>
-                <option value="Lab Komputer">Lab Komputer</option>
-                <option value="Ruang Kelas">Ruang Kelas</option>
-                <option value="Peralatan">Peralatan</option>
-            </select>
+            <label class="fw-bold">Jabatan</label>
+            <input type="text" name="jabatan" class="input" required placeholder="Contoh: Ketua Laboratorium / Anggota">
 
-            <label class="fw-bold mt-3">Deskripsi</label>
-            <textarea name="deskripsi" rows="7" class="input" required></textarea>
+            <label class="fw-bold">Urutan Tampil (Opsional)</label>
+            <input type="number" name="urutan" class="input" value="1">
 
-            <label class="fw-bold mt-3">Gambar</label>
-            <input type="file" name="gambar" class="input-file" accept="image/*">
+            <label class="fw-bold">Foto Profil</label>
+            <input type="file" name="foto" class="input-file" accept="image/*">
+            <small class="text-muted d-block mt-1">*Disarankan rasio 1:1 (kotak)</small>
 
             <div class="button-row">
                 <button class="BtnBase BtnUpdate" name="submit">
                     <span>Simpan</span>
                 </button>
 
-                <a href="fasilitasAdmin.php" class="BtnBase BtnBack text-decoration-none">
+                <a href="timAdmin.php" class="BtnBase BtnBack text-decoration-none">
                     <span>Kembali</span>
                 </a>
             </div>
@@ -284,6 +278,5 @@ label.fw-bold {
 </div>
 
 <?php include "../includes/footer.php"; ?>
-
 </body>
 </html>

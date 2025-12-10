@@ -12,7 +12,7 @@ if (!$conn) {
 date_default_timezone_set('Asia/Jakarta');
 
 // Ambil data penelitian
-$query = "SELECT id, judul, peneliti, tahun, deskripsi, file_laporan, created_at
+$query = "SELECT id, judul, peneliti, tahun, deskripsi, created_at
           FROM public.penelitian
           ORDER BY tahun DESC";
 $result = pg_query($conn, $query);
@@ -82,15 +82,6 @@ $dataPenelitian = pg_fetch_all($result);
                             <p class="mb-2">
                                 <?= htmlspecialchars(substr($r['deskripsi'], 0, 130)) ?>...
                             </p>
-
-                            <?php if (!empty($r['file_laporan'])): ?>
-                                <a href="../uploads/penelitian/<?= $r['file_laporan'] ?>" 
-                                   class="btn btn-success btn-sm" target="_blank">
-                                   <i class="bi bi-file-earmark-pdf"></i> Lihat Laporan
-                                </a>
-                            <?php else: ?>
-                                <small class="text-danger">Tidak ada file laporan</small>
-                            <?php endif; ?>
 
                         </div>
                     </div>

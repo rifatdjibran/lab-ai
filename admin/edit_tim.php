@@ -1,59 +1,62 @@
 <?php
 session_start();
-// Cek sesi admin
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
 require_once "../config/database.php";
 
-// --- LOGIKA DATABASE (Tetap milik Fasilitas) ---
-if (isset($_POST['submit'])) {
-    $nama = pg_escape_string($conn, $_POST['nama']);
-    $deskripsi = pg_escape_string($conn, $_POST['deskripsi']);
-    $kategori = pg_escape_string($conn, $_POST['kategori']);
-    $admin_id = $_SESSION['admin_id'];
+if (!isset($_GET['id'])) {
+    header("Location: timAdmin.php");
+    exit;
+}
 
-    // Folder upload
-    $upload_dir = "../assets/uploads/fasilitas/";
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
-    }
+$id = intval($_GET['id']);
 
-    $gambar = null;
+// Ambil data lama dari struktur_organisasi
+$q = pg_query($conn, "SELECT * FROM struktur_organisasi WHERE id = $id");
+$data = pg_fetch_assoc($q);
 
-    // Upload file jika ada
-    if (!empty($_FILES['gambar']['name'])) {
-        // Bersihkan nama file
-        $clean_name = preg_replace("/[^A-Za-z0-9.\-_]/", "_", $_FILES['gambar']['name']);
-        $nama_file = time() . "_" . $clean_name;
-        $path = $upload_dir . $nama_file;
+if (!$data) {
+    echo "Data tidak ditemukan!";
+    exit;
+}
 
-        // Pindahkan file
-        if (move_uploaded_file($_FILES['gambar']['tmp_name'], $path)) {
-            $gambar = $nama_file;
+// PROSES UPDATE
+if (isset($_POST['update'])) {
+
+    $nama     = pg_escape_string($conn, $_POST['nama']);
+    $jabatan  = pg_escape_string($conn, $_POST['jabatan']);
+    $urutan   = intval($_POST['urutan']);
+    
+    $foto = $data['foto']; // Default foto lama
+
+    // Jika ada upload foto baru
+    if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
+        $target_dir = "../assets/img/tim/";
+        $ext = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        
+        if (in_array($ext, $allowed)) {
+            $new_name = time() . "_" . rand(1000, 9999) . "." . $ext;
+            
+            if(move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $new_name)){
+                // Hapus foto lama
+                if (!empty($foto) && file_exists($target_dir . $foto)) {
+                    unlink($target_dir . $foto);
+                }
+                $foto = $new_name;
+            }
         }
     }
 
-    // Query Insert Fasilitas
-    $sql = "
-        INSERT INTO fasilitas (nama_fasilitas, deskripsi, gambar, kategori, admin_id, created_at)
-        VALUES ('$nama', '$deskripsi', '$gambar', '$kategori', '$admin_id', NOW())
-    ";
+    $query = "UPDATE struktur_organisasi SET 
+              nama='$nama', jabatan='$jabatan', urutan=$urutan, foto='$foto' 
+              WHERE id=$id";
 
-    $insert = pg_query($conn, $sql);
-
-    // Cek error
-    if (!$insert) {
-        die('Gagal menambahkan fasilitas: ' . pg_last_error($conn));
+    if (pg_query($conn, $query)) {
+        header("Location: timAdmin.php?update=1");
+        exit;
+    } else {
+        echo "Gagal update database!";
     }
-
-    // Redirect setelah sukses
-    header("Location: fasilitasAdmin.php?add=1");
-    exit;
 }
-// --- BATAS LOGIKA DATABASE ---
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +64,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Fasilitas | Lab AI Admin</title>
+    <title>Tambah Anggota Tim | Lab AI Admin</title>
 
     <link rel="icon" type="image/png" href="../assets/img/logoclear.png">
     <link rel="stylesheet" href="../assets/css/admin.css">
@@ -241,39 +244,41 @@ label.fw-bold {
     transform: scale(0.94) translateY(2px);
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
 }
-
 </style>
+
 
 <div class="container py-5">
     <div class="edit-card">
 
-        <h2 class="fw-bold text-center mb-4">Tambah Fasilitas</h2>
+        <h2 class="fw-bold text-center mb-4">Edit Anggota Tim</h2>
+
+        <div class="text-center">
+            <?php 
+                $imgSrc = !empty($data['foto']) ? "../assets/img/tim/".$data['foto'] : "../assets/img/default-user.png";
+            ?>
+            <img src="<?= $imgSrc ?>" class="img-preview" alt="Foto Profil">
+        </div>
 
         <form method="POST" enctype="multipart/form-data">
 
-            <label class="fw-bold">Nama Fasilitas</label>
-            <input type="text" name="nama" class="input" required>
+            <label class="fw-bold">Nama Lengkap</label>
+            <input type="text" name="nama" class="input" value="<?= htmlspecialchars($data['nama']) ?>" required>
 
-            <label class="fw-bold mt-3">Kategori</label>
-            <select name="kategori" class="input" required>
-                <option value="">-- Pilih Kategori --</option>
-                <option value="Lab Komputer">Lab Komputer</option>
-                <option value="Ruang Kelas">Ruang Kelas</option>
-                <option value="Peralatan">Peralatan</option>
-            </select>
+            <label class="fw-bold">Jabatan</label>
+            <input type="text" name="jabatan" class="input" value="<?= htmlspecialchars($data['jabatan']) ?>" required>
 
-            <label class="fw-bold mt-3">Deskripsi</label>
-            <textarea name="deskripsi" rows="7" class="input" required></textarea>
+            <label class="fw-bold">Urutan Tampil</label>
+            <input type="number" name="urutan" class="input" value="<?= $data['urutan'] ?>">
 
-            <label class="fw-bold mt-3">Gambar</label>
-            <input type="file" name="gambar" class="input-file" accept="image/*">
+            <label class="fw-bold">Ganti Foto (Opsional)</label>
+            <input type="file" name="foto" class="input-file" accept="image/*">
 
             <div class="button-row">
-                <button class="BtnBase BtnUpdate" name="submit">
-                    <span>Simpan</span>
+                <button class="BtnBase BtnUpdate" name="update">
+                    <span>Update</span>
                 </button>
 
-                <a href="fasilitasAdmin.php" class="BtnBase BtnBack text-decoration-none">
+                <a href="timAdmin.php" class="BtnBase BtnBack text-decoration-none">
                     <span>Kembali</span>
                 </a>
             </div>
@@ -284,6 +289,5 @@ label.fw-bold {
 </div>
 
 <?php include "../includes/footer.php"; ?>
-
 </body>
 </html>

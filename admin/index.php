@@ -65,7 +65,7 @@ require_once "../config/database.php";
       $cards = [
         ['berita', 'Berita', 'bi-newspaper'],
         ['kegiatan', 'Kegiatan', 'bi-calendar-event'],
-        ['galeri', 'Galeri', 'bi-images'],
+        // ['galeri', 'Galeri', 'bi-images'],
         ['penelitian', 'Penelitian', 'bi-journal-text'],
         ['publikasi', 'Publikasi', 'bi-journal-medical'],
         ['fasilitas', 'Fasilitas', 'bi-building']

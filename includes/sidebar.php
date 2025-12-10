@@ -1,4 +1,3 @@
-
 <style>
 /* ================================ */
 /* SIDEBAR (Glass UI) */
@@ -124,33 +123,29 @@
 
 </style>
 
-<!-- ================================ -->
-<!-- SIDEBAR HTML -->
-<!-- ================================ -->
 <div id="sidebar" class="sidebar ">
 
     <div class="circle top"></div>
     <div class="circle bottom"></div>
 
-    <!-- Toggle Button -->
     <button id="toggleSidebar">
       <i class="bi bi-list"></i>
     </button>
 
-    <!-- LOGO & TITLE -->
     <div class="sidebar-logo-wrapper">
         <img src="../assets/img/logoclear2.png" class="sidebar-logo">
         <span class="sidebar-title">Lab AI</span>
     </div>
 
-    <!-- Menu -->
     <ul class="nav flex-column mb-auto">
         <li><a href="index.php" class="nav-link sidebar-link"><i class="bi bi-speedometer2"></i> <span class="sidebar-text">Dashboard</span></a></li>
         <li><a href="beritaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-newspaper"></i> <span class="sidebar-text">Berita</span></a></li>
         <li><a href="agendaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-calendar-event"></i> <span class="sidebar-text">Kegiatan</span></a></li>
-        <li><a href="galeri.php" class="nav-link sidebar-link"><i class="bi bi-images"></i> <span class="sidebar-text">Galeri</span></a></li>
         <li><a href="penelitianAdmin.php" class="nav-link sidebar-link"><i class="bi bi-journal-text"></i> <span class="sidebar-text">Penelitian</span></a></li>
         <li><a href="publikasiAdmin.php" class="nav-link sidebar-link"><i class="bi bi-journal-medical"></i> <span class="sidebar-text">Publikasi</span></a></li>
+        
+        <li><a href="timAdmin.php" class="nav-link sidebar-link"><i class="bi bi-people"></i> <span class="sidebar-text">Tim Lab</span></a></li>
+        
         <li><a href="fasilitasAdmin.php" class="nav-link sidebar-link"><i class="bi bi-building"></i> <span class="sidebar-text">Fasilitas</span></a></li>
     </ul>
 
@@ -161,12 +156,9 @@
 // Highlight active menu
 const path = window.location.pathname;
 document.querySelectorAll(".sidebar-link").forEach(a => {
-    if (a.pathname === path) {
+    // Check if the link href matches the current path (handling relative paths if needed)
+    if (a.getAttribute('href') === path.split("/").pop() || a.href === window.location.href) {
         a.classList.add("active");
     }
 });
-
-
-
-
 </script>

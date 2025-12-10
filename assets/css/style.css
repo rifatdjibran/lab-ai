@@ -1,6 +1,16 @@
+/* ==========================================================================
+   GABUNGAN STYLE.CSS & THEME.CSS
+========================================================================== */
+
 /* =========================================
-   GLOBAL STYLE — FONT & RESET
+   1. GLOBAL VARS & RESET (dari theme.css & style.css)
 ========================================= */
+:root {
+  --primary-color: #004aad;
+  --secondary-color: #0d6efd;
+  --text-dark: #2b2b2b;
+  --text-muted: #6c757d;
+}
 
 * {
     margin: 0;
@@ -8,20 +18,28 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    height: 100%;
     font-family: 'Poppins', sans-serif;
     background: #fff;
-    color: #222;
+    color: var(--text-dark);
+}
+
+/* Section spacing */
+section {
+  padding-top: 4rem; 
+  padding-bottom: 4rem;
+}
+
+/* Title styling */
+section h2, section h3 {
+  font-weight: 700;
+  color: var(--primary-color);
 }
 
 /* =========================================
-   GLOBAL LAYOUT FIX (footer di bawah)
+   2. GLOBAL LAYOUT FIX (footer di bawah)
 ========================================= */
-
-html, body {
-    height: 100%;
-}
-
 .page-wrapper {
     min-height: calc(100vh - 120px);
     display: flex;
@@ -30,24 +48,13 @@ html, body {
 
 footer {
     margin-top: auto;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 /* =========================================
-   NAVBAR & HOME
+   3. NAVBAR STYLE
 ========================================= */
-
-.hero {
-    background: linear-gradient(rgba(129, 167, 224, 0.7), rgba(0,74,173,0.7)),
-                url('../img/home-lab.jpg') center/cover no-repeat;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
 .navbar-brand strong {
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -72,9 +79,102 @@ footer {
 }
 
 /* =========================================
-   VISI MISI – CARD EFFECT
+   4. HERO SECTION UMUM & HOME SPESIFIK
 ========================================= */
 
+/* Style Dasar untuk semua Hero Section (termasuk di halaman lain) */
+.hero-section {
+    /* Gambar background default jika tidak di-override */
+    background: url('../img/home-lab.jpg') center/cover no-repeat !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+    /* Height default untuk halaman SELAIN home, misalnya 40vh */
+    min-height: 40vh; 
+    padding: 60px 0;
+}
+
+/* Overlay Gelap untuk Hero Section */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 40, 80, 0.6);
+  border-radius: 0; /* Rata bawah */
+  z-index: 1;
+}
+
+/* Memastikan konten berada di atas overlay */
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* --- KHUSUS HOME PAGE HERO (FULL SCREEN) --- */
+/* Ini adalah kunci agar hanya home yang besar */
+#home-hero {
+    height: 100vh; /* Full layar hanya untuk ID ini */
+    padding-top: 60px; /* Kompensasi navbar fixed */
+}
+
+/* Styling teks khusus di dalam Home Hero */
+#home-hero h1,
+#home-hero p,
+#home-hero h5 {
+    color: rgba(255, 255, 255, 0.9) !important; 
+    font-weight: 700 !important;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));  
+}
+  
+#home-hero p.lead {
+    font-weight: 300 !important;
+}
+
+/* Animasi Indikator Scroll di Home */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-7px);
+  }
+}
+
+
+/* =========================================
+   5. CARD STYLES (Global & Visi Misi)
+========================================= */
+
+/* Card improvements global (dari theme.css) */
+.card {
+  border: none;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Card Hover Effect (Visi Misi) */
 .visi-misi-section {
     margin-bottom: 100px;
 }
@@ -117,15 +217,15 @@ footer {
 }
 
 .card-img-top {
-    height: 220px;
     object-fit: cover;
+    object-position: top;
+    height: 220px; /* Disesuaikan agar seragam */
     width: 100%;
 }
 
 /* =========================================
-   PRODUCT CARD
+   6. PRODUCT CARD
 ========================================= */
-
 .product-card {
     background: #fff;
     border-radius: 15px;
@@ -156,9 +256,8 @@ footer {
 }
 
 /* =========================================
-   FASILITAS PAGE
+   7. FASILITAS PAGE
 ========================================= */
-
 .fasilitas-hero {
     background: linear-gradient(rgba(0,51,102,0.6), rgba(0,51,102,0.6)),
                 url('../img/home-lab.jpg') center/cover no-repeat;
@@ -197,34 +296,7 @@ footer {
 }
 
 /* =========================================
-   HERO SECTION 
-========================================= */
-.hero-section {
-    background: url('../img/home-lab.jpg') center/cover no-repeat !important;
-    height: 40vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  .hero-section h1,
-  .hero-section p {
-    color: rgba(255, 255, 255, 0.9) !important; 
-    font-weight: 700 !important;
-    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));  
-  }
-  
-  .hero-section p {
-    font-weight: 300 !important;
-}
-
-
-/* =========================================
-   KONTAK PAGE (FIXED)
+   8. KONTAK PAGE & FORM COMPONENTS
 ========================================= */
 .contact-card {
     border-radius: 15px;
@@ -244,7 +316,7 @@ footer {
 }
 
 .btn-primary {
-    background-color: #0042A6;
+    background-color: var(--primary-color);
     border: none;
     border-radius: 10px;
     font-weight: 600;
@@ -259,15 +331,16 @@ footer {
 }
 
 /* =========================================
-   STRUKTUR
+   9. STRUKTUR ORGANISASI
 ========================================= */
-
 .org-card {
     border-radius: 20px;
     padding: 15px;
     text-align: center;
     background: #fff;
     border: 1px solid #eee;
+    position: relative;
+    padding-bottom: 35px; /* Ruang bawah agar link tidak menempel */
 }
 
 .org-card img {
@@ -284,20 +357,14 @@ footer {
 
 .org-role {
     font-size: 14px;
-    color: #6c757d;
-}
-
-.org-card {
-    position: relative;
-    padding-bottom: 35px; /* Ruang bawah agar link tidak menempel */
+    color: var(--text-muted);
 }
 
 .org-more {
     font-size: 0.75rem;     /* kecil */
     font-weight: 600;
-    color: #0d6efd;
+    color: var(--secondary-color);
     text-decoration: none;
-
     position: absolute;
     right: 12px;            /* pindah ke kanan */
     bottom: 10px;
@@ -306,13 +373,12 @@ footer {
 
 .org-more:hover {
     text-decoration: underline;
-    color: #084298;
+    color: var(--primary-color);
 }
 
 /* =========================================
-  DETAIL STRUKTUR
+  10. DETAIL STRUKTUR
 ========================================= */
-
 .detail-card {
     background: white;
     border-radius: 20px;
@@ -361,10 +427,4 @@ footer {
 .publikasi-table th {
     background: #375bc7 !important;
     color: white;
-}
-
-.card-img-top {
-    object-fit: cover;
-    object-position: top;
-    height: 280px;
 }

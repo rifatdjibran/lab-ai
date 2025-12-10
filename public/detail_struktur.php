@@ -1,10 +1,8 @@
-<?php include '../includes/header.php'; ?> 
-<?php include '../includes/navbar.php'; ?>
+<?php 
+include '../includes/header.php'; 
+include '../includes/navbar.php'; 
 
-<link rel="stylesheet" href="struktural_detail.css">
-
-<?php
-// Data anggota dan detail publikasi/riset/KI/PPM/Aktivitas
+// DATA DUMMY LENGKAP
 $members = [
     1 => [
         "nama"=>"Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D",
@@ -63,20 +61,6 @@ $members = [
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Triana $i",2020+$i%4],range(1,10)),
     ],
     5 => [
-        "nama"=>"M. Hasyim Ratsanjani, S.Kom., M.Kom.",
-        "role"=>"Anggota",
-        "img"=>"../assets/img/tim/hasyim.png",
-        "email"=>"hasyim@example.com",
-        "pendidikan"=>"S2 Teknik Informatika",
-        "linkedin"=>"#",
-        "scholar"=>"#",
-        "publikasi"=>array_map(fn($i)=>["Publikasi Hasyim $i",2020+$i%4],range(1,10)),
-        "riset"=>array_map(fn($i)=>["Riset Hasyim $i",2020+$i%4],range(1,10)),
-        "ki"=>array_map(fn($i)=>["KI Hasyim $i",2020+$i%4],range(1,10)),
-        "ppm"=>array_map(fn($i)=>["PPM Hasyim $i",2020+$i%4],range(1,10)),
-        "aktivitas"=>array_map(fn($i)=>["Aktivitas Hasyim $i",2020+$i%4],range(1,10)),
-    ],
-    6 => [
         "nama"=>"Noprianto, S.Kom., M.Eng.",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/noprianto.png",
@@ -90,7 +74,7 @@ $members = [
         "ppm"=>array_map(fn($i)=>["PPM Noprianto $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Noprianto $i",2020+$i%4],range(1,10)),
     ],
-    7 => [
+    6 => [
         "nama"=>"Mustika Mentari, S.Kom., M.Kom.",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/mustika.png",
@@ -104,7 +88,7 @@ $members = [
         "ppm"=>array_map(fn($i)=>["PPM Mustika $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Mustika $i",2020+$i%4],range(1,10)),
     ],
-    8 => [
+    7 => [
         "nama"=>"Kadek Suarjuna Batubulan, S.Kom., MT",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/kadek.png",
@@ -118,7 +102,7 @@ $members = [
         "ppm"=>array_map(fn($i)=>["PPM Kadek $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Kadek $i",2020+$i%4],range(1,10)),
     ],
-    9 => [
+    8 => [
         "nama"=>"Muhammad Afif Hendrawan, S.Kom., M.T.",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/afif.jpg",
@@ -132,7 +116,7 @@ $members = [
         "ppm"=>array_map(fn($i)=>["PPM Afif $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Afif $i",2020+$i%4],range(1,10)),
     ],
-    10 => [
+    9 => [
         "nama"=>"Chandrasena Setiadi, S.T., M.Tr.T",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/chandrasena.jpg",
@@ -146,7 +130,8 @@ $members = [
         "ppm"=>array_map(fn($i)=>["PPM Chandrasena $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Chandrasena $i",2020+$i%4],range(1,10)),
     ],
-    11 => [
+    // Data dummy untuk ID 10 & 11 jika diakses
+    10 => [
         "nama"=>"Retno Damayanti, S.Pd., M.T.",
         "role"=>"Anggota",
         "img"=>"../assets/img/tim/retno.jpg",
@@ -159,81 +144,195 @@ $members = [
         "ki"=>array_map(fn($i)=>["KI Retno $i",2020+$i%4],range(1,10)),
         "ppm"=>array_map(fn($i)=>["PPM Retno $i",2020+$i%4],range(1,10)),
         "aktivitas"=>array_map(fn($i)=>["Aktivitas Retno $i",2020+$i%4],range(1,10)),
-    ]
+    ],
 ];
+
+// Fallback jika ID tidak ditemukan (agar tidak error)
+for($i=11; $i<=15; $i++){
+    if(!isset($members[$i])) {
+        $members[$i] = $members[1]; 
+        $members[$i]['nama'] = "Anggota Dummy $i";
+    }
+}
 
 // Ambil ID dari query string
 $id = $_GET['id'] ?? 1;
 $member = $members[$id] ?? $members[1];
 ?>
 
-<div class="page-content container my-5">
+<style>
+    /* CSS Tambahan Khusus Halaman Ini */
+    
+/* --- PERUBAHAN DESAIN TOMBOL KEMBALI (GLASSY GRAY) --- */
+    .btn-back-custom {
+        text-decoration: none;
+        color: #555; /* Warna teks abu tua */
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 25px; /* Padding agar berbentuk tombol */
+        border-radius: 50px; /* Sudut membulat */
+        
+        /* Desain Glassy Abu-abu */
+        background: rgba(0, 0, 0, 0.05); /* Latar belakang abu-abu sangat transparan */
+        border: 1px solid rgba(0, 0, 0, 0.08); /* Border halus */
+        backdrop-filter: blur(5px); /* Efek blur kaca (opsional, terlihat jika ada elemen di belakangnya) */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Bayangan tipis */
+        
+        transition: all 0.3s ease;
+    }
 
-    <!-- CARD PROFIL -->
-    <div class="detail-card shadow-sm p-4 mb-4 rounded-4">
+    .btn-back-custom:hover {
+        background: rgba(0, 0, 0, 0.1); /* Sedikit lebih gelap saat hover */
+        color: #222; /* Teks lebih gelap */
+        transform: translateY(-3px); /* Efek naik sedikit */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Bayangan lebih tegas */
+    }
+
+    .btn-back-custom i {
+        margin-right: 10px; /* Jarak antara ikon dan teks */
+    }
+    /* -------------------------------------------------- */
+
+    /* Card Profil Utama (Tanpa Overlap, Flat Design) */
+    .profile-card-main {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        padding: 30px;
+        border: none;
+    }
+
+    /* Foto Profil */
+    .detail-photo {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 1px solid #eee;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Tabel Detail */
+    .detail-table td {
+        padding: 10px 5px;
+        vertical-align: middle;
+        font-size: 1rem;
+    }
+
+    /* Nav Tabs Custom */
+    .custom-tabs .nav-link {
+        color: #555;
+        font-weight: 600;
+        border: none;
+        border-bottom: 3px solid transparent;
+        padding: 12px 20px;
+    }
+    .custom-tabs .nav-link.active {
+        color: #0d6efd;
+        background: none;
+        border-bottom: 3px solid #0d6efd;
+    }
+    .custom-tabs .nav-link:hover {
+        color: #0d6efd;
+    }
+</style>
+
+<section class="hero-section text-center" style="background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%); padding: 80px 0; margin-bottom: 2rem; color: white;">
+    <div class="container">
+        <h1 class="fw-bold display-5">Profile Dosen</h1>
+        <p class="lead opacity-75 mt-2">Detail informasi dan rekam jejak akademik.</p>
+    </div>
+</section>
+
+<div class="container pb-5">
+
+    <div class="mb-4">
+        <a href="struktur.php" class="btn-back-custom">
+            <i class="bi bi-arrow-left me-2"></i> Kembali ke Daftar
+        </a>
+    </div>
+
+    <div class="profile-card-main mb-5">
         <div class="row align-items-center">
-            <div class="col-md-3 text-center">
+            <div class="col-md-4 text-center mb-3 mb-md-0">
                 <img src="<?= $member['img'] ?>" class="detail-photo" alt="Foto">
+                <div class="mt-3">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill"><?= $member['role'] ?></span>
+                </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
+                <h3 class="fw-bold mb-3 text-dark"><?= $member['nama'] ?></h3>
                 <table class="table table-borderless detail-table">
                     <tr>
-                        <td class="w-25 fw-bold">Nama</td>
-                        <td>: <?= $member['nama'] ?></td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold">Email</td>
+                        <td width="30px"><i class="bi bi-envelope text-primary"></i></td>
+                        <td class="fw-bold" width="150px">Email</td>
                         <td>: <?= $member['email'] ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold">Pendidikan Terakhir</td>
+                        <td><i class="bi bi-mortarboard text-primary"></i></td>
+                        <td class="fw-bold">Pendidikan</td>
                         <td>: <?= $member['pendidikan'] ?></td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-link-45deg text-primary"></i></td>
+                        <td class="fw-bold">Profil Lain</td>
+                        <td>
+                            <a href="<?= $member['linkedin'] ?>" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                            <a href="<?= $member['scholar'] ?>" class="btn btn-sm btn-outline-info"><i class="bi bi-google"></i> Scholar</a>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- TAB MENU -->
-    <ul class="nav nav-tabs custom-tabs mb-3">
+    <ul class="nav nav-tabs custom-tabs mb-4 justify-content-center">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#publikasi">Publikasi</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#riset">Riset</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ki">Kekayaan Intelektual</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ki">HAKI</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ppm">PPM</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#aktivitas">Aktivitas</a></li>
     </ul>
 
-    <!-- TAB CONTENT -->
     <div class="tab-content">
-
         <?php
         $tabs = ['publikasi','riset','ki','ppm','aktivitas'];
         foreach($tabs as $t):
         ?>
         <div class="tab-pane fade <?= $t=='publikasi' ? 'show active':'' ?>" id="<?= $t ?>">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
-                    <thead class="table-primary">
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th>Judul</th>
-                            <th class="text-center">Tahun</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach(array_slice($member[$t],0,10) as $i=>$item): ?>
-                        <tr>
-                            <td class="text-center"><?= $i+1 ?></td>
-                            <td><?= $item[0] ?></td>
-                            <td class="text-center"><?= $item[1] ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="card border-0 shadow-sm p-3">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center" width="60">No</th>
+                                <th>Judul / Deskripsi Kegiatan</th>
+                                <th class="text-center" width="100">Tahun</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            if(isset($member[$t]) && is_array($member[$t])):
+                                foreach(array_slice($member[$t],0,10) as $i=>$item): 
+                            ?>
+                            <tr>
+                                <td class="text-center fw-bold text-muted"><?= $i+1 ?></td>
+                                <td><?= $item[0] ?></td>
+                                <td class="text-center"><span class="badge bg-light text-dark border"><?= $item[1] ?></span></td>
+                            </tr>
+                            <?php 
+                                endforeach; 
+                            else:
+                            ?>
+                            <tr><td colspan="3" class="text-center text-muted py-4">Tidak ada data.</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>
-
     </div>
 
 </div>
