@@ -95,7 +95,7 @@ $result_anggota = pg_query($conn, $query_anggota);
 
 <section class="hero-section text-center">
     <div class="container">
-        <h1 class="fw-bold display-5">Struktur Organisasi</h1>
+        <h1 class="fw-bold display-5">Member Laboratorium</h1>
         <p class="lead opacity-75 mt-2">Daftar lengkap dosen dan anggota Laboratorium AI.</p>
     </div>
 </section>

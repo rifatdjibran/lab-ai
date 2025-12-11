@@ -1,3 +1,11 @@
+:root {
+    --header-height: 60px;       /* Tinggi Header Biru */
+    --sidebar-width: 250px;      /* Lebar Sidebar Normal */
+    --sidebar-collapsed-width: 70px; /* Lebar Sidebar Kecil */
+    --primary-color: #4361ee;
+    --bg-body: #f3f5f9;
+}
+
 /* GLOBAL */
 body {
     background-color: #f8f9fa;
@@ -15,6 +23,7 @@ body {
 .navbar .text-white {
     color: #fff !important;
 }
+
 
 /* LOGOUT BUTTON */
 .logout-btn {
@@ -219,10 +228,3 @@ body {
     padding: 8px 16px;
 }
 
-#main-content {
-    transition: 0.3s ease;
-}
-
-#main-content.collapsed {
-    margin-left: 70px; /* saat sidebar collapse */
-}

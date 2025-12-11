@@ -64,42 +64,52 @@ $fasilitasList = pg_fetch_all($result);
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        min-height: 3rem;
+        min-height: 3rem; /* Menjaga tinggi judul konsisten */
         margin-bottom: 0.8rem;
         font-weight: 700;
         color: #2c3e50;
     }
 
-    /* Deskripsi */
+    /* Deskripsi - BAGIAN KUNCI PERUBAHAN */
     .card-text {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        margin-bottom: 1rem;
         font-size: 0.95rem;
         color: #666;
+        /* Magic CSS: margin-bottom: auto akan mendorong elemen dibawahnya ke dasar */
+        margin-bottom: auto; 
+        padding-bottom: 1rem;
+    }
+
+    /* Wrapper untuk Meta Data (Kategori & Tanggal) agar rapi */
+    .meta-wrapper {
+        border-top: 1px dashed #eee;
+        padding-top: 15px;
+        margin-top: 10px;
     }
 
     /* Info Row (Icon Hitam) */
     .info-row {
         font-size: 0.85rem;
         color: #555;
-        margin-bottom: 5px;
+        margin-bottom: 8px; /* Jarak antar info */
         display: flex;
         align-items: start;
     }
     .info-row i {
         margin-right: 8px;
-        color: #000; /* Hitam sesuai request */
-        margin-top: 3px;
+        color: #000; 
+        margin-top: 2px;
+        width: 16px; /* Lebar fix agar teks rata kiri */
     }
 
-    /* Wrapper Bagian Bawah */
-    .card-bottom-section {
-        margin-top: auto; /* Mendorong ke bawah */
-        padding-top: 15px;
-        border-top: 1px dashed #eee;
+    /* Tombol */
+    .btn-detail {
+        border-radius: 20px;
+        font-weight: bold;
+        margin-top: 10px;
     }
 </style>
 
@@ -138,24 +148,23 @@ $fasilitasList = pg_fetch_all($result);
                                     <?= mb_strimwidth(strip_tags($f['deskripsi']), 0, 110, "..."); ?>
                                 </p>
 
-                                <div class="info-row">
-                                    <i class="bi bi-tag-fill"></i>
-                                    <div>Kategori: <?= htmlspecialchars($f['kategori']) ?></div>
-                                </div>
-                                <div class="info-row mb-3">
-                                    <i class="bi bi-calendar-check"></i>
-                                    <div>Ditambahkan: <?= date('d M Y', strtotime($f['created_at'])) ?></div>
-                                </div>
+                                <div class="meta-wrapper">
+                                    <div class="info-row">
+                                        <i class="bi bi-tag-fill"></i>
+                                        <div><?= htmlspecialchars($f['kategori']) ?></div>
+                                    </div>
+                                    
+                                    <div class="info-row">
+                                        <i class="bi bi-calendar-check"></i>
+                                        <div><?= date('d M Y', strtotime($f['created_at'])) ?></div>
+                                    </div>
 
-                                <div class="card-bottom-section">
                                     <a href="detail_fasilitas.php?id=<?= $f['id'] ?>" 
-                                       class="btn btn-outline-primary btn-sm w-100 fw-bold"
-                                       style="border-radius: 20px;">
-                                        Lihat Detail →
+                                       class="btn btn-outline-primary btn-sm w-100 btn-detail">
+                                       Lihat Detail →
                                     </a>
                                 </div>
-
-                            </div>
+                                </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

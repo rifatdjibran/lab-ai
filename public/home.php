@@ -1,13 +1,36 @@
 <?php
 require "config/database.php";
 
-// Koneksi PostgreSQL (Pastikan variable $host, $port, dll sudah terdefinisi di config/database.php)
+// Koneksi PostgreSQL
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if (!$conn) {
     die("Koneksi database gagal: " . pg_last_error());
 }
 ?>
+
+<style>
+    .home-slider-img {
+        height: 500px; /* Tinggi slider, bisa disesuaikan */
+        object-fit: cover; /* Agar gambar tidak gepeng */
+        object-position: center;
+    }
+    
+    /* Responsif untuk HP */
+    @media (max-width: 768px) {
+        .home-slider-img {
+            height: 250px;
+        }
+    }
+
+    /* Efek hover pada arrow slider agar lebih jelas */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.3); /* Latar belakang hitam transparan */
+        border-radius: 50%;
+        padding: 20px;
+    }
+</style>
 
 <section class="hero-section" id="home-hero">
   <div class="container text-center text-white" style="position: relative; z-index: 2;">
@@ -23,6 +46,39 @@ if (!$conn) {
   </div>
 </section>
 
+<section class="container my-5">
+    <div id="mainCarousel" class="carousel slide carousel-fade shadow rounded-4 overflow-hidden" data-bs-ride="carousel" data-bs-interval="3000">
+        
+        <div class="carousel-indicators">
+            <?php 
+            // Daftar gambar manual
+            $sliderImages = ['gambar1.png', 'gambar2.png', 'gambar3.png']; 
+            foreach($sliderImages as $index => $img): 
+            ?>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="<?= $index ?>" 
+                        class="<?= $index === 0 ? 'active' : '' ?>" aria-current="true"></button>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="carousel-inner">
+            <?php foreach($sliderImages as $index => $img): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <img src="assets/img/home/<?= $img ?>" class="d-block w-100 home-slider-img" alt="Slide <?= $index + 1 ?>">
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
 <?php
 // Ambil 3 berita terbaru
 $query = "SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3";
@@ -190,40 +246,81 @@ $beritaHome = pg_query($conn, $query);
 </section>
 
 <section class="bg-light py-5">
-  <div class="container text-center">
-    <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-2 rounded-pill">TIM KAMI</span>
-    <h2 class="fw-bold mb-3">Struktur Organisasi</h2>
-    <p class="text-muted mb-5 mw-600 mx-auto">
-      Struktur organisasi Lab-AI terdiri dari dosen pembina, koordinator laboratorium, laboran, dan asisten mahasiswa.
-    </p>
+  <div class="container">
+    <div class="text-center mb-5">
+        <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-2 rounded-pill">FOKUS RISET</span>
+        <h2 class="fw-bold">Prioritas Topik Penelitian</h2>
+        <p class="text-muted mw-600 mx-auto">
+            Tujuh pilar utama penelitian dan pengembangan inovasi teknologi di laboratorium kami.
+        </p>
+    </div>
 
-    <div class="row justify-content-center g-4">
+    <div class="row g-4 justify-content-center">
       <?php
-      $anggota_home = [
-      ["Ir. Yan Watequlis Syaifudin, S.T., M.MT., Ph.D", "Ketua Laboratorium", "assets/img/tim/ketua.png"],
-      ["Pramana Yoga Saputra, S.Kom., M.MT.", "Anggota", "assets/img/tim/yoga.png"]
-    ];
+      // Data Topik Penelitian
+      $topics = [
+          [
+              "title" => "Intelligent Self-learning",
+              "desc"  => "Computer Programming: Web, mobile, database, Java, gamifikasi, dan scaffolding.",
+              "icon"  => "bi-laptop", // Ikon Laptop/Coding
+              "color" => "text-primary"
+          ],
+          [
+              "title" => "Smartfarming (Indoor & Outdoor)",
+              "desc"  => "Based on smart technology and Internet of Things (IoT).",
+              "icon"  => "bi-flower1", // Ikon Tanaman/Pertanian
+              "color" => "text-success"
+          ],
+          [
+              "title" => "Security Information & Event Management",
+              "desc"  => "Cybersecurity monitoring and management based on Wazuh.",
+              "icon"  => "bi-shield-lock", // Ikon Keamanan
+              "color" => "text-danger"
+          ],
+          [
+              "title" => "Decentralized System",
+              "desc"  => "Based on blockchain with Ethereum platform (supply chain, crowdfunding, dan tokenization).",
+              "icon"  => "bi-diagram-3", // Ikon Terdesentralisasi/Node
+              "color" => "text-info"
+          ],
+          [
+              "title" => "Financial Support Technology",
+              "desc"  => "Decentralization with blockchain and predictive system using data analysis.",
+              "icon"  => "bi-graph-up-arrow", // Ikon Finansial/Analisis
+              "color" => "text-warning"
+          ],
+          [
+              "title" => "Asset Protection & Digitization",
+              "desc"  => "Using Electroencephalogram (EEG) technology.",
+              "icon"  => "bi-activity", // Ikon Gelombang Otak/Aktivitas
+              "color" => "text-secondary"
+          ],
+          [
+              "title" => "Digital Map-based Reporting",
+              "desc"  => "System for government infrastructure (roads, irrigation, etc.).",
+              "icon"  => "bi-map", // Ikon Peta
+              "color" => "text-dark"
+          ]
+      ];
 
-      foreach ($anggota_home as $a):
+      foreach ($topics as $t):
       ?>
-        <div class="col-md-3 col-6">
-          <div class="card shadow-sm h-100 team-card border-0">
-          <div class="team-img-wrapper">
-              <img src="<?= $a[2] ?>" class="card-img-top" alt="<?= $a[0] ?>">
-          </div>
-            <div class="card-body py-3">
-              <h6 class="fw-bold mb-1 text-dark small"><?= $a[0] ?></h6>
-              <small class="text-primary fw-medium" style="font-size: 0.75rem;"><?= $a[1] ?></small>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm p-4 hover-effect" style="transition: transform 0.3s;">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-3">
+                    <i class="bi <?= $t['icon'] ?> fs-1 <?= $t['color'] ?>"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold text-dark mb-2"><?= $t['title'] ?></h5>
+                    <p class="text-muted small mb-0 lh-sm">
+                        <?= $t['desc'] ?>
+                    </p>
+                </div>
             </div>
           </div>
         </div>
       <?php endforeach; ?>
-    </div>
-
-    <div class="mt-5">
-        <a href="/lab-ai/public/struktur.php" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
-        Lihat Struktur Lengkap <i class="bi bi-arrow-right ms-2"></i>
-        </a>
     </div>
   </div>
 </section>

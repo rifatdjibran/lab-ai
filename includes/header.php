@@ -6,7 +6,7 @@
     <title>Lab AI - Informatika Terapan</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/lab-ai/assets/img/logo.png">
+    <link rel="icon" type="image/png" href="/lab-ai/assets/img/logoclear.png">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

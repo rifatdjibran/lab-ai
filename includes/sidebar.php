@@ -6,7 +6,7 @@
     top: 60px;
     left: 0;
     width: 250px;
-    height: calc(100vh - 60px) !important;
+    height: relative;
     
 
     background: rgba(230,230,230,0.45);
@@ -20,7 +20,7 @@
 
 /* Collapse */
 .sidebar.collapsed {
-    width: 70px;
+    width: 90px;
 }
 
 /* Glow background */
@@ -139,6 +139,7 @@
 
     <ul class="nav flex-column mb-auto">
         <li><a href="index.php" class="nav-link sidebar-link"><i class="bi bi-speedometer2"></i> <span class="sidebar-text">Dashboard</span></a></li>
+        <li><a href="kontakAdmin.php" class="nav-link sidebar-link"><i class="bi bi-lightbulb"></i> <span class="sidebar-text">Pesan User</span></a></li>
         <li><a href="beritaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-newspaper"></i> <span class="sidebar-text">Berita</span></a></li>
         <li><a href="agendaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-calendar-event"></i> <span class="sidebar-text">Kegiatan</span></a></li>
         <li><a href="penelitianAdmin.php" class="nav-link sidebar-link"><i class="bi bi-journal-text"></i> <span class="sidebar-text">Penelitian</span></a></li>
@@ -147,7 +148,7 @@
         <li><a href="timAdmin.php" class="nav-link sidebar-link"><i class="bi bi-people"></i> <span class="sidebar-text">Tim Lab</span></a></li>
         
         <li><a href="fasilitasAdmin.php" class="nav-link sidebar-link"><i class="bi bi-building"></i> <span class="sidebar-text">Fasilitas</span></a></li>
-        <li><a href="karyaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-building"></i> <span class="sidebar-text">Karya Dosen</span></a></li>
+        <li><a href="karyaAdmin.php" class="nav-link sidebar-link"><i class="bi bi-collection"></i> <span class="sidebar-text">Karya Dosen</span></a></li>
     </ul>
 
     <hr>
@@ -161,5 +162,15 @@ document.querySelectorAll(".sidebar-link").forEach(a => {
     if (a.getAttribute('href') === path.split("/").pop() || a.href === window.location.href) {
         a.classList.add("active");
     }
+});
+</script>
+
+<script>
+document.getElementById("toggleSidebar").addEventListener("click", () => {
+  const sidebar = document.getElementById("sidebar");
+  const content = document.getElementById("main-content");
+
+  sidebar.classList.toggle("collapsed");
+  content.classList.toggle("collapsed");
 });
 </script>
