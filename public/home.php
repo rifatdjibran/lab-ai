@@ -205,10 +205,10 @@ $beritaHome = pg_query($conn, $query);
               Mengenal lebih dekat Laboratorium for Applied Informatics (Lab-AI).
             </p>
             <p class="text-muted lh-lg">
-              Laboratorium for Applied Informatics (Lab-AI) merupakan pusat kegiatan akademik, penelitian,
-              dan pengembangan di bidang Informatika Terapan di bawah Jurusan Teknologi Informasi
-              Politeknik Negeri Malang. Kami berkomitmen untuk menjadi wadah inovasi bagi mahasiswa dan dosen
-              dalam mengembangkan solusi teknologi tepat guna.
+            Laboratorium Informatika Terapan merupakan salah satu laboratorium di Jurusan Teknologi Informasi, Politeknik Negeri Malang yang berfokus pada pengembangan dan penerapan ilmu informatika dalam bidang praktis.
+            Laboratorium ini mendukung kegiatan akademik mahasiswa melalui praktikum, penelitian, dan pengabdian masyarakat yang berbasis teknologi informasi terkini. 
+            Selain itu, laboratorium ini juga menjadi pusat inovasi dan eksperimen untuk menghasilkan solusi kreatif di bidang software development, jaringan komputer,
+             serta teknologi terapan lainnya.
             </p>
         </div>
     </div>
@@ -220,15 +220,19 @@ $beritaHome = pg_query($conn, $query);
     <?php
     $sections = [
       ["Sejarah Singkat", 
-       "Laboratorium for Applied Informatics (Lab AI) berdiri pada tahun 2020 sebagai wadah penelitian mahasiswa di bidang kecerdasan buatan.",
+       "Laboratorium Applied Informatics didirikan bersamaan dengan pembukaan Program Studi S2 Terapan di Jurusan Teknologi Informasi.
+        Laboratorium ini merupakan satu-satunya laboratorium di bawah Jurusan Teknologi Informasi yang berlokasi di Gedung Pascasarjana. 
+        Laboratorium Applied Informatics mulai beroperasi sejak awal tahun 2023 sebagai sarana pendukung kegiatan pendidikan dan pengembangan teknologi terapan.",
        "bi-clock-history"],
 
       ["Visi", 
-       "Menjadi laboratorium unggulan dalam riset dan penerapan Artificial Intelligence di lingkungan pendidikan vokasi.",
+       "Menjadi laboratorium unggulan dalam pengembangan dan penerapan teknologi informasi inovatif yang mendukung transformasi digital 
+       berkelanjutan, mendorong kolaborasi lintas sektor, serta menciptakan soluso cerdas berbasis data untuk menghadapi tantangan era industri 4.0.",
        "bi-lightbulb"],
 
       ["Misi", 
-       "Mengembangkan riset AI yang berdampak, memperkuat kolaborasi industri, dan mendorong inovasi mahasiswa.",
+       "1. Menerapkan teknologi informasi terkini, termasuk algoritma, teknologi pengolahan data, dan sistem terdistribusi, untuk mengatasi tantangan 
+       praktis dalam berbagai bidang dengan fokus pada pengembangan aplikasi dan solusi teknologi yang dapat meningkatkan produktivitas dan aksesabilitas informasi.",
        "bi-rocket"]
     ];
     foreach ($sections as $s): ?>

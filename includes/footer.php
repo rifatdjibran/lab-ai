@@ -39,8 +39,13 @@
 
         <ul class="list-unstyled mt-3">
           <li><a href="/lab-ai/index.php" class="text-white text-decoration-none">Home</a></li>
-          <li><a href="/lab-ai/public/proyek.php" class="text-white text-decoration-none">Proyek</a></li>
+          <li><a href="/lab-ai/public/struktur.php" class="text-white text-decoration-none">Member Laboratorium</a></li>
+          <li><a href="/lab-ai/public/penelitian.php" class="text-white text-decoration-none">Penelitian</a></li>
           <li><a href="/lab-ai/public/publikasi.php" class="text-white text-decoration-none">Publikasi</a></li>
+          <li><a href="/lab-ai/public/fasilitas.php" class="text-white text-decoration-none">Fasilitas Lab</a></li>
+          <li><a href="/lab-ai/public/agenda.php" class="text-white text-decoration-none">Agenda Lab</a></li>
+          <li><a href="/lab-ai/public/berita.php" class="text-white text-decoration-none">Berita</a></li>
+          <li><a href="/lab-ai/public/kontak.php" class="text-white text-decoration-none">Kontak Lab</a></li>
         </ul>
       </div>
 
