@@ -4,7 +4,7 @@ $host = "localhost";
 $port = "5433";
 $dbname = "lab_ai";
 $user = "postgres";
-$password = "admin123"; 
+$password = "12345"; 
 
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
