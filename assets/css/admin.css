@@ -1,7 +1,7 @@
 :root {
-    --header-height: 60px;       /* Tinggi Header Biru */
-    --sidebar-width: 250px;      /* Lebar Sidebar Normal */
-    --sidebar-collapsed-width: 70px; /* Lebar Sidebar Kecil */
+    --header-height: 60px;
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 70px; 
     --primary-color: #4361ee;
     --bg-body: #f3f5f9;
 }
@@ -95,136 +95,181 @@ body {
   transform: scale(0.95);
 }
 
-/* WRAPPER */
-.add-btn-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
-  background: #000;
-  border: 1px solid white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.25s ease;
-  text-decoration: none;
+
+/* ============================
+   1. CARD WRAPPER
+============================= */
+.edit-card {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.12);
 }
 
-.add-btn-wrapper:hover {
-  background: white;
+/* ============================
+   2. PREVIEW GAMBAR
+============================= */
+.edit-image-preview {
+    width: 70%;
+    border-radius: 14px;
+    margin: 10px auto;
+    display: block;
+    object-fit: cover; /* Tambahan agar gambar tidak gepeng */
 }
 
-.add-btn-wrapper:hover .add-btn-text {
-  color: black;
+.filename-box {
+    font-size: 14px;
+    color: #333;
+    background: #efefef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: inline-block;
 }
 
-/* TEXT STYLE */
-.add-btn-text {
-  font-weight: 600;
-  color: white;
-  margin: 0;
-  transition: 0.25s;
-  user-select: none;
+/* ============================
+   3. INPUT STYLE (UIVERSE)
+============================= */
+.input,
+textarea.input {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    background: white;
 }
 
-/* PLUS BUTTON ORIGINAL */
-.plusButton {
-  --plus_sideLength: 2.2rem;
-  --plus_topRightTriangleSideLength: 0.8rem;
-
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--plus_sideLength);
-  height: var(--plus_sideLength);
-  border: 1px solid white;
-  background-color: #000;
-  overflow: hidden;
-  transition: 0.25s ease;
+.input:focus,
+textarea.input:focus {
+    box-shadow: 5.5px 7px 0 black;
 }
 
-.plusButton::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-width: 0 var(--plus_topRightTriangleSideLength)
-    var(--plus_topRightTriangleSideLength) 0;
-  border-style: solid;
-  border-color: transparent white transparent transparent;
-  transition: 0.25s ease;
+/* FILE INPUT CUSTOMIZED */
+/* Gunakan class="input-file" pada tag <input type="file"> di PHP mu */
+.input-file {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid #000;
+    background: #fafafa;
+    box-shadow: 2.5px 3px 0 #000;
+    transition: .25s ease;
 }
 
-.plusButton:hover::before {
-  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+.input-file:focus {
+    box-shadow: 5.5px 7px 0 black;
 }
 
-.plusButton .plusIcon {
-  fill: white;
-  width: calc(var(--plus_sideLength) * 0.7);
-  height: calc(var(--plus_sideLength) * 0.7);
-  z-index: 1;
-  transition: 0.25s ease;
+/* TEXTAREA FIX */
+textarea.input {
+    resize: vertical; /* User hanya bisa resize ke bawah */
 }
 
-.plusButton:hover .plusIcon {
-  fill: black;
-  transform: rotate(180deg);
+/* LABEL STYLING */
+label.fw-bold {
+    margin-bottom: 5px;
+    margin-top: 18px;
+    font-weight: 600;
+    display: block; /* Memastikan label selalu di baris sendiri */
 }
 
-/* CRUD Table */
-.table-modern {
-    border-collapse: separate;
-    border-spacing: 0 10px;
-}
-
-.table-modern tbody tr {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: 0.2s ease;
-}
-
-.table-modern tbody tr:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-}
-
-.table-modern td, .table-modern th {
-    vertical-align: middle;
-    border: none !important;
-    padding: 16px 12px !important;
-}
-
-/* IMAGE THUMB */
-.table-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* DOT MENU BUTTON */
-.more-btn {
+/* ============================
+   4. BUTTON STYLES
+============================= */
+.BtnBase {
+    width: 150px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    background: transparent;
-    font-size: 1.4rem;
+    font-weight: 600;
     cursor: pointer;
-    padding: 4px 8px;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
 }
 
-.more-btn:hover {
-    color: #0d6efd;
+.BtnBase span {
+    z-index: 2;
+    position: relative;
 }
 
-/* Dropdown fix */
-.dropdown-menu {
-    border-radius: 10px;
-    padding: 8px 0;
-}
-.dropdown-item {
-    padding: 8px 16px;
+.BtnBase:active {
+    transform: scale(0.94) translateY(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
 }
 
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* --- Button Update (Hitam) --- */
+.BtnUpdate {
+    background: black;
+    color: white;
+}
+
+.BtnUpdate::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: white;
+    top: 50%;
+    left: -160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
+
+.BtnUpdate:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
+
+.BtnUpdate:hover {
+    color: black;
+}
+
+/* --- Button Back (Putih) --- */
+.BtnBack {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.BtnBack::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    background: black;
+    top: 50%;
+    left: 160%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: .35s ease;
+    z-index: 0;
+}
+
+.BtnBack:hover::before {
+    left: 0%;
+    border-radius: 0;
+}
+
+.BtnBack:hover {
+    color: white;
+}

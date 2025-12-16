@@ -30,7 +30,7 @@ $result = pg_query($conn, "SELECT * FROM kontak ORDER BY tanggal DESC");
     <link rel="icon" type="image/png" href="../assets/img/logoclear.png">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+     
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 

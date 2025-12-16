@@ -8,6 +8,8 @@ if (!isset($_SESSION['admin_id'])) {
 }
 ?>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 <!-- HEADER ADMIN -->
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top">
   <div class="container-fluid px-4">
