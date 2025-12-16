@@ -1,7 +1,7 @@
 <?php 
 include '../includes/header.php'; 
 include '../includes/navbar.php'; 
-require_once '../config/database.php'; // Pastikan koneksi DB tersedia
+require_once '../config/database.php'; 
 
 // Ambil ID dari query string
 $id = (int)($_GET['id'] ?? 1);
@@ -49,7 +49,7 @@ if (!$member) {
 $rekam_jejak = [
     'publikasi' => getPublikasi($conn, $member['id']),
     'riset'     => getKaryaDosen($conn, $member['id'], 'Riset'),
-    'ki'        => getKaryaDosen($conn, $member['id'], 'HAKI'), // KI = HAKI
+    'ki'        => getKaryaDosen($conn, $member['id'], 'HKI'), 
     'ppm'       => getKaryaDosen($conn, $member['id'], 'PPM'),
     'aktivitas' => getKaryaDosen($conn, $member['id'], 'Aktivitas'),
 ];
@@ -179,7 +179,7 @@ $rekam_jejak = [
     <ul class="nav nav-tabs custom-tabs mb-4 justify-content-center">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#publikasi">Publikasi</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#riset">Riset</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ki">HAKI</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ki">HKI</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#ppm">PPM</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#aktivitas">Aktivitas</a></li>
     </ul>
