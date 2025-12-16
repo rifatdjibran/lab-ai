@@ -152,6 +152,8 @@ $result = pg_query($conn, $query);
         padding: 6px 12px; border-radius: 8px;
         font-weight: 700; font-size: 0.8rem;
         border: 1px solid #dcfce7;
+        white-space: nowrap; 
+        display: inline-block;
     }
 
     .btn-action {
