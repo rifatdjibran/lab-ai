@@ -5,17 +5,24 @@ require_once '../config/database.php'; // Pastikan koneksi DB tersedia
 
 // --- 1. AMBIL DATA KETUA LAB ---
 // Mencari anggota dengan jabatan 'Ketua Laboratorium' atau 'Ketua Lab'
-$query_ketua = "SELECT id, nama, jabatan, foto FROM struktur_organisasi 
-                WHERE jabatan ILIKE 'Ketua Lab%' OR jabatan ILIKE 'Ketua Laboratorium%' 
-                ORDER BY urutan ASC LIMIT 1";
+$query_ketua = "
+    SELECT id, nama, jabatan, foto
+    FROM struktur_organisasi
+    WHERE jabatan ILIKE '%ketua%'
+    ORDER BY urutan ASC
+    LIMIT 1
+";
 $result_ketua = pg_query($conn, $query_ketua);
 $ketua = pg_fetch_assoc($result_ketua);
 
 // --- 2. AMBIL DATA ANGGOTA LAIN ---
 // Ambil semua anggota kecuali yang jabatannya Ketua
-$query_anggota = "SELECT id, nama, jabatan, foto FROM struktur_organisasi 
-                  WHERE jabatan NOT ILIKE 'Ketua Lab%' AND jabatan NOT ILIKE 'Ketua Laboratorium%'
-                  ORDER BY urutan ASC, nama ASC";
+$query_anggota = "
+    SELECT id, nama, jabatan, foto
+    FROM struktur_organisasi
+    WHERE jabatan NOT ILIKE '%ketua%'
+    ORDER BY urutan ASC, nama ASC
+";
 $result_anggota = pg_query($conn, $query_anggota);
 ?>
 
@@ -108,18 +115,24 @@ $result_anggota = pg_query($conn, $query_anggota);
     </div>
 
     <?php if ($ketua): ?>
-    <div class="row justify-content-center mb-5">
-        <div class="col-md-4 col-10">
-            <div class="org-card shadow text-center">
+    <h4 class="mb-4 fw-bold text-center text-muted">Ketua Laboratorium</h4>
+
+    <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center mb-5">
+        <div class="col">
+            <div class="org-card shadow-sm h-100">
                 <img src="<?= '../assets/img/tim/' . htmlspecialchars($ketua['foto']) ?>" 
                      alt="<?= htmlspecialchars($ketua['nama']) ?>">
+
                 <div class="card-body">
                     <span class="badge bg-primary mb-2">KETUA LAB</span>
-                    <h5 class="org-title"><?= htmlspecialchars($ketua['nama']) ?></h5>
+                    <h6 class="org-title"><?= htmlspecialchars($ketua['nama']) ?></h6>
                     <small class="org-role"><?= htmlspecialchars($ketua['jabatan']) ?></small>
-                    <a href="detail_struktur.php?id=<?= $ketua['id'] ?>" class="btn btn-outline-primary btn-sm mt-3 rounded-pill px-4">
-                        Lihat Profil
-                    </a>
+
+                    <div class="mt-3">
+                        <a href="detail_struktur.php?id=<?= $ketua['id'] ?>" class="org-more">
+                            Selengkapnya →
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,25 +143,27 @@ $result_anggota = pg_query($conn, $query_anggota);
 
     <h4 class="mb-4 fw-bold text-center text-muted">Anggota Laboratorium</h4>
     <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center">
-        <?php while ($m = pg_fetch_assoc($result_anggota)): ?>
-        <div class="col">
-            <div class="org-card shadow-sm h-100">
-                <img src="<?= '../assets/img/tim/' . htmlspecialchars($m['foto']) ?>" 
-                     alt="<?= htmlspecialchars($m['nama']) ?>">
-                <div class="card-body">
-                    <h6 class="org-title"><?= htmlspecialchars($m['nama']) ?></h6>
-                    <small class="org-role"><?= htmlspecialchars($m['jabatan']) ?></small>
-                    <div class="mt-3">
-                        <a href="detail_struktur.php?id=<?= $m['id'] ?>" class="org-more">Selengkapnya →</a>
+        <?php if (pg_num_rows($result_anggota) > 0): ?>
+            <?php while ($m = pg_fetch_assoc($result_anggota)): ?>
+                <div class="col">
+                    <div class="org-card shadow-sm h-100">
+                        <img src="<?= '../assets/img/tim/' . htmlspecialchars($m['foto']) ?>" 
+                            alt="<?= htmlspecialchars($m['nama']) ?>">
+                        <div class="card-body">
+                            <h6 class="org-title"><?= htmlspecialchars($m['nama']) ?></h6>
+                            <small class="org-role"><?= htmlspecialchars($m['jabatan']) ?></small>
+                            <div class="mt-3">
+                                <a href="detail_struktur.php?id=<?= $m['id'] ?>" class="org-more">Selengkapnya →</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <?php endwhile; ?>
-        <?php if (pg_num_rows($result_anggota) == 0 && !$ketua): ?>
+            <?php endwhile; ?>
+        <?php else: ?>
             <p class="text-center text-muted">Belum ada data anggota tim yang ditambahkan.</p>
         <?php endif; ?>
     </div>
+
 
 </section>
 
